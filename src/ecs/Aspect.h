@@ -13,7 +13,7 @@
 #include "Entity.h"
 
 class Aspect {
-private:
+protected:
 	std::vector<std::unique_ptr<Aspect>> aspects;
 
 public:
