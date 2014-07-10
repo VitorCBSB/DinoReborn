@@ -23,20 +23,20 @@ public:
 	Entity();
 	virtual ~Entity();
 
-	template <typename T, typename... Args>
+	template<typename T, typename ... Args>
 	void add_component(Args&... args) {
-		auto component = std::unique_ptr<T>(new T(args...));
+		auto component = std::unique_ptr < T > (new T(args...));
 		auto component_name = std::string(typeid(T).name());
 		components[component_name] = component;
 	}
 
-	template <typename T>
+	template<typename T>
 	void add_component(T* component) {
 		auto component_name = std::string(typeid(T).name());
-		components[component_name] = std::unique_ptr<T>(component);
+		components[component_name] = std::unique_ptr < T > (component);
 	}
 
-	template <typename T>
+	template<typename T>
 	T& get_component() {
 		auto it = components.find(std::string(typeid(T).name()));
 		if (it == components.end()) {
@@ -45,14 +45,19 @@ public:
 		return static_cast<T>(*(it->second));
 	}
 
-	template <typename T>
+	template<typename T>
 	void remove_component() {
 		components.erase(components.find(std::string(typeid(T).name())));
 	}
 
-	template <typename T>
-	bool has_component() {
-		return components.find(std::string(typeid(T).name())) != components.end();
+	template<typename T>
+	bool has_component() const {
+		return components.find(std::string(typeid(T).name()))
+				!= components.end();
+	}
+
+	bool has_component(const std::string& component_name) const {
+		return components.find(component_name) != components.end();
 	}
 };
 
