@@ -14,14 +14,28 @@
 
 class Aspect {
 protected:
-	std::vector<std::unique_ptr<Aspect>> aspects;
+	std::vector<std::string> components;
 
 public:
-	template <typename... Asp>
-	Aspect(Asp... aspects) : aspects{ aspects...} {}
+	template<typename ... Components>
+	Aspect(Components ... components) :
+			components { std::string(typeid(Components).name())... } {
+	}
 	virtual ~Aspect();
 
-	virtual bool validate(const Entity& e) = 0;
+	template<typename T>
+	void add_component() {
+		components.push_back(std::string(typeid(T).name()));
+	}
+
+	bool validate(const Entity& e) {
+		for (auto& component : components) {
+			if (!e.has_component(component)) {
+				return false;
+			}
+		}
+		return true;
+	}
 };
 
 typedef std::unique_ptr<Aspect> AspectPtr;
