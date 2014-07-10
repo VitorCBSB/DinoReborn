@@ -31,12 +31,18 @@ public:
 	}
 
 	template <typename T>
+	void add_component(T* component) {
+		auto component_name = std::string(typeid(T).name());
+		components[component_name] = std::unique_ptr<T>(component);
+	}
+
+	template <typename T>
 	T& get_component() {
 		auto it = components.find(std::string(typeid(T).name()));
 		if (it == components.end()) {
 			throw std::invalid_argument("Entry not found");
 		}
-		return *(it->second);
+		return static_cast<T>(*(it->second));
 	}
 
 	template <typename T>
