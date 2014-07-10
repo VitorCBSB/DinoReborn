@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "ecs/Aspect.h"
+#include "ecs/AndAspect.h"
 #include "ecs/System.h"
 #include "ecs/Entity.h"
 #include "ecs/Component.h"
