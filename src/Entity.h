@@ -49,6 +49,11 @@ public:
 	void remove_component() {
 		components.erase(components.find(std::string(typeid(T).name())));
 	}
+
+	template <typename T>
+	bool has_component() {
+		return components.find(std::string(typeid(T).name())) != components.end();
+	}
 };
 
 #endif /* ENTITY_H_ */
