@@ -8,6 +8,12 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <iostream>
+#include "ecs/Aspect.h"
+#include "ecs/System.h"
+#include "ecs/Entity.h"
+#include "ecs/Component.h"
+
 class Game {
 public:
 	Game();
