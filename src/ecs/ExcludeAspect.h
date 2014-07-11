@@ -14,7 +14,7 @@ class ExcludeAspect: public Aspect {
 public:
 	template <typename... Components>
 	ExcludeAspect(Components... components) : Aspect(components...) {}
-	virtual ~ExcludeAspect();
+	virtual ~ExcludeAspect() {}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

@@ -21,7 +21,7 @@ public:
 	Aspect(Components... components) :
 			components { std::string(typeid(components).name())... } {
 	}
-	virtual ~Aspect();
+	virtual ~Aspect() {}
 
 	virtual bool validate(const Entity& e) const = 0;
 };

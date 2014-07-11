@@ -10,8 +10,8 @@
 
 class Component {
 public:
-	Component();
-	virtual ~Component();
+	Component() {}
+	virtual ~Component() {}
 };
 
 #endif /* COMPONENT_H_ */

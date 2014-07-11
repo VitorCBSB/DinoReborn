@@ -11,17 +11,23 @@
 #include <memory>
 #include <typeinfo>
 #include <string>
+#include <stdint.h>
 #include <unordered_map>
 #include <stdexcept>
 #include "Component.h"
 
 class Entity {
 private:
+	uint64_t id;
 	std::unordered_map<std::string, std::unique_ptr<Component>> components;
 
 public:
-	Entity();
-	virtual ~Entity();
+	Entity(int id) : id(id) {}
+	virtual ~Entity() {}
+
+	uint64_t get_id() const {
+		return id;
+	}
 
 	template<typename T, typename ... Args>
 	void add_component(Args&... args) {
@@ -60,5 +66,7 @@ public:
 		return components.find(component_name) != components.end();
 	}
 };
+
+typedef std::unique_ptr<Entity> EntityPtr;
 
 #endif /* ENTITY_H_ */

@@ -12,7 +12,7 @@ class AllOfAspect : public Aspect {
 public:
 	template <typename... Components>
 	AllOfAspect(Components... components) : Aspect(components...) {}
-	virtual ~AllOfAspect();
+	virtual ~AllOfAspect() {}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

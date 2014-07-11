@@ -14,7 +14,7 @@ class OneOfAspect: public Aspect {
 public:
 	template <typename... Components>
 	OneOfAspect(Components... components) : Aspect(components...) {}
-	virtual ~OneOfAspect();
+	virtual ~OneOfAspect() {}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

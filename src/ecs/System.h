@@ -18,8 +18,8 @@ protected:
 	std::vector<AspectPtr> aspects;
 
 public:
-	System();
-	virtual ~System();
+	System() {}
+	virtual ~System() {}
 
 	bool validate(const Entity& e) const {
 		for (auto& aspect : aspects) {
@@ -32,5 +32,7 @@ public:
 
 	virtual void logic() = 0;
 };
+
+typedef std::unique_ptr<System> SystemPtr;
 
 #endif /* SYSTEM_H_ */
