@@ -16,6 +16,7 @@
 #include "ecs/System.h"
 #include "ecs/Entity.h"
 #include "ecs/Component.h"
+#include "ecs/World.h"
 
 class Game {
 public:

@@ -22,8 +22,11 @@ private:
 	std::unordered_map<std::string, std::unique_ptr<Component>> components;
 
 public:
-	Entity(int id) : id(id) {}
-	virtual ~Entity() {}
+	Entity(int id) :
+			id(id) {
+	}
+	virtual ~Entity() {
+	}
 
 	uint64_t get_id() const {
 		return id;
@@ -43,12 +46,12 @@ public:
 	}
 
 	template<typename T>
-	T& get_component() {
+	T* get_component() {
 		auto it = components.find(std::string(typeid(T).name()));
 		if (it == components.end()) {
-			throw std::invalid_argument("Entry not found");
+			return nullptr;
 		}
-		return static_cast<T>(*(it->second));
+		return static_cast<T*>(it->second.get());
 	}
 
 	template<typename T>

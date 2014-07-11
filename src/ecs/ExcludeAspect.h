@@ -9,12 +9,16 @@
 #define EXCLUDEASPECT_H_
 
 #include "Aspect.h"
+#include <string>
+#include <initializer_list>
 
 class ExcludeAspect: public Aspect {
 public:
-	template <typename... Components>
-	ExcludeAspect(Components... components) : Aspect(components...) {}
-	virtual ~ExcludeAspect() {}
+	ExcludeAspect(std::initializer_list<std::string> components) :
+			Aspect(components) {
+	}
+	virtual ~ExcludeAspect() {
+	}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

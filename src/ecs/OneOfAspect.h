@@ -9,12 +9,16 @@
 #define ONEOFASPECT_H_
 
 #include "Aspect.h"
+#include <string>
+#include <initializer_list>
 
 class OneOfAspect: public Aspect {
 public:
-	template <typename... Components>
-	OneOfAspect(Components... components) : Aspect(components...) {}
-	virtual ~OneOfAspect() {}
+	OneOfAspect(std::initializer_list<std::string> components) :
+			Aspect(components) {
+	}
+	virtual ~OneOfAspect() {
+	}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

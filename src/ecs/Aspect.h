@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <memory>
+#include <initializer_list>
 #include "Entity.h"
 
 class Aspect {
@@ -17,11 +18,11 @@ protected:
 	std::vector<std::string> components;
 
 public:
-	template<typename ... Components>
-	Aspect(Components... components) :
-			components { std::string(typeid(components).name())... } {
+	Aspect(std::initializer_list<std::string> components) :
+			components(components) {
 	}
-	virtual ~Aspect() {}
+	virtual ~Aspect() {
+	}
 
 	virtual bool validate(const Entity& e) const = 0;
 };

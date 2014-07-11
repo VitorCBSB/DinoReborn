@@ -8,11 +8,17 @@
 #ifndef ALLOFASPECT_H_
 #define ALLOFASPECT_H_
 
-class AllOfAspect : public Aspect {
+#include "Aspect.h"
+#include <string>
+#include <initializer_list>
+
+class AllOfAspect: public Aspect {
 public:
-	template <typename... Components>
-	AllOfAspect(Components... components) : Aspect(components...) {}
-	virtual ~AllOfAspect() {}
+	AllOfAspect(std::initializer_list<std::string> components) :
+			Aspect(components) {
+	}
+	virtual ~AllOfAspect() {
+	}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

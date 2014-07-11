@@ -30,6 +30,7 @@ public:
 	Entity& create_entity();
 	void remove_entity(uint64_t id);
 	void add_system(System* system);
+	void process();
 };
 
 #endif /* WORLD_H_ */

@@ -10,6 +10,8 @@
 
 #include <memory>
 #include <vector>
+#include <map>
+#include <stdint.h>
 #include "Aspect.h"
 #include "Entity.h"
 
@@ -18,8 +20,14 @@ protected:
 	std::vector<AspectPtr> aspects;
 
 public:
-	System() {}
-	virtual ~System() {}
+	System() {
+	}
+	virtual ~System() {
+	}
+
+	void add_aspect(Aspect* aspect) {
+		aspects.push_back(AspectPtr(aspect));
+	}
 
 	bool validate(const Entity& e) const {
 		for (auto& aspect : aspects) {
@@ -30,7 +38,15 @@ public:
 		return true;
 	}
 
-	virtual void logic() = 0;
+	virtual void process_entities(std::map<uint64_t, EntityPtr>& entities) {
+		for (auto& entity_entry : entities) {
+			if (validate(*(entity_entry.second))) {
+				process_entity(*(entity_entry.second));
+			}
+		}
+	}
+
+	virtual void process_entity(Entity& entity) = 0;
 };
 
 typedef std::unique_ptr<System> SystemPtr;

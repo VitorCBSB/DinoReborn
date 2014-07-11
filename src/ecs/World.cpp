@@ -26,3 +26,9 @@ void World::add_system(System* system) {
 void World::remove_entity(uint64_t id) {
 	entities.erase(id);
 }
+
+void World::process() {
+	for (auto& system : systems) {
+		system->process_entities(entities);
+	}
+}
