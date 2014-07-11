@@ -22,7 +22,7 @@ private:
 	std::unordered_map<std::string, std::unique_ptr<Component>> components;
 
 public:
-	Entity(int id) :
+	Entity(uint64_t id) :
 			id(id) {
 	}
 	virtual ~Entity() {
@@ -33,10 +33,10 @@ public:
 	}
 
 	template<typename T, typename ... Args>
-	void add_component(Args&... args) {
+	void add_component(Args... args) {
 		auto component = std::unique_ptr < T > (new T(args...));
 		auto component_name = std::string(typeid(T).name());
-		components[component_name] = component;
+		components[component_name] = std::move(component);
 	}
 
 	template<typename T>

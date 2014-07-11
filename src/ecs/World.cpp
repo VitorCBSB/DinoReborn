@@ -16,7 +16,7 @@ World::~World() {
 Entity& World::create_entity() {
 	auto e = new Entity(new_entity_id++);
 	entities[e->get_id()] = EntityPtr(e);
-	return *e;
+	return *entities[e->get_id()].get();
 }
 
 void World::add_system(System* system) {
