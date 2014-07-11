@@ -18,24 +18,12 @@ protected:
 
 public:
 	template<typename ... Components>
-	Aspect(Components ... components) :
-			components { std::string(typeid(Components).name())... } {
+	Aspect(Components... components) :
+			components { std::string(typeid(components).name())... } {
 	}
 	virtual ~Aspect();
 
-	template<typename T>
-	void add_component() {
-		components.push_back(std::string(typeid(T).name()));
-	}
-
-	bool validate(const Entity& e) {
-		for (auto& component : components) {
-			if (!e.has_component(component)) {
-				return false;
-			}
-		}
-		return true;
-	}
+	virtual bool validate(const Entity& e) const = 0;
 };
 
 typedef std::unique_ptr<Aspect> AspectPtr;

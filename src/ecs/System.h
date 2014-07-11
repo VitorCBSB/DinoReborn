@@ -9,22 +9,28 @@
 #define SYSTEM_H_
 
 #include <memory>
+#include <vector>
 #include "Aspect.h"
 #include "Entity.h"
 
 class System {
-private:
-	AspectPtr root_aspect;
+protected:
+	std::vector<AspectPtr> aspects;
 
 public:
-	System(Aspect* root_aspect) :
-			root_aspect(AspectPtr(root_aspect)) {
-	}
+	System();
 	virtual ~System();
 
-	bool validate(const Entity& e) {
-		return root_aspect->validate(e);
+	bool validate(const Entity& e) const {
+		for (auto& aspect : aspects) {
+			if (!aspect->validate(e)) {
+				return false;
+			}
+		}
+		return true;
 	}
+
+	virtual void logic() = 0;
 };
 
 #endif /* SYSTEM_H_ */
