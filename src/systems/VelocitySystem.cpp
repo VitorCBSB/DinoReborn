@@ -19,6 +19,5 @@ void VelocitySystem::process_entity(Entity& entity, double dt) {
 	auto p = entity.get_component<PositionComponent>();
 	auto v = entity.get_component<VelocityComponent>();
 
-	p->x += v->x * dt;
-	p->y += v->y * dt;
+	p->position += v->velocity * dt;
 }

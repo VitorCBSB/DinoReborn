@@ -11,13 +11,14 @@
 #include "../ecs/Component.h"
 #include <typeinfo>
 #include <string>
+#include "../Vector2.h"
 
 class PositionComponent: public Component<PositionComponent> {
 public:
-	float x, y;
+	Vector2 position;
 
 	PositionComponent(float x = 0, float y = 0) :
-			Component(), x(x), y(y) {
+			Component(), position(Vector2(x, y)) {
 	}
 	virtual ~PositionComponent() {
 	}

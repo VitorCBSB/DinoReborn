@@ -22,7 +22,7 @@ void Game::run() {
 	world.process(0.016);
 
 	auto p = e.get_component<PositionComponent>();
-	printf("Pos: (%f, %f)\n", p->x, p->y);
+	printf("Pos: (%f, %f)\n", p->position.x, p->position.y);
 }
 
 int main() {

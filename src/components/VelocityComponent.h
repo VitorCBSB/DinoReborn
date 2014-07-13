@@ -9,14 +9,14 @@
 #define VELOCITYCOMPONENT_H_
 
 #include "../ecs/Component.h"
-#include <typeinfo>
+#include "../Vector2.h"
 
 class VelocityComponent: public Component<VelocityComponent> {
 public:
-	float x, y;
+	Vector2 velocity;
 
 	VelocityComponent(float x = 0, float y = 0) :
-			Component(), x(x), y(y) {
+			Component(), velocity(Vector2(x, y)) {
 	}
 	virtual ~VelocityComponent() {
 	}
