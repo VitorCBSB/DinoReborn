@@ -10,12 +10,12 @@
 
 #include "Aspect.h"
 #include <string>
-#include <initializer_list>
 
+template<typename ... Comp>
 class AllOfAspect: public Aspect {
 public:
-	AllOfAspect(std::initializer_list<std::string> components) :
-			Aspect(components) {
+	AllOfAspect() :
+			Aspect { Comp::name()... } {
 	}
 	virtual ~AllOfAspect() {
 	}

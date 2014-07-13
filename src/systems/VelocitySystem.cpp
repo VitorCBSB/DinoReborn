@@ -9,8 +9,7 @@
 
 VelocitySystem::VelocitySystem() :
 		System() {
-	add_aspect(new AllOfAspect( { VelocityComponent::name(),
-			PositionComponent::name() }));
+	add_aspect(new AllOfAspect<PositionComponent, VelocityComponent>());
 }
 
 VelocitySystem::~VelocitySystem() {

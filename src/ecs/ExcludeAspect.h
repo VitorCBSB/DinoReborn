@@ -10,12 +10,12 @@
 
 #include "Aspect.h"
 #include <string>
-#include <initializer_list>
 
+template<typename ... Comp>
 class ExcludeAspect: public Aspect {
 public:
-	ExcludeAspect(std::initializer_list<std::string> components) :
-			Aspect(components) {
+	ExcludeAspect() :
+			Aspect { Comp::name()... } {
 	}
 	virtual ~ExcludeAspect() {
 	}
