@@ -8,9 +8,7 @@
 #ifndef POSITIONCOMPONENT_H_
 #define POSITIONCOMPONENT_H_
 
-#include "../ecs/Component.h"
-#include <typeinfo>
-#include <string>
+#include "../ecs/VECS.h"
 #include "../Vector2.h"
 
 class PositionComponent: public Component<PositionComponent> {

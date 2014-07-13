@@ -9,14 +9,7 @@
 #define GAME_H_
 
 #include <stdio.h>
-#include "ecs/Aspect.h"
-#include "ecs/AllOfAspect.h"
-#include "ecs/OneOfAspect.h"
-#include "ecs/ExcludeAspect.h"
-#include "ecs/System.h"
-#include "ecs/Entity.h"
-#include "ecs/Component.h"
-#include "ecs/World.h"
+#include "ecs/VECS.h"
 #include "systems/VelocitySystem.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"

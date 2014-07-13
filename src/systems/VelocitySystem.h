@@ -8,8 +8,7 @@
 #ifndef VELOCITYSYSTEM_H_
 #define VELOCITYSYSTEM_H_
 
-#include "../ecs/System.h"
-#include "../ecs/AllOfAspect.h"
+#include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
 #include "../components/VelocityComponent.h"
 

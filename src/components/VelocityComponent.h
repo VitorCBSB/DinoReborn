@@ -8,7 +8,7 @@
 #ifndef VELOCITYCOMPONENT_H_
 #define VELOCITYCOMPONENT_H_
 
-#include "../ecs/Component.h"
+#include "../ecs/VECS.h"
 #include "../Vector2.h"
 
 class VelocityComponent: public Component<VelocityComponent> {
