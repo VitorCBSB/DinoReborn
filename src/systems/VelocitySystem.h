@@ -18,7 +18,7 @@ public:
 	VelocitySystem();
 	virtual ~VelocitySystem();
 
-	void process_entity(Entity& entity);
+	void process_entity(Entity& entity, double dt);
 
 };
 

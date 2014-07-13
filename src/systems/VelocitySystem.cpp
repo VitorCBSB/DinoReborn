@@ -15,7 +15,7 @@ VelocitySystem::VelocitySystem() :
 VelocitySystem::~VelocitySystem() {
 }
 
-void VelocitySystem::process_entity(Entity& entity) {
+void VelocitySystem::process_entity(Entity& entity, double dt) {
 	auto p = entity.get_component<PositionComponent>();
 	auto v = entity.get_component<VelocityComponent>();
 
