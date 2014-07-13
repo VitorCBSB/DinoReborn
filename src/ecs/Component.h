@@ -8,11 +8,27 @@
 #ifndef COMPONENT_H_
 #define COMPONENT_H_
 
-class Component {
+#include <string>
+#include <typeinfo>
+
+class ComponentBase {
+public:
+	ComponentBase() {
+	}
+	virtual ~ComponentBase() {
+	}
+};
+
+template<typename T>
+class Component: public ComponentBase {
 public:
 	Component() {
 	}
 	virtual ~Component() {
+	}
+
+	static std::string name() {
+		return std::string(typeid(T).name());
 	}
 };
 

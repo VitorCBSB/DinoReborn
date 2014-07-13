@@ -12,7 +12,7 @@
 #include <typeinfo>
 #include <string>
 
-class PositionComponent: public Component {
+class PositionComponent: public Component<PositionComponent> {
 public:
 	float x, y;
 
@@ -20,10 +20,6 @@ public:
 			Component(), x(x), y(y) {
 	}
 	virtual ~PositionComponent() {
-	}
-
-	static std::string name() {
-		return std::string(typeid(PositionComponent).name());
 	}
 };
 

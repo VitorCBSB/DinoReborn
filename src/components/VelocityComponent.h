@@ -11,7 +11,7 @@
 #include "../ecs/Component.h"
 #include <typeinfo>
 
-class VelocityComponent: public Component {
+class VelocityComponent: public Component<VelocityComponent> {
 public:
 	float x, y;
 
@@ -19,10 +19,6 @@ public:
 			Component(), x(x), y(y) {
 	}
 	virtual ~VelocityComponent() {
-	}
-
-	static std::string name() {
-		return std::string(typeid(VelocityComponent).name());
 	}
 };
 
