@@ -25,8 +25,3 @@ void Game::run() {
 	printf("Pos: (%f, %f)\n", p->position.x, p->position.y);
 }
 
-int main() {
-	Game game;
-	game.run();
-	return 0;
-}
