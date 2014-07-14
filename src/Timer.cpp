@@ -27,7 +27,8 @@ void Timer::update() {
 }
 
 void Timer::start(int new_goal_time_in_milliseconds) {
-	this->goal_time_in_milliseconds = SDL_GetTicks() + new_goal_time_in_milliseconds;
+	this->goal_time_in_milliseconds = SDL_GetTicks()
+			+ new_goal_time_in_milliseconds;
 	done = false;
 	paused = false;
 	started = true;

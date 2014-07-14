@@ -8,10 +8,12 @@
 #include "Game.h"
 
 Game::Game() {
+	SDLBase::initialize_SDL();
 	world.add_system(new VelocitySystem());
 }
 
 Game::~Game() {
+	SDLBase::finalize_SDL();
 }
 
 void Game::run() {

@@ -9,6 +9,7 @@
 #define GAME_H_
 
 #include <stdio.h>
+#include "SDLBase.h"
 #include "ecs/VECS.h"
 #include "systems/VelocitySystem.h"
 #include "components/PositionComponent.h"

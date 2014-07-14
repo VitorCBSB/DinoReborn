@@ -38,7 +38,8 @@ public:
 		return true;
 	}
 
-	virtual void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {
+	virtual void process_entities(std::map<uint64_t, EntityPtr>& entities,
+			double dt) {
 		for (auto& entity_entry : entities) {
 			if (validate(*(entity_entry.second))) {
 				process_entity(*(entity_entry.second), dt);
