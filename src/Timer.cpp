@@ -11,8 +11,8 @@ Timer::Timer() {
 	done = false;
 	paused = false;
 	started = false;
-	goalTimeInMilliseconds = 0;
-	pausedTimeInMilliseconds = 0;
+	goal_time_in_milliseconds = 0;
+	paused_time_in_milliseconds = 0;
 }
 
 Timer::~Timer() {
@@ -20,14 +20,14 @@ Timer::~Timer() {
 
 void Timer::update() {
 	if (!done && !paused && started
-			&& SDL_GetTicks() >= goalTimeInMilliseconds) {
+			&& SDL_GetTicks() >= goal_time_in_milliseconds) {
 		done = true;
 		started = false;
 	}
 }
 
-void Timer::start(int newGoalTimeInMilliseconds) {
-	this->goalTimeInMilliseconds = SDL_GetTicks() + newGoalTimeInMilliseconds;
+void Timer::start(int new_goal_time_in_milliseconds) {
+	this->goal_time_in_milliseconds = SDL_GetTicks() + new_goal_time_in_milliseconds;
 	done = false;
 	paused = false;
 	started = true;
@@ -36,24 +36,24 @@ void Timer::start(int newGoalTimeInMilliseconds) {
 void Timer::pause() {
 	if (!paused && started) {
 		paused = true;
-		pausedTimeInMilliseconds = SDL_GetTicks();
+		paused_time_in_milliseconds = SDL_GetTicks();
 	}
 }
 
 void Timer::resume() {
 	if (paused) {
 		paused = false;
-		goalTimeInMilliseconds = goalTimeInMilliseconds
-				+ (SDL_GetTicks() - pausedTimeInMilliseconds);
+		goal_time_in_milliseconds = goal_time_in_milliseconds
+				+ (SDL_GetTicks() - paused_time_in_milliseconds);
 	}
 }
 
-unsigned int Timer::remainingTime() {
+unsigned int Timer::remaining_time() {
 	if (done || !started) {
 		return 0;
 	}
 	if (paused) {
-		return goalTimeInMilliseconds - pausedTimeInMilliseconds;
+		return goal_time_in_milliseconds - paused_time_in_milliseconds;
 	}
-	return goalTimeInMilliseconds - SDL_GetTicks();
+	return goal_time_in_milliseconds - SDL_GetTicks();
 }

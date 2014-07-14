@@ -15,19 +15,19 @@ private:
 	bool done;
 	bool paused;
 	bool started;
-	unsigned int goalTimeInMilliseconds;
-	unsigned int pausedTimeInMilliseconds;
+	unsigned int goal_time_in_milliseconds;
+	unsigned int paused_time_in_milliseconds;
 public:
 	Timer();
 	virtual ~Timer();
 
-	void start(int newGoalTimeInMilliseconds);
+	void start(int new_goal_time_in_milliseconds);
 	void resume();
 	void pause();
 	void update();
-	unsigned int remainingTime();
+	unsigned int remaining_time();
 
-	bool isDone() const {
+	bool is_done() const {
 		return done;
 	}
 };
