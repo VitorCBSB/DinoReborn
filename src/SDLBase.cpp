@@ -14,7 +14,7 @@ void SDLBase::initialize_SDL() {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	window = SDL_CreateWindow("Dino em' Up", 500, 500, WINDOW_WIDTH,
-	WINDOW_WIDTH, SDL_WINDOWEVENT_SHOWN);
+	WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	screen_renderer = SDL_CreateRenderer(window, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
@@ -41,4 +41,12 @@ void SDLBase::render_texture(SDL_Texture* texture, SDL_Rect* clip,
 				clip->w, clip->h);
 		exit(1);
 	}
+}
+
+void SDLBase::update_screen() {
+	SDL_RenderPresent(screen_renderer);
+}
+
+void SDLBase::clear_screen() {
+	SDL_RenderClear(screen_renderer);
 }

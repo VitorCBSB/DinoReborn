@@ -46,6 +46,8 @@ public:
 	static TexturePtr load_image(std::string file_name);
 	static void render_texture(SDL_Texture* texture, SDL_Rect* clip,
 			SDL_Rect* dst);
+	static void update_screen();
+	static void clear_screen();
 };
 
 #endif /* SDLBASE_H_ */

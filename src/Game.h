@@ -12,8 +12,12 @@
 #include "SDLBase.h"
 #include "ecs/VECS.h"
 #include "systems/VelocitySystem.h"
+#include "systems/RenderingSystem.h"
+#include "systems/UpdateScreenSystem.h"
+#include "systems/QuitSystem.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
+#include "components/SpriteComponent.h"
 
 class Game {
 private:

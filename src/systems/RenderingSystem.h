@@ -16,7 +16,7 @@
 #include "../components/PositionComponent.h"
 #include "../components/SpriteComponent.h"
 
-class RenderingSystem : public System {
+class RenderingSystem: public System {
 public:
 	RenderingSystem();
 
