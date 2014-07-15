@@ -19,16 +19,12 @@ Entity& World::create_entity() {
 	return *entities[e->get_id()].get();
 }
 
-void World::add_system(System* system) {
-	systems.push_back(SystemPtr(system));
-}
-
 void World::remove_entity(uint64_t id) {
 	entities.erase(id);
 }
 
 void World::process(double dt) {
 	for (auto& system : systems) {
-		system->process_entities(entities, dt);
+		system.second->process_entities(entities, dt);
 	}
 }

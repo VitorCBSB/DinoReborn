@@ -18,8 +18,6 @@ public:
 	VelocityComponent(float x = 0, float y = 0) :
 			Component(), velocity(Vector2(x, y)) {
 	}
-	virtual ~VelocityComponent() {
-	}
 };
 
 #endif /* VELOCITYCOMPONENT_H_ */

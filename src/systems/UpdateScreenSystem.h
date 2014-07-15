@@ -11,7 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../SDLBase.h"
 
-class UpdateScreenSystem: public System {
+class UpdateScreenSystem: public System<UpdateScreenSystem> {
 public:
 	UpdateScreenSystem() {
 	}

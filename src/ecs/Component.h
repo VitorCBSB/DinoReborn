@@ -32,4 +32,6 @@ public:
 	}
 };
 
+typedef std::unique_ptr<ComponentBase> ComponentPtr;
+
 #endif /* COMPONENT_H_ */

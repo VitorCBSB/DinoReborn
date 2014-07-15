@@ -19,7 +19,7 @@
 class Entity {
 private:
 	uint64_t id;
-	std::unordered_map<std::string, std::unique_ptr<ComponentBase>> components;
+	std::unordered_map<std::string, ComponentPtr> components;
 
 public:
 	Entity(uint64_t id) :
@@ -35,19 +35,18 @@ public:
 	template<typename T, typename ... Args>
 	void add_component(Args ... args) {
 		auto component = std::unique_ptr < T > (new T(args...));
-		auto component_name = std::string(typeid(T).name());
-		components[component_name] = std::move(component);
+		components[T::name()] = std::move(component);
 	}
 
 	template<typename T>
 	void add_component(T* component) {
-		auto component_name = std::string(typeid(T).name());
+		auto component_name = T::name();
 		components[component_name] = std::unique_ptr < T > (component);
 	}
 
 	template<typename T>
 	T* get_component() {
-		auto it = components.find(std::string(typeid(T).name()));
+		auto it = components.find(T::name());
 		if (it == components.end()) {
 			return nullptr;
 		}
@@ -56,12 +55,12 @@ public:
 
 	template<typename T>
 	void remove_component() {
-		components.erase(components.find(std::string(typeid(T).name())));
+		components.erase(components.find(T::name()));
 	}
 
 	template<typename T>
 	bool has_component() const {
-		return components.find(std::string(typeid(T).name()))
+		return components.find(T::name())
 				!= components.end();
 	}
 

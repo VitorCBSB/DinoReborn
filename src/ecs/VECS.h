@@ -10,6 +10,7 @@
 
 #include "World.h"
 #include "Entity.h"
+#include "Event.h"
 #include "System.h"
 #include "Aspect.h"
 #include "AllOfAspect.h"

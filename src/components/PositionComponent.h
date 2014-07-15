@@ -18,8 +18,6 @@ public:
 	PositionComponent(float x = 0, float y = 0) :
 			Component(), position(Vector2(x, y)) {
 	}
-	virtual ~PositionComponent() {
-	}
 };
 
 #endif /* POSITIONCOMPONENT_H_ */

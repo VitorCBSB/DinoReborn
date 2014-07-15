@@ -9,6 +9,7 @@
 #define GAME_H_
 
 #include <stdio.h>
+#include <memory>
 #include "SDLBase.h"
 #include "ecs/VECS.h"
 #include "systems/VelocitySystem.h"
@@ -21,7 +22,7 @@
 
 class Game {
 private:
-	World world;
+	std::shared_ptr<World> world;
 
 public:
 	Game();

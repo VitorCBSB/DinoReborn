@@ -12,7 +12,7 @@
 #include "../SDLBase.h"
 #include <stdlib.h>
 
-class QuitSystem: public System {
+class QuitSystem: public System<QuitSystem> {
 public:
 	QuitSystem() {
 	}
