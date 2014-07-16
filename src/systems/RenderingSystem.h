@@ -16,9 +16,9 @@
 #include "../components/PositionComponent.h"
 #include "../components/SpriteComponent.h"
 
-class RenderingSystem: public System<RenderingSystem> {
+class RenderingSystem: public System {
 public:
-	RenderingSystem();
+	RenderingSystem(std::shared_ptr<World> world_ptr);
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt);
 	void process_entity(Entity& entity, double dt);

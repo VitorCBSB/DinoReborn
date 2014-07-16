@@ -9,10 +9,10 @@
 
 Game::Game() : world(new World()) {
 	SDLBase::initialize_SDL();
-	world->add_system<VelocitySystem>();
-	world->add_system<RenderingSystem>();
-	world->add_system<QuitSystem>();
-	world->add_system<UpdateScreenSystem>();
+	world->add_system<VelocitySystem>(world);
+	world->add_system<RenderingSystem>(world);
+	world->add_system<QuitSystem>(world);
+	world->add_system<UpdateScreenSystem>(world);
 }
 
 Game::~Game() {

@@ -12,10 +12,9 @@
 #include "../components/PositionComponent.h"
 #include "../components/VelocityComponent.h"
 
-class VelocitySystem: public System<VelocitySystem> {
+class VelocitySystem: public System {
 public:
-	VelocitySystem();
-	virtual ~VelocitySystem();
+	VelocitySystem(std::shared_ptr<World> world_ptr);
 
 	void process_entity(Entity& entity, double dt);
 

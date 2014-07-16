@@ -7,12 +7,9 @@
 
 #include "VelocitySystem.h"
 
-VelocitySystem::VelocitySystem() :
-		System() {
+VelocitySystem::VelocitySystem(std::shared_ptr<World> world_ptr) :
+		System(world_ptr) {
 	add_aspect(new AllOfAspect<PositionComponent, VelocityComponent>());
-}
-
-VelocitySystem::~VelocitySystem() {
 }
 
 void VelocitySystem::process_entity(Entity& entity, double dt) {

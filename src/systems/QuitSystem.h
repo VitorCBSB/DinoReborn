@@ -12,9 +12,9 @@
 #include "../SDLBase.h"
 #include <stdlib.h>
 
-class QuitSystem: public System<QuitSystem> {
+class QuitSystem: public System {
 public:
-	QuitSystem() {
+	QuitSystem(std::shared_ptr<World> world_ptr) : System(world_ptr) {
 	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {
