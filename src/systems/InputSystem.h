@@ -9,6 +9,8 @@
 #define INPUTSYSTEM_H_
 
 #include "../ecs/VECS.h"
+#include "../SDLBase.h"
+#include "../events/Quit.h"
 #include <map>
 #include <stdint.h>
 

@@ -9,6 +9,7 @@
 
 Game::Game() : world(new World()) {
 	SDLBase::initialize_SDL();
+	world->add_system<InputSystem>(world);
 	world->add_system<VelocitySystem>(world);
 	world->add_system<RenderingSystem>(world);
 	world->add_system<QuitSystem>(world);

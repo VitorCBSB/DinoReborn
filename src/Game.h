@@ -16,6 +16,7 @@
 #include "systems/RenderingSystem.h"
 #include "systems/UpdateScreenSystem.h"
 #include "systems/QuitSystem.h"
+#include "systems/InputSystem.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
 #include "components/SpriteComponent.h"

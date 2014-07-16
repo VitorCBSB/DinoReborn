@@ -10,20 +10,23 @@
 
 #include "../ecs/VECS.h"
 #include "../SDLBase.h"
+#include "../events/Quit.h"
 #include <stdlib.h>
 
 class QuitSystem: public System {
 public:
 	QuitSystem(std::shared_ptr<World> world_ptr) : System(world_ptr) {
+		world_ptr->get_event_manager().subscribe<Quit>(*this);
 	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {
-		if (SDL_QuitRequested()) {
-			exit(0);
-		}
 	}
 
 	void process_entity(Entity& entity, double dt) {
+	}
+
+	void handle(const Quit& event) {
+		exit(0);
 	}
 };
 

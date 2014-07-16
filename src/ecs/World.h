@@ -35,7 +35,7 @@ public:
 		systems.push_back(SystemPtr(new T(args...)));
 	}
 
-	const EventManager& get_event_manager() {
+	EventManager& get_event_manager() {
 		return event_manager;
 	}
 };

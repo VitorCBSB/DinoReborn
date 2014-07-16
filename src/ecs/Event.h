@@ -15,10 +15,8 @@ class EventBase {
 };
 
 template <typename T>
-class Event {
+class Event : public EventBase {
 public:
-	virtual ~Event();
-
 	static std::string name() {
 		return std::string(typeid(T).name());
 	}
