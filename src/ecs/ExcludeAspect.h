@@ -17,8 +17,6 @@ public:
 	ExcludeAspect() :
 			Aspect { Comp::id()... } {
 	}
-	virtual ~ExcludeAspect() {
-	}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {

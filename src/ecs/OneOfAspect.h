@@ -17,8 +17,6 @@ public:
 	OneOfAspect() :
 			Aspect { Comp::id()... } {
 	}
-	virtual ~OneOfAspect() {
-	}
 
 	bool validate(const Entity& e) const {
 		for (auto& component_name : components) {
