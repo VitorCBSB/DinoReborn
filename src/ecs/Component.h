@@ -8,27 +8,17 @@
 #ifndef COMPONENT_H_
 #define COMPONENT_H_
 
-#include <string>
-#include <typeinfo>
+#include "BaseIdGenerator.h"
+#include <memory>
 
 class ComponentBase {
-public:
-	ComponentBase() {
-	}
-	virtual ~ComponentBase() {
-	}
 };
 
 template<typename T>
 class Component: public ComponentBase {
 public:
-	Component() {
-	}
-	virtual ~Component() {
-	}
-
-	static std::string name() {
-		return std::string(typeid(T).name());
+	static int id() {
+		return BaseIdGenerator<ComponentBase>::id<T>();
 	}
 };
 

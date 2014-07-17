@@ -8,8 +8,6 @@
 #ifndef EVENT_H_
 #define EVENT_H_
 
-#include <string>
-#include <typeinfo>
 #include "BaseIdGenerator.h"
 
 class EventBase {

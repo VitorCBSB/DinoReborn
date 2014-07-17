@@ -9,17 +9,14 @@
 #define ENTITY_H_
 
 #include <memory>
-#include <typeinfo>
-#include <string>
 #include <stdint.h>
 #include <unordered_map>
-#include <stdexcept>
 #include "Component.h"
 
 class Entity {
 private:
 	uint64_t id;
-	std::unordered_map<std::string, ComponentPtr> components;
+	std::unordered_map<int, ComponentPtr> components;
 
 public:
 	Entity(uint64_t id) :
@@ -35,18 +32,18 @@ public:
 	template<typename T, typename ... Args>
 	void add_component(Args ... args) {
 		auto component = std::unique_ptr < T > (new T(args...));
-		components[T::name()] = std::move(component);
+		components[T::id()] = std::move(component);
 	}
 
 	template<typename T>
 	void add_component(T* component) {
-		auto component_name = T::name();
-		components[component_name] = std::unique_ptr < T > (component);
+		auto component_id = T::id();
+		components[component_id] = std::unique_ptr < T > (component);
 	}
 
 	template<typename T>
 	T* get_component() {
-		auto it = components.find(T::name());
+		auto it = components.find(T::id());
 		if (it == components.end()) {
 			return nullptr;
 		}
@@ -55,16 +52,16 @@ public:
 
 	template<typename T>
 	void remove_component() {
-		components.erase(components.find(T::name()));
+		components.erase(components.find(T::id()));
 	}
 
 	template<typename T>
 	bool has_component() const {
-		return components.find(T::name()) != components.end();
+		return components.find(T::id()) != components.end();
 	}
 
-	bool has_component(const std::string& component_name) const {
-		return components.find(component_name) != components.end();
+	bool has_component(const int& component_id) const {
+		return components.find(component_id) != components.end();
 	}
 };
 

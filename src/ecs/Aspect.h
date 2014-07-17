@@ -15,10 +15,10 @@
 
 class Aspect {
 protected:
-	std::vector<std::string> components;
+	std::vector<int> components;
 
 public:
-	Aspect(std::initializer_list<std::string> components) :
+	Aspect(std::initializer_list<int> components) :
 			components(components) {
 	}
 	virtual ~Aspect() {

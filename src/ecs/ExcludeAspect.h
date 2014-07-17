@@ -15,7 +15,7 @@ template<typename ... Comp>
 class ExcludeAspect: public Aspect {
 public:
 	ExcludeAspect() :
-			Aspect { Comp::name()... } {
+			Aspect { Comp::id()... } {
 	}
 	virtual ~ExcludeAspect() {
 	}

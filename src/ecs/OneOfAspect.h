@@ -15,7 +15,7 @@ template<typename ... Comp>
 class OneOfAspect: public Aspect {
 public:
 	OneOfAspect() :
-			Aspect { Comp::name()... } {
+			Aspect { Comp::id()... } {
 	}
 	virtual ~OneOfAspect() {
 	}

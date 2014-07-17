@@ -15,7 +15,7 @@ template<typename ... Comp>
 class AllOfAspect: public Aspect {
 public:
 	AllOfAspect() :
-			Aspect { Comp::name()... } {
+			Aspect { Comp::id()... } {
 	}
 	virtual ~AllOfAspect() {
 	}
