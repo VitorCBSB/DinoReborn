@@ -9,7 +9,7 @@
 #define ALLOFASPECT_H_
 
 #include "Aspect.h"
-#include <string>
+#include "Entity.h"
 
 template<typename ... Comp>
 class AllOfAspect: public Aspect {

@@ -9,7 +9,7 @@
 #define EXCLUDEASPECT_H_
 
 #include "Aspect.h"
-#include <string>
+#include "Entity.h"
 
 template<typename ... Comp>
 class ExcludeAspect: public Aspect {
