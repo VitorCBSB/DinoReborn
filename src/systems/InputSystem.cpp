@@ -15,6 +15,16 @@ void InputSystem::process_entities(std::map<uint64_t, EntityPtr>& entities,
 		case SDL_QUIT:
 			world_ptr->get_event_manager().broadcast<Quit>();
 			break;
+		case SDL_KEYDOWN:
+			if (!event.key.repeat) {
+				world_ptr->get_event_manager().broadcast<KeyboardDown>(event.key.keysym.scancode);
+			}
+			break;
+		case SDL_KEYUP:
+			if (!event.key.repeat) {
+				world_ptr->get_event_manager().broadcast<KeyboardUp>(event.key.keysym.scancode);
+			}
+			break;
 		default:
 			break;
 		}

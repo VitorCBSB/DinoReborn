@@ -11,6 +11,8 @@
 #include "../ecs/VECS.h"
 #include "../SDLBase.h"
 #include "../events/Quit.h"
+#include "../events/KeyboardDown.h"
+#include "../events/KeyboardUp.h"
 #include <map>
 #include <stdint.h>
 
