@@ -11,6 +11,7 @@ Game::Game() :
 		world(new World()) {
 	SDLBase::initialize_SDL();
 	world->add_system < InputSystem > (world);
+	world->add_system < PlayerInputHandler > (world);
 	world->add_system < VelocitySystem > (world);
 	world->add_system < RenderingSystem > (world);
 	world->add_system < QuitSystem > (world);
@@ -24,8 +25,9 @@ Game::~Game() {
 void Game::run() {
 	auto& e = world->create_entity();
 	e.add_component < PositionComponent > (100.0f, 100.0f);
-	e.add_component < VelocityComponent > (50.0f, 0.0f);
+	e.add_component < VelocityComponent > (0.0f, 0.0f);
 	e.add_component < SpriteComponent > ("img/not_defined.png", 1);
+	e.add_component < PlayerComponent > ();
 
 	auto& bg = world->create_entity();
 	bg.add_component < PositionComponent > (400, 300);

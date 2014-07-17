@@ -17,9 +17,11 @@
 #include "systems/UpdateScreenSystem.h"
 #include "systems/QuitSystem.h"
 #include "systems/InputSystem.h"
+#include "systems/PlayerInputHandler.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
 #include "components/SpriteComponent.h"
+#include "components/PlayerComponent.h"
 
 class Game {
 private:
