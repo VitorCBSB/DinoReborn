@@ -19,8 +19,8 @@ public:
 	}
 
 	bool validate(const Entity& e) const {
-		for (auto& component_name : components) {
-			if (e.has_component(component_name)) {
+		for (auto& component_id : components) {
+			if (e.has_component(component_id)) {
 				return false;
 			}
 		}
