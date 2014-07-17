@@ -40,7 +40,7 @@ typedef std::unique_ptr<EventCallbackBase> EventCallbackPtr;
 
 class EventManager {
 private:
-	std::map<std::string, std::vector<EventCallbackPtr>> callbacks;
+	std::map<int, std::vector<EventCallbackPtr>> callbacks;
 
 public:
 	template<typename E, typename Handler>
@@ -48,13 +48,13 @@ public:
 		void (Handler::*handle)(const E&) = &Handler::handle;
 		auto callback = new EventCallback<E>(
 				std::bind(handle, &handler, std::placeholders::_1));
-		callbacks[E::name()].push_back(EventCallbackPtr(callback));
+		callbacks[E::id()].push_back(EventCallbackPtr(callback));
 	}
 
 	template<typename E, typename ... Args>
 	void broadcast(Args&... args) {
 		E event(args...);
-		for (auto& callback : callbacks[E::name()]) {
+		for (auto& callback : callbacks[E::id()]) {
 			callback->execute(&event);
 		}
 	}

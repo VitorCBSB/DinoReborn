@@ -14,7 +14,7 @@ private:
 	static int next_id;
 public:
 	template<typename T>
-	int id() {
+	static int id() {
 		static int id = next_id++;
 		return id;
 	}

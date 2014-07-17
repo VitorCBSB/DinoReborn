@@ -10,6 +10,7 @@
 
 #include <string>
 #include <typeinfo>
+#include "BaseIdGenerator.h"
 
 class EventBase {
 };
@@ -17,8 +18,8 @@ class EventBase {
 template<typename T>
 class Event: public EventBase {
 public:
-	static std::string name() {
-		return std::string(typeid(T).name());
+	static int id() {
+		return BaseIdGenerator<EventBase>::id<T>();
 	}
 };
 
