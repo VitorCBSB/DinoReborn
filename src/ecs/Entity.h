@@ -60,8 +60,7 @@ public:
 
 	template<typename T>
 	bool has_component() const {
-		return components.find(T::name())
-				!= components.end();
+		return components.find(T::name()) != components.end();
 	}
 
 	bool has_component(const std::string& component_name) const {

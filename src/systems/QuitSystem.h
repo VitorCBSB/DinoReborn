@@ -15,8 +15,9 @@
 
 class QuitSystem: public System {
 public:
-	QuitSystem(std::shared_ptr<World> world_ptr) : System(world_ptr) {
-		world_ptr->get_event_manager().subscribe<Quit>(*this);
+	QuitSystem(std::shared_ptr<World> world_ptr) :
+			System(world_ptr) {
+		world_ptr->get_event_manager().subscribe < Quit > (*this);
 	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {

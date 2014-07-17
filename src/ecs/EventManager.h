@@ -16,17 +16,20 @@
 
 class EventCallbackBase {
 public:
-	virtual ~EventCallbackBase() {}
+	virtual ~EventCallbackBase() {
+	}
 	virtual void execute(EventBase* event) = 0;
 };
 
-template <typename T>
-class EventCallback : public EventCallbackBase {
+template<typename T>
+class EventCallback: public EventCallbackBase {
 private:
 	std::function<void(const T&)> callback;
 
 public:
-	EventCallback(std::function<void(const T&)> callback) : callback(callback) {}
+	EventCallback(std::function<void(const T&)> callback) :
+			callback(callback) {
+	}
 	void execute(EventBase* event) {
 		T* real_event = static_cast<T*>(event);
 		callback(*real_event);
@@ -40,14 +43,15 @@ private:
 	std::map<std::string, std::vector<EventCallbackPtr>> callbacks;
 
 public:
-	template <typename E, typename Handler>
+	template<typename E, typename Handler>
 	void subscribe(Handler& handler) {
 		void (Handler::*handle)(const E&) = &Handler::handle;
-		auto callback = new EventCallback<E>(std::bind(handle, &handler, std::placeholders::_1));
+		auto callback = new EventCallback<E>(
+				std::bind(handle, &handler, std::placeholders::_1));
 		callbacks[E::name()].push_back(EventCallbackPtr(callback));
 	}
 
-	template <typename E, typename ... Args>
+	template<typename E, typename ... Args>
 	void broadcast(Args&... args) {
 		E event(args...);
 		for (auto& callback : callbacks[E::name()]) {

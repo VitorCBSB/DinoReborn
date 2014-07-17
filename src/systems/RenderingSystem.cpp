@@ -7,7 +7,8 @@
 
 #include "RenderingSystem.h"
 
-RenderingSystem::RenderingSystem(std::shared_ptr<World> world_ptr) : System(world_ptr) {
+RenderingSystem::RenderingSystem(std::shared_ptr<World> world_ptr) :
+		System(world_ptr) {
 	add_aspect(new AllOfAspect<PositionComponent, SpriteComponent>());
 }
 

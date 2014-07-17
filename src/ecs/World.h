@@ -30,8 +30,8 @@ public:
 	void remove_entity(uint64_t id);
 	void process(double dt);
 
-	template <typename T, typename ... Args>
-	void add_system(Args... args) {
+	template<typename T, typename ... Args>
+	void add_system(Args ... args) {
 		systems.push_back(SystemPtr(new T(args...)));
 	}
 

@@ -13,7 +13,8 @@
 
 class UpdateScreenSystem: public System {
 public:
-	UpdateScreenSystem(std::shared_ptr<World> world_ptr) : System(world_ptr) {
+	UpdateScreenSystem(std::shared_ptr<World> world_ptr) :
+			System(world_ptr) {
 	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {

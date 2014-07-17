@@ -14,8 +14,8 @@
 class EventBase {
 };
 
-template <typename T>
-class Event : public EventBase {
+template<typename T>
+class Event: public EventBase {
 public:
 	static std::string name() {
 		return std::string(typeid(T).name());

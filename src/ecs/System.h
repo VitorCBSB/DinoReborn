@@ -24,7 +24,8 @@ protected:
 	std::shared_ptr<World> world_ptr;
 
 public:
-	System(std::shared_ptr<World> world_ptr) : world_ptr(world_ptr) {
+	System(std::shared_ptr<World> world_ptr) :
+			world_ptr(world_ptr) {
 	}
 	virtual ~System() {
 	}
