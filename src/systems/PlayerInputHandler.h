@@ -18,9 +18,10 @@
 
 #define SPEED 50.0
 
-class PlayerInputHandler : public System {
+class PlayerInputHandler: public System {
 public:
-	PlayerInputHandler(std::shared_ptr<World> world_ptr) : System(world_ptr) {
+	PlayerInputHandler(std::shared_ptr<World> world_ptr) :
+			System(world_ptr) {
 		world_ptr->get_event_manager().subscribe<KeyboardDown>(*this);
 		world_ptr->get_event_manager().subscribe<KeyboardUp>(*this);
 	}

@@ -35,7 +35,7 @@ public:
 		systems.push_back(SystemPtr(new T(args...)));
 	}
 
-	template <typename T>
+	template<typename T>
 	std::vector<std::reference_wrapper<Entity>> get_entities_with_component() {
 		std::vector<std::reference_wrapper<Entity>> result;
 		for (auto& entity_entry : entities) {

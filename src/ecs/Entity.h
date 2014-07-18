@@ -31,14 +31,14 @@ public:
 
 	template<typename T, typename ... Args>
 	void add_component(Args ... args) {
-		auto component = std::unique_ptr < T > (new T(args...));
+		auto component = std::unique_ptr<T>(new T(args...));
 		components[T::id()] = std::move(component);
 	}
 
 	template<typename T>
 	void add_component(T* component) {
 		auto component_id = T::id();
-		components[component_id] = std::unique_ptr < T > (component);
+		components[component_id] = std::unique_ptr<T>(component);
 	}
 
 	template<typename T>

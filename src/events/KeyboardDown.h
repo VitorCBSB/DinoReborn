@@ -11,11 +11,13 @@
 #include "../SDLBase.h"
 #include "../ecs/VECS.h"
 
-class KeyboardDown : public Event<KeyboardDown> {
+class KeyboardDown: public Event<KeyboardDown> {
 public:
 	SDL_Scancode key;
 
-	KeyboardDown(SDL_Scancode key) : key(key) {}
+	KeyboardDown(SDL_Scancode key) :
+			key(key) {
+	}
 };
 
 #endif /* KEYBOARDDOWN_H_ */
