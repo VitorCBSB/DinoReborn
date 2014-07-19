@@ -16,7 +16,7 @@
 #include "../events/KeyboardUp.h"
 #include "../Vector2.h"
 
-#define SPEED 50.0
+#define SPEED 200.0
 
 class PlayerInputHandler: public System {
 public:
