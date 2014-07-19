@@ -16,7 +16,7 @@ public:
 	Sprite sprite;
 	int priority;
 
-	SpriteComponent(std::string sprite_file_name = "img/not_defined.png",
+	SpriteComponent(std::string sprite_file_name = "../img/not_defined.png",
 			int priority = 100) :
 			sprite(Sprite(sprite_file_name)), priority(priority) {
 	}
