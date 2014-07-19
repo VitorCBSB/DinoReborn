@@ -22,10 +22,8 @@ void InputSystem::process_entities(std::map<uint64_t, EntityPtr>& entities,
 			}
 			break;
 		case SDL_KEYUP:
-			if (!event.key.repeat) {
-				world_ptr->get_event_manager().broadcast<KeyboardUp>(
-						event.key.keysym.scancode);
-			}
+			world_ptr->get_event_manager().broadcast<KeyboardUp>(
+					event.key.keysym.scancode);
 			break;
 		default:
 			break;
