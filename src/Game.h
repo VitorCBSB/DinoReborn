@@ -12,16 +12,13 @@
 #include <memory>
 #include "SDLBase.h"
 #include "ecs/VECS.h"
+#include "EntityFactory.h"
 #include "systems/VelocitySystem.h"
 #include "systems/RenderingSystem.h"
 #include "systems/UpdateScreenSystem.h"
 #include "systems/QuitSystem.h"
 #include "systems/InputSystem.h"
 #include "systems/PlayerInputHandler.h"
-#include "components/PositionComponent.h"
-#include "components/VelocityComponent.h"
-#include "components/SpriteComponent.h"
-#include "components/PlayerComponent.h"
 
 class Game {
 private:
