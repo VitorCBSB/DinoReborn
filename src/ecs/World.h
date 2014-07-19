@@ -26,9 +26,15 @@ private:
 	uint64_t new_entity_id = 0;
 
 public:
+	int next_state;
+
+	World(int initial_state) :
+			next_state(initial_state) {
+	}
+
 	Entity& create_entity();
 	void remove_entity(uint64_t id);
-	void process(double dt);
+	int process(double dt);
 
 	template<typename T, typename ... Args>
 	void add_system(Args ... args) {

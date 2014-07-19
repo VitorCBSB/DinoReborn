@@ -11,6 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../SDLBase.h"
 #include "../events/Quit.h"
+#include "../GameStates.h"
 #include <stdlib.h>
 
 class QuitSystem: public System {
@@ -27,7 +28,7 @@ public:
 	}
 
 	void handle(const Quit& event) {
-		exit(0);
+		world_ptr->next_state = GameStates::STATE_QUIT;
 	}
 };
 

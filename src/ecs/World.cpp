@@ -17,8 +17,9 @@ void World::remove_entity(uint64_t id) {
 	entities.erase(id);
 }
 
-void World::process(double dt) {
+int World::process(double dt) {
 	for (auto& system : systems) {
 		system->process_entities(entities, dt);
 	}
+	return next_state;
 }

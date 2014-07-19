@@ -8,7 +8,7 @@
 #include "Game.h"
 
 Game::Game() :
-		world(new World()) {
+		world(new World(GameStates::STATE_NO_CHANGE)) {
 	SDLBase::initialize_SDL();
 	world->add_system<InputSystem>(world);
 	world->add_system<PlayerInputHandler>(world);
@@ -26,8 +26,7 @@ Game::~Game() {
 }
 
 void Game::run() {
-	while (true) {
-		world->process(0.016);
+	while (world->process(0.016) == GameStates::STATE_NO_CHANGE) {
 		SDL_Delay(16);
 	}
 }

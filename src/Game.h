@@ -12,6 +12,7 @@
 #include <memory>
 #include "SDLBase.h"
 #include "ecs/VECS.h"
+#include "GameStates.h"
 #include "EntityFactory.h"
 #include "systems/VelocitySystem.h"
 #include "systems/RenderingSystem.h"
