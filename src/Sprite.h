@@ -15,10 +15,11 @@ class Sprite {
 private:
 	TexturePtr texture;
 	SDL_Rect clip;
+	double angle;
 	bool hidden;
 
 public:
-	Sprite(std::string file_name, bool hidden = false);
+	Sprite(std::string file_name, double angle = 0, bool hidden = false);
 
 	void clip_texture(SDL_Rect new_clip);
 	void render(int x = 0, int y = 0, bool center = true);
@@ -30,6 +31,14 @@ public:
 
 	void set_hidden(bool hidden) {
 		this->hidden = hidden;
+	}
+
+	void set_angle(double angle) {
+		this->angle = angle;
+	}
+
+	double get_angle() {
+		return angle;
 	}
 };
 

@@ -7,10 +7,11 @@
 
 #include "Sprite.h"
 
-Sprite::Sprite(std::string fileName, bool hidden) {
+Sprite::Sprite(std::string fileName, double angle, bool hidden) {
 	this->texture = SDLBase::load_image(fileName);
 	this->clip.x = this->clip.y = 0;
 	SDL_QueryTexture(texture.get(), nullptr, nullptr, &clip.w, &clip.h);
+	this->angle = angle;
 	this->hidden = hidden;
 }
 
@@ -32,7 +33,7 @@ void Sprite::render(int x, int y, bool center) {
 		dst.w = std::min(clip.w, textureW);
 		dst.h = std::min(clip.h, textureH);
 
-		SDLBase::render_texture(texture.get(), &clip, &dst);
+		SDLBase::render_texture(texture.get(), &clip, &dst, angle);
 	}
 }
 

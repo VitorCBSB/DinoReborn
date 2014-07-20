@@ -17,8 +17,8 @@ public:
 	int priority;
 
 	SpriteComponent(std::string sprite_file_name = "img/not_defined.png",
-			int priority = 100) :
-			sprite(Sprite(sprite_file_name)), priority(priority) {
+			int angle = 0, int priority = 100) :
+			sprite(Sprite(sprite_file_name, angle)), priority(priority) {
 	}
 };
 
