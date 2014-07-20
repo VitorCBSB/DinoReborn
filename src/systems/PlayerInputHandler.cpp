@@ -11,6 +11,7 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 	auto entities = world_ptr->get_entities_with_component<PlayerComponent>();
 	auto& player = entities[0].get();
 	auto v = player.get_component<VelocityComponent>();
+	auto p = player.get_component<PositionComponent>();
 
 	switch (event.key) {
 	case SDL_SCANCODE_LEFT:
@@ -24,6 +25,9 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 		break;
 	case SDL_SCANCODE_DOWN:
 		v->velocity += Vector2(0, 1) * SPEED;
+		break;
+	case SDL_SCANCODE_Z:
+		EntityFactory::create_bullet(*world_ptr, new PositionComponent(*p));
 		break;
 	default:
 		break;

@@ -9,6 +9,7 @@
 
 Entity& EntityFactory::create_background(World& world) {
 	auto& background = world.create_entity();
+
 	background.add_component<PositionComponent>(400, 300);
 	background.add_component<SpriteComponent>("img/background.jpg", 0, 0);
 
@@ -17,10 +18,21 @@ Entity& EntityFactory::create_background(World& world) {
 
 Entity& EntityFactory::create_player(World& world) {
 	auto& player = world.create_entity();
+
 	player.add_component<PositionComponent>(100.0f, 100.0f);
 	player.add_component<VelocityComponent>(0.0f, 0.0f);
-	player.add_component<SpriteComponent>("img/not_defined.png", 0, 1);
+	player.add_component<SpriteComponent>("img/not_defined.png", 0, 2);
 	player.add_component<PlayerComponent>();
 
 	return player;
+}
+
+Entity& EntityFactory::create_bullet(World& world, PositionComponent* position) {
+	auto& bullet = world.create_entity();
+
+	bullet.add_component(position);
+	bullet.add_component<VelocityComponent>(0, -300);
+	bullet.add_component<SpriteComponent>("img/bullet.png", -90, 1);
+
+	return bullet;
 }

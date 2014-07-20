@@ -9,6 +9,7 @@
 #define PLAYERINPUTHANDLER_H_
 
 #include "../SDLBase.h"
+#include "../EntityFactory.h"
 #include "../ecs/VECS.h"
 #include "../components/PlayerComponent.h"
 #include "../components/VelocityComponent.h"
