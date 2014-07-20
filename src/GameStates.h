@@ -11,8 +11,7 @@
 class GameStates {
 public:
 	enum {
-		STATE_NO_CHANGE = 0,
-		STATE_QUIT
+		STATE_NO_CHANGE = 0, STATE_QUIT
 	};
 };
 
