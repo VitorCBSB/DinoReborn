@@ -45,7 +45,7 @@ public:
 
 	static TexturePtr load_image(std::string file_name);
 	static void render_texture(SDL_Texture* texture, SDL_Rect* clip,
-			SDL_Rect* dst);
+			SDL_Rect* dst, double angle = 0.0);
 	static void update_screen();
 	static void clear_screen();
 };

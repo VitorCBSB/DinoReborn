@@ -35,8 +35,9 @@ TexturePtr SDLBase::load_image(std::string file_name) {
 }
 
 void SDLBase::render_texture(SDL_Texture* texture, SDL_Rect* clip,
-		SDL_Rect* dst) {
-	if (SDL_RenderCopy(screen_renderer, texture, clip, dst) == -1) {
+		SDL_Rect* dst, double angle) {
+	if (SDL_RenderCopyEx(screen_renderer, texture, clip, dst, angle, nullptr,
+			SDL_FLIP_NONE) == -1) {
 		fprintf(stderr, "Could not render image with %dx%d dimensions.\n",
 				clip->w, clip->h);
 		exit(1);
