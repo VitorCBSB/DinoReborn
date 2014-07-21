@@ -23,7 +23,7 @@
 
 class Game {
 private:
-	std::shared_ptr<World> world;
+	WorldPtr world;
 
 public:
 	Game();

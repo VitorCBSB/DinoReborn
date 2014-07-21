@@ -16,7 +16,7 @@
 
 class QuitSystem: public System {
 public:
-	QuitSystem(std::shared_ptr<World> world_ptr) :
+	QuitSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
 		world_ptr->get_event_manager().subscribe<Quit>(*this);
 	}

@@ -57,4 +57,6 @@ public:
 	}
 };
 
+typedef std::shared_ptr<World> WorldPtr;
+
 #endif /* WORLD_H_ */

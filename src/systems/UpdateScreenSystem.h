@@ -13,7 +13,7 @@
 
 class UpdateScreenSystem: public System {
 public:
-	UpdateScreenSystem(std::shared_ptr<World> world_ptr) :
+	UpdateScreenSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
 	}
 

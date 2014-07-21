@@ -18,13 +18,15 @@
 
 class World;
 
+typedef std::shared_ptr<World> WorldPtr;
+
 class System {
 protected:
 	std::vector<AspectPtr> aspects;
-	std::shared_ptr<World> world_ptr;
+	WorldPtr world_ptr;
 
 public:
-	System(std::shared_ptr<World> world_ptr) :
+	System(WorldPtr world_ptr) :
 			world_ptr(world_ptr) {
 	}
 	virtual ~System() {

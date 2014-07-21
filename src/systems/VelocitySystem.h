@@ -14,7 +14,7 @@
 
 class VelocitySystem: public System {
 public:
-	VelocitySystem(std::shared_ptr<World> world_ptr);
+	VelocitySystem(WorldPtr world_ptr);
 
 	void process_entity(Entity& entity, double dt);
 

@@ -18,7 +18,7 @@
 
 class InputSystem: public System {
 public:
-	InputSystem(std::shared_ptr<World> world_ptr) :
+	InputSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
 	}
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt);
