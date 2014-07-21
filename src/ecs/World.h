@@ -47,11 +47,11 @@ public:
 	}
 
 	template<typename T>
-	std::vector<std::reference_wrapper<Entity>> get_entities_with_component() {
-		std::vector<std::reference_wrapper<Entity>> result;
+	std::vector<EntityPtr> get_entities_with_component() {
+		std::vector<EntityPtr> result;
 		for (auto& entity_entry : entities) {
 			if (entity_entry.second->has_component<T>()) {
-				result.push_back(*(entity_entry.second));
+				result.push_back(entity_entry.second);
 			}
 		}
 		return result;

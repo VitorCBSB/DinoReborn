@@ -8,10 +8,10 @@
 #include "PlayerInputHandler.h"
 
 void PlayerInputHandler::handle(const KeyboardDown& event) {
-	auto entities = world_ptr->get_entities_with_component<PlayerComponent>();
-	auto& player = entities[0].get();
-	auto v = player.get_component<VelocityComponent>();
-	auto p = player.get_component<PositionComponent>();
+	auto entities = world_ptr->get_group_manager().get_entities_from_group("player");
+	auto& player = (*(entities.begin())).second;
+	auto v = player->get_component<VelocityComponent>();
+	auto p = player->get_component<PositionComponent>();
 
 	switch (event.key) {
 	case SDL_SCANCODE_LEFT:
@@ -35,9 +35,9 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 }
 
 void PlayerInputHandler::handle(const KeyboardUp& event) {
-	auto entities = world_ptr->get_entities_with_component<PlayerComponent>();
-	auto& player = entities[0].get();
-	auto v = player.get_component<VelocityComponent>();
+	auto entities = world_ptr->get_group_manager().get_entities_from_group("player");
+	auto& player = (*(entities.begin())).second;
+	auto v = player->get_component<VelocityComponent>();
 
 	switch (event.key) {
 	case SDL_SCANCODE_LEFT:
