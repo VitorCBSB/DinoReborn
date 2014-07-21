@@ -12,6 +12,7 @@
 #include "Entity.h"
 #include "Event.h"
 #include "EventManager.h"
+#include "GroupManager.h"
 #include "System.h"
 #include "Aspect.h"
 #include "AllOfAspect.h"
