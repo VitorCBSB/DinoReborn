@@ -8,8 +8,11 @@
 #include "PlayerInputHandler.h"
 
 void PlayerInputHandler::handle(const KeyboardDown& event) {
-	auto entities = world_ptr->get_group_manager().get_entities_from_group("player");
-	auto& player = (*(entities.begin())).second;
+	auto player = world_ptr->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
 	auto v = player->get_component<VelocityComponent>();
 	auto p = player->get_component<PositionComponent>();
 
@@ -35,8 +38,11 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 }
 
 void PlayerInputHandler::handle(const KeyboardUp& event) {
-	auto entities = world_ptr->get_group_manager().get_entities_from_group("player");
-	auto& player = (*(entities.begin())).second;
+	auto player = world_ptr->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
 	auto v = player->get_component<VelocityComponent>();
 
 	switch (event.key) {

@@ -13,6 +13,7 @@
 #include "Aspect.h"
 #include "EventManager.h"
 #include "GroupManager.h"
+#include "TagManager.h"
 #include <memory>
 #include <stdint.h>
 #include <map>
@@ -24,6 +25,7 @@ private:
 	std::map<uint64_t, EntityPtr> entities;
 	EventManager event_manager;
 	GroupManager group_manager;
+	TagManager tag_manager;
 
 	uint64_t new_entity_id = 0;
 
@@ -38,7 +40,7 @@ public:
 
 	EntityPtr create_entity();
 	void remove_entity(uint64_t id);
-	void remove_entity(Entity& entity);
+	void remove_entity(EntityPtr entity);
 	int process(double dt);
 
 	template<typename T, typename ... Args>
@@ -63,6 +65,10 @@ public:
 
 	GroupManager& get_group_manager() {
 		return group_manager;
+	}
+
+	TagManager& get_tag_manager() {
+		return tag_manager;
 	}
 };
 

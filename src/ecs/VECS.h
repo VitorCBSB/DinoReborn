@@ -13,6 +13,7 @@
 #include "Event.h"
 #include "EventManager.h"
 #include "GroupManager.h"
+#include "TagManager.h"
 #include "System.h"
 #include "Aspect.h"
 #include "AllOfAspect.h"
