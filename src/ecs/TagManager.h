@@ -17,12 +17,12 @@ private:
 	std::map<std::string, EntityPtr> tagged_entities;
 
 public:
-	void set_tag(std::string tag, EntityPtr entity) {
+	void set_entity_tag(std::string tag, EntityPtr entity) {
 		entity->set_tag(tag);
 		tagged_entities[tag] = entity;
 	}
 
-	void remove(std::string tag) {
+	void remove_entity(std::string tag) {
 		tagged_entities.erase(tag);
 	}
 

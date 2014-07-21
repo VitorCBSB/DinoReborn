@@ -23,7 +23,7 @@ EntityPtr EntityFactory::create_player(World& world) {
 	player->assign_component<VelocityComponent>(0.0f, 0.0f);
 	player->assign_component<SpriteComponent>("img/not_defined.png", 0, 2);
 
-	world.get_tag_manager().set_tag("player", player);
+	world.get_tag_manager().set_entity_tag("player", player);
 
 	return player;
 }

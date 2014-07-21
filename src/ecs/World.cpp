@@ -15,7 +15,7 @@ EntityPtr World::create_entity() {
 
 void World::remove_entity_from_everything(uint64_t id) {
 	group_manager.remove_entity(id);
-	tag_manager.remove(entities[id]->get_tag());
+	tag_manager.remove_entity(entities[id]->get_tag());
 	entities.erase(id);
 }
 
