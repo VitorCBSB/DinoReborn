@@ -16,9 +16,9 @@
 
 class EntityFactory {
 public:
-	static Entity& create_background(World& world);
-	static Entity& create_player(World& world);
-	static Entity& create_bullet(World& world, PositionComponent* position);
+	static EntityPtr create_background(World& world);
+	static EntityPtr create_player(World& world);
+	static EntityPtr create_bullet(World& world, PositionComponent* position);
 };
 
 #endif /* ENTITYFACTORY_H_ */
