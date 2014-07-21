@@ -11,22 +11,30 @@
 #include <memory>
 #include <stdint.h>
 #include <unordered_map>
+#include <string>
 #include "Component.h"
 
 class Entity {
 private:
 	uint64_t id;
+	std::string tag;
 	std::unordered_map<int, ComponentPtr> components;
 
 public:
 	Entity(uint64_t id) :
 			id(id) {
 	}
-	virtual ~Entity() {
-	}
 
 	uint64_t get_id() const {
 		return id;
+	}
+
+	void set_tag(std::string tag) {
+		this->tag = tag;
+	}
+
+	std::string get_tag() {
+		return tag;
 	}
 
 	template<typename T, typename ... Args>
@@ -52,16 +60,16 @@ public:
 
 	template<typename T>
 	void remove_component() {
-		components.erase(components.find(T::id()));
+		components.erase(T::id());
 	}
 
 	template<typename T>
 	bool has_component() const {
-		return components.find(T::id()) != components.end();
+		return components.count(T::id());
 	}
 
 	bool has_component(const int& component_id) const {
-		return components.find(component_id) != components.end();
+		return components.count(component_id);
 	}
 };
 
