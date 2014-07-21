@@ -23,8 +23,10 @@ public:
 	}
 
 	void remove_entity(std::string tag) {
-		tagged_entities[tag]->set_tag("");
-		tagged_entities.erase(tag);
+		if (tagged_entities.count(tag)) {
+			tagged_entities[tag]->set_tag("");
+			tagged_entities.erase(tag);
+		}
 	}
 
 	EntityPtr get_entity(std::string tag) {
