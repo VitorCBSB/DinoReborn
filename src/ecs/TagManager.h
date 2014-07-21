@@ -23,6 +23,7 @@ public:
 	}
 
 	void remove_entity(std::string tag) {
+		tagged_entities[tag]->set_tag("");
 		tagged_entities.erase(tag);
 	}
 
