@@ -30,7 +30,8 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 		v->velocity += Vector2(0, 1) * SPEED;
 		break;
 	case SDL_SCANCODE_Z:
-		EntityFactory::create_bullet(*world_ptr, new PositionComponent(*p));
+		EntityFactory::create_bullet(*world_ptr, new PositionComponent(*p),
+				new VelocityComponent(0, -300));
 		break;
 	default:
 		break;

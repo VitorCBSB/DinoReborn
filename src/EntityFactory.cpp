@@ -22,18 +22,22 @@ EntityPtr EntityFactory::create_player(World& world) {
 	player->assign_component<PositionComponent>(100.0f, 100.0f);
 	player->assign_component<VelocityComponent>(0.0f, 0.0f);
 	player->assign_component<SpriteComponent>("img/not_defined.png", 0, 2);
+	player->assign_component<BoundingCircleComponent>(1.0f);
 
 	world.get_tag_manager().set_entity_tag("player", player);
 
 	return player;
 }
 
-EntityPtr EntityFactory::create_bullet(World& world, PositionComponent* position) {
+EntityPtr EntityFactory::create_bullet(World& world,
+		PositionComponent* position, VelocityComponent* velocity) {
 	auto bullet = world.create_entity();
 
 	bullet->assign_component(position);
-	bullet->assign_component<VelocityComponent>(0, -300);
-	bullet->assign_component<SpriteComponent>("img/bullet.png", -90, 1);
+	bullet->assign_component(velocity);
+	bullet->assign_component<SpriteComponent>("img/bullet.png",
+			atan2(velocity->velocity.y, velocity->velocity.x) * 180 / M_PI, 1);
+	bullet->assign_component<BoundingCircleComponent>(1.0f);
 
 	world.get_group_manager().assign_entity_to_group("bullets", bullet);
 
