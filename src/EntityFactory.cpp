@@ -43,3 +43,12 @@ EntityPtr EntityFactory::create_bullet(World& world,
 
 	return bullet;
 }
+
+EntityPtr EntityFactory::create_test_entity(World& world) {
+	auto test = world.create_entity();
+
+	test->assign_component<PositionComponent>(400, 150);
+	test->assign_component<SpriteComponent>("img/not_defined.png", 0, 1);
+
+	return test;
+}

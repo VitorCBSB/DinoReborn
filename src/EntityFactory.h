@@ -21,6 +21,7 @@ public:
 	static EntityPtr create_player(World& world);
 	static EntityPtr create_bullet(World& world, PositionComponent* position,
 			VelocityComponent* velocity);
+	static EntityPtr create_test_entity(World& world);
 };
 
 #endif /* ENTITYFACTORY_H_ */

@@ -19,6 +19,7 @@ Game::Game() :
 
 	EntityFactory::create_player(*world);
 	EntityFactory::create_background(*world);
+	EntityFactory::create_test_entity(*world);
 }
 
 Game::~Game() {
