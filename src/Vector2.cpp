@@ -63,7 +63,7 @@ Vector2 Vector2::rotate(float angleInDegrees) {
 			this->x * sin(angleInRadians) + this->y * cos(angleInRadians));
 }
 
-Vector2 Vector2::normalVector() {
+Vector2 Vector2::normal_vector() {
 	return rotate(90);
 }
 
