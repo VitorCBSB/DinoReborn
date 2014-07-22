@@ -22,7 +22,8 @@ public:
 		groups[group_name][entity->get_id()] = entity;
 	}
 
-	std::map<uint64_t, EntityPtr>& get_entities_from_group(std::string group_name) {
+	std::map<uint64_t, EntityPtr>& get_entities_from_group(
+			std::string group_name) {
 		return groups[group_name];
 	}
 
