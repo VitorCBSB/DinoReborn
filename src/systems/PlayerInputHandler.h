@@ -22,8 +22,8 @@ class PlayerInputHandler: public System {
 public:
 	PlayerInputHandler(WorldPtr world_ptr) :
 			System(world_ptr) {
-		world_ptr->get_event_manager().subscribe<KeyboardDown>(*this);
-		world_ptr->get_event_manager().subscribe<KeyboardUp>(*this);
+		this->world_ptr.lock()->get_event_manager().subscribe<KeyboardDown>(*this);
+		this->world_ptr.lock()->get_event_manager().subscribe<KeyboardUp>(*this);
 	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {

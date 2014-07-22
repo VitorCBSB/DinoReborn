@@ -8,7 +8,7 @@
 #include "PlayerInputHandler.h"
 
 void PlayerInputHandler::handle(const KeyboardDown& event) {
-	auto player = world_ptr->get_tag_manager().get_entity("player");
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
 	if (!player) {
 		return;
 	}
@@ -30,7 +30,7 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 		v->velocity += Vector2(0, 1) * SPEED;
 		break;
 	case SDL_SCANCODE_Z:
-		EntityFactory::create_bullet(*world_ptr, new PositionComponent(*p),
+		EntityFactory::create_bullet(*(world_ptr.lock()), new PositionComponent(*p),
 				new VelocityComponent(0, -300));
 		break;
 	default:
@@ -39,7 +39,7 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 }
 
 void PlayerInputHandler::handle(const KeyboardUp& event) {
-	auto player = world_ptr->get_tag_manager().get_entity("player");
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
 	if (!player) {
 		return;
 	}

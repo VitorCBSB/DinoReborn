@@ -18,7 +18,7 @@ class QuitSystem: public System {
 public:
 	QuitSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
-		world_ptr->get_event_manager().subscribe<Quit>(*this);
+		this->world_ptr.lock()->get_event_manager().subscribe<Quit>(*this);
 	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {
@@ -28,7 +28,7 @@ public:
 	}
 
 	void handle(const Quit& event) {
-		world_ptr->next_state = GameStates::STATE_QUIT;
+		world_ptr.lock()->next_state = GameStates::STATE_QUIT;
 	}
 };
 

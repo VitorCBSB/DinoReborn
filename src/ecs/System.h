@@ -23,7 +23,7 @@ typedef std::shared_ptr<World> WorldPtr;
 class System {
 protected:
 	std::vector<AspectPtr> aspects;
-	WorldPtr world_ptr;
+	std::weak_ptr<World> world_ptr;
 
 public:
 	System(WorldPtr world_ptr) :
