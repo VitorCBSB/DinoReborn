@@ -13,7 +13,9 @@ void BulletRemovalSystem::handle(const Collision& event) {
 
 void BulletRemovalSystem::process_entities(
 		std::map<uint64_t, EntityPtr>& entities, double dt) {
-	auto bullets = world_ptr.lock()->get_group_manager().get_entities_from_group("bullets");
+	auto bullets =
+			world_ptr.lock()->get_group_manager().get_entities_from_group(
+					"bullets");
 
 	for (auto it = bullets.begin(); it != bullets.end();) {
 		auto actual = it++;

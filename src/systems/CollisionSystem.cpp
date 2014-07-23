@@ -32,7 +32,8 @@ void CollisionSystem::process_entities(std::map<uint64_t, EntityPtr>& entities,
 
 			if (enemy_position->position.distance(bullet_position->position)
 					< enemy_circle->radius + bullet_circle->radius) {
-				world_ptr.lock()->get_event_manager().broadcast<Collision>(enemy, bullet);
+				world_ptr.lock()->get_event_manager().broadcast<Collision>(
+						enemy, bullet);
 			}
 		}
 	}
