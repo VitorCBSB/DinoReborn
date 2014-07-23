@@ -15,6 +15,8 @@
 #include "GameStates.h"
 #include "EntityFactory.h"
 #include "systems/VelocitySystem.h"
+#include "systems/BulletRemovalSystem.h"
+#include "systems/CollisionSystem.h"
 #include "systems/RenderingSystem.h"
 #include "systems/UpdateScreenSystem.h"
 #include "systems/QuitSystem.h"

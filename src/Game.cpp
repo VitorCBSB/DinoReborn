@@ -13,6 +13,8 @@ Game::Game() :
 	world->add_system<InputSystem>(world);
 	world->add_system<PlayerInputHandler>(world);
 	world->add_system<VelocitySystem>(world);
+	world->add_system<BulletRemovalSystem>(world);
+	world->add_system<CollisionSystem>(world);
 	world->add_system<RenderingSystem>(world);
 	world->add_system<QuitSystem>(world);
 	world->add_system<UpdateScreenSystem>(world);

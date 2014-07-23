@@ -49,6 +49,9 @@ EntityPtr EntityFactory::create_test_entity(World& world) {
 
 	test->assign_component<PositionComponent>(400, 150);
 	test->assign_component<SpriteComponent>("img/not_defined.png", 0, 1);
+	test->assign_component<BoundingCircleComponent>(100.0f);
+
+	world.get_group_manager().assign_entity_to_group("enemies", test);
 
 	return test;
 }
