@@ -39,7 +39,7 @@ public:
 
 	template<typename T, typename ... Args>
 	void assign_component(Args ... args) {
-		auto component = std::unique_ptr<T>(new T(args...));
+		auto component = std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 		components[T::id()] = std::move(component);
 	}
 

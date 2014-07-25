@@ -9,12 +9,12 @@
 
 RenderingSystem::RenderingSystem(WorldPtr world_ptr) :
 		System(world_ptr) {
-	add_aspect(new AllOfAspect<PositionComponent, SpriteComponent>());
+	add_aspect(new AllOfAspect<PositionComponent, AnimationComponent>());
 }
 
 bool compare_priorities(Entity& e1, Entity& e2) {
-	auto p1 = e1.get_component<SpriteComponent>()->priority;
-	auto p2 = e2.get_component<SpriteComponent>()->priority;
+	auto p1 = e1.get_component<AnimationComponent>()->priority;
+	auto p2 = e2.get_component<AnimationComponent>()->priority;
 	return p1 < p2;
 }
 
@@ -36,7 +36,7 @@ void RenderingSystem::process_entities(std::map<uint64_t, EntityPtr>& entities,
 }
 
 void RenderingSystem::process_entity(Entity& entity, double dt) {
-	auto s = entity.get_component<SpriteComponent>();
+	auto s = entity.get_component<AnimationComponent>();
 	auto p = entity.get_component<PositionComponent>();
-	s->sprite.render(p->position.x, p->position.y);
+	s->animation.render(p->position.x, p->position.y);
 }

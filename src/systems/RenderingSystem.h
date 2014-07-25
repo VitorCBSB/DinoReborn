@@ -14,7 +14,7 @@
 #include <functional>
 #include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
-#include "../components/SpriteComponent.h"
+#include "../components/AnimationComponent.h"
 
 class RenderingSystem: public System {
 public:

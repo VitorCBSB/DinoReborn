@@ -21,6 +21,13 @@ private:
 public:
 	Sprite(std::string file_name, double angle = 0, bool hidden = false);
 
+	Sprite(const Sprite& other);
+	Sprite& operator=(const Sprite& other);
+	Sprite(Sprite&& other) :
+			texture(std::move(other.texture)), clip(other.clip), angle(
+					other.angle), hidden(other.hidden) {
+	}
+
 	void clip_texture(SDL_Rect new_clip);
 	void render(int x = 0, int y = 0, bool center = true);
 

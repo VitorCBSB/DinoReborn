@@ -11,6 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../events/Collision.h"
 #include "../components/PositionComponent.h"
+#include "../EntityFactory.h"
 
 class BulletRemovalSystem: public System {
 public:

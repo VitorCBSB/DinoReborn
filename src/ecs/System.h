@@ -47,9 +47,10 @@ public:
 
 	virtual void process_entities(std::map<uint64_t, EntityPtr>& entities,
 			double dt) {
-		for (auto& entity_entry : entities) {
-			if (validate(*(entity_entry.second))) {
-				process_entity(*(entity_entry.second), dt);
+		for (auto it = entities.begin(); it != entities.end();) {
+			auto actual = it++;
+			if (validate(*(actual->second))) {
+				process_entity(*(actual->second), dt);
 			}
 		}
 	}

@@ -12,7 +12,7 @@
 #include "ecs/VECS.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
-#include "components/SpriteComponent.h"
+#include "components/AnimationComponent.h"
 #include "components/BoundingCircleComponent.h"
 
 class EntityFactory {
@@ -22,6 +22,8 @@ public:
 	static EntityPtr create_bullet(World& world, PositionComponent* position,
 			VelocityComponent* velocity);
 	static EntityPtr create_test_entity(World& world);
+	static EntityPtr create_explosion(World& world,
+			PositionComponent* position);
 };
 
 #endif /* ENTITYFACTORY_H_ */
