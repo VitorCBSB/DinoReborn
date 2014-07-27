@@ -23,11 +23,6 @@ public:
 					Animation(GameAnimations::sprites["img/not_defined.png"],
 							48, 48, 1000, 0, true)), priority(100) {
 	}
-	AnimationComponent(Sprite& sprite, double angle, int priority) :
-			animation(
-					Animation(sprite, sprite.get_width(), sprite.get_height(),
-							10000, angle, true)), priority(priority) {
-	}
 	AnimationComponent(Animation animation, int priority) :
 			animation(animation), priority(priority) {
 	}
