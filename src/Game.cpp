@@ -10,6 +10,9 @@
 Game::Game() :
 		world(new World(GameStates::STATE_NO_CHANGE)) {
 	SDLBase::initialize_SDL();
+
+	initialize_sprites();
+
 	world->add_system<InputSystem>(world);
 	world->add_system<PlayerInputHandler>(world);
 	world->add_system<VelocitySystem>(world);
@@ -23,6 +26,13 @@ Game::Game() :
 	EntityFactory::create_player(*world);
 	EntityFactory::create_background(*world);
 	EntityFactory::create_test_entity(*world);
+}
+
+void Game::initialize_sprites() {
+	GameAnimations::sprites["img/background.jpg"] = Sprite("img/background.jpg");
+	GameAnimations::sprites["img/bullet.png"] = Sprite("img/bullet.png");
+	GameAnimations::sprites["img/MissileExplosion.png"] = Sprite("img/MissileExplosion.png");
+	GameAnimations::sprites["img/not_defined.png"] = Sprite("img/not_defined.png");
 }
 
 Game::~Game() {

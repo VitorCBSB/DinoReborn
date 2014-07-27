@@ -14,6 +14,7 @@
 #include "ecs/VECS.h"
 #include "GameStates.h"
 #include "EntityFactory.h"
+#include "GameAnimations.h"
 #include "systems/VelocitySystem.h"
 #include "systems/BulletRemovalSystem.h"
 #include "systems/CollisionSystem.h"
@@ -33,6 +34,7 @@ public:
 	virtual ~Game();
 
 	void run();
+	void initialize_sprites();
 };
 
 #endif /* GAME_H_ */

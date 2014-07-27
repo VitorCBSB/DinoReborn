@@ -10,26 +10,19 @@
 
 #include "SDLBase.h"
 #include <string>
+#include <memory>
 
 class Sprite {
 private:
 	TexturePtr texture;
 	SDL_Rect clip;
-	double angle;
 	bool hidden;
 
 public:
-	Sprite(std::string file_name, double angle = 0, bool hidden = false);
-
-	Sprite(const Sprite& other);
-	Sprite& operator=(const Sprite& other);
-	Sprite(Sprite&& other) :
-			texture(std::move(other.texture)), clip(other.clip), angle(
-					other.angle), hidden(other.hidden) {
-	}
+	Sprite(std::string file_name = "img/not_defined.png", bool hidden = false);
 
 	void clip_texture(SDL_Rect new_clip);
-	void render(int x = 0, int y = 0, bool center = true);
+	void render(int x = 0, int y = 0, double angle = 0, bool center = true);
 
 	int get_height();
 	int get_width();
@@ -38,14 +31,6 @@ public:
 
 	void set_hidden(bool hidden) {
 		this->hidden = hidden;
-	}
-
-	void set_angle(double angle) {
-		this->angle = angle;
-	}
-
-	double get_angle() {
-		return angle;
 	}
 };
 

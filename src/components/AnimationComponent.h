@@ -11,6 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../Animation.h"
 #include "../Sprite.h"
+#include "../GameAnimations.h"
 
 class AnimationComponent: public Component<AnimationComponent> {
 public:
@@ -19,17 +20,16 @@ public:
 
 	AnimationComponent() :
 			animation(
-					Animation(Sprite("img/not_defined.png"), 48, 48, 1000,
-							true)), priority(100) {
+					Animation(GameAnimations::sprites["img/not_defined.png"],
+							48, 48, 1000, 0, true)), priority(100) {
 	}
-	AnimationComponent(Sprite sprite, int priority) :
+	AnimationComponent(Sprite& sprite, double angle, int priority) :
 			animation(
-					Animation(std::move(sprite), sprite.get_width(),
-							sprite.get_height(), 10000, true)), priority(
-					priority) {
+					Animation(sprite, sprite.get_width(), sprite.get_height(),
+							10000, angle, true)), priority(priority) {
 	}
 	AnimationComponent(Animation animation, int priority) :
-			animation(std::move(animation)), priority(priority) {
+			animation(animation), priority(priority) {
 	}
 };
 

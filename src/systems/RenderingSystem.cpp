@@ -38,5 +38,6 @@ void RenderingSystem::process_entities(std::map<uint64_t, EntityPtr>& entities,
 void RenderingSystem::process_entity(Entity& entity, double dt) {
 	auto s = entity.get_component<AnimationComponent>();
 	auto p = entity.get_component<PositionComponent>();
+	s->animation.clip_sprite();
 	s->animation.render(p->position.x, p->position.y);
 }

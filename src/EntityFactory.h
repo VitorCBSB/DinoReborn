@@ -9,6 +9,7 @@
 #define ENTITYFACTORY_H_
 
 #include <math.h>
+#include "GameAnimations.h"
 #include "ecs/VECS.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"

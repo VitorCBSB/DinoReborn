@@ -7,12 +7,21 @@
 
 #include "Animation.h"
 
-Animation::Animation(Sprite animation_sheet, int frame_width, int frame_height,
-		int frame_time, bool loops) :
-		animation_sheet(std::move(animation_sheet)), frame_width(frame_width), frame_height(
-				frame_height), frame_time_ms(frame_time), current_frame(0), loops(
-				loops), done(false) {
+Animation::Animation(Sprite& animation_sheet,
+		int frame_width, int frame_height, int frame_time, bool loops, double angle) :
+		animation_sheet(animation_sheet), loops(loops), angle(angle), frame_width(
+				frame_width), frame_height(frame_height), frame_time_ms(
+				frame_time), current_frame(0), done(false) {
 	timer.start(frame_time);
+}
+
+Animation::Animation(Sprite& animation_sheet, bool loops, double angle) :
+		animation_sheet(animation_sheet), loops(loops), angle(angle) {
+	frame_width = animation_sheet.get_width();
+	frame_height = animation_sheet.get_height();
+	frame_time_ms = 1000;
+	current_frame = 0;
+	done = false;
 }
 
 void Animation::update() {
@@ -26,15 +35,16 @@ void Animation::update() {
 		current_frame = next_frame;
 	}
 
-	SDL_Rect clip;
-	clip.x = current_frame * frame_width;
-	clip.y = 0;
-	clip.w = frame_width;
-	clip.h = frame_height;
+	current_clip.x = current_frame * frame_width;
+	current_clip.y = 0;
+	current_clip.w = frame_width;
+	current_clip.h = frame_height;
+}
 
-	animation_sheet.clip_texture(clip);
+void Animation::clip_sprite() {
+	animation_sheet.clip_texture(current_clip);
 }
 
 void Animation::render(int x, int y, bool center) {
-	animation_sheet.render(x, y, center);
+	animation_sheet.render(x, y, angle, center);
 }

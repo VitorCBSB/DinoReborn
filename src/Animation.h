@@ -13,28 +13,24 @@
 
 class Animation {
 private:
-	Sprite animation_sheet;
+	Sprite& animation_sheet;
+	bool loops;
+	double angle;
 	int frame_width;
 	int frame_height;
 	int frame_time_ms;
 	int current_frame;
-	bool loops;
 	bool done;
+	SDL_Rect current_clip;
 	Timer timer;
 
 public:
-	Animation(Sprite animation_sheet, int frame_width, int frame_height,
-			int frame_time, bool loops = false);
-
-	Animation(const Animation& other);
-	Animation(Animation&& other) :
-			animation_sheet(std::move(other.animation_sheet)), frame_width(
-					other.frame_width), frame_height(other.frame_height), frame_time_ms(
-					other.frame_time_ms), current_frame(other.current_frame), loops(
-					other.loops), done(other.done), timer(other.timer) {
-	}
+	Animation(Sprite& animation_sheet, bool loops = false, double angle = 0.0);
+	Animation(Sprite& animation_sheet, int frame_width, int frame_height,
+			int frame_time, bool loops = false, double angle = 0.0);
 
 	void update();
+	void clip_sprite();
 	void render(int x, int y, bool center = true);
 
 	int get_frame_height() const {
@@ -59,6 +55,14 @@ public:
 
 	void set_frame_width(int frame_width) {
 		this->frame_width = frame_width;
+	}
+
+	double get_angle() const {
+		return angle;
+	}
+
+	void set_angle(double angle) {
+		this->angle = angle;
 	}
 
 	bool is_done() const {
