@@ -7,8 +7,8 @@
 
 #include "Animation.h"
 
-Animation::Animation(Sprite& animation_sheet,
-		int frame_width, int frame_height, int frame_time, bool loops, double angle) :
+Animation::Animation(Sprite& animation_sheet, int frame_width, int frame_height,
+		int frame_time, bool loops, double angle) :
 		animation_sheet(animation_sheet), loops(loops), angle(angle), frame_width(
 				frame_width), frame_height(frame_height), frame_time_ms(
 				frame_time), current_frame(0), done(false) {

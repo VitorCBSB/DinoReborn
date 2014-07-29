@@ -29,10 +29,13 @@ Game::Game() :
 }
 
 void Game::initialize_sprites() {
-	GameAnimations::sprites["img/background.jpg"] = Sprite("img/background.jpg");
+	GameAnimations::sprites["img/background.jpg"] = Sprite(
+			"img/background.jpg");
 	GameAnimations::sprites["img/bullet.png"] = Sprite("img/bullet.png");
-	GameAnimations::sprites["img/MissileExplosion.png"] = Sprite("img/MissileExplosion.png");
-	GameAnimations::sprites["img/not_defined.png"] = Sprite("img/not_defined.png");
+	GameAnimations::sprites["img/MissileExplosion.png"] = Sprite(
+			"img/MissileExplosion.png");
+	GameAnimations::sprites["img/not_defined.png"] = Sprite(
+			"img/not_defined.png");
 }
 
 Game::~Game() {
