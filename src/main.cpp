@@ -6,15 +6,9 @@
  */
 
 #include "Game.h"
-#include "parser/Expression.h"
-
-//int main() {
-//	Game game;
-//	game.run();
-//	return 0;
-//}
 
 int main() {
-	Expression expression("1 + 2 / 3 + $cos($rand * 360)");
-	printf("%f", expression.eval());
+	Game game;
+	game.run();
+	return 0;
 }
