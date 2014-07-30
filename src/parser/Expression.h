@@ -13,9 +13,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory>
+#include <functional>
 #include "Token.h"
 #include "Tokenizer.h"
 #include "Operator.h"
+#include "Operand.h"
 
 class Expression {
 private:
@@ -26,7 +28,10 @@ private:
 
 	std::vector<TokenPtr> parse(const std::string& expression);
 	void convert_to_postfix(std::vector<TokenPtr>& infix_token_list);
+	std::unique_ptr<Operand> allocate_correct_operand(Operand* operand);
 	float evaluate_postfix();
+
+	float eval_operand(const Operand& operand);
 
 public:
 	Expression(std::string expression);

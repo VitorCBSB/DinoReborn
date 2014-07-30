@@ -29,7 +29,7 @@ public:
 			expression(expression) {
 	}
 
-	TokenPtr get_token();
+	TokenPtr get_token(int& repeat_reference);
 };
 
 #endif /* TOKENIZER_H_ */

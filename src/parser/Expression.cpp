@@ -15,7 +15,7 @@ Expression::Expression(std::string expression) {
 std::vector<TokenPtr> Expression::parse(const std::string& expression) {
 	std::vector<TokenPtr> infix_token_list;
 	Tokenizer tokenizer(expression);
-	auto current_token = tokenizer.get_token();
+	auto current_token = tokenizer.get_token(repeat);
 	int current_state = 1;
 
 	while (current_token->type != Token::END) {
@@ -40,7 +40,7 @@ std::vector<TokenPtr> Expression::parse(const std::string& expression) {
 			break;
 		}
 		infix_token_list.push_back(std::move(current_token));
-		current_token = tokenizer.get_token();
+		current_token = tokenizer.get_token(repeat);
 	}
 	return infix_token_list;
 }
@@ -93,6 +93,59 @@ void Expression::convert_to_postfix(std::vector<TokenPtr>& infix_token_list) {
 	infix_token_list.clear();
 }
 
+std::unique_ptr<Operand> Expression::allocate_correct_operand(Operand* operand) {
+	switch (operand->operand_type) {
+	case Operand::NUMBER:
+		return std::unique_ptr<Operand>(
+				new Number(*(static_cast<Number*>(operand))));
+		break;
+	case Operand::RAND:
+		return std::unique_ptr<Operand>(
+				new Rand(*(static_cast<Rand*>(operand))));
+		break;
+	case Operand::SIN:
+		return std::unique_ptr<Operand>(new Sin(*(static_cast<Sin*>(operand))));
+		break;
+	case Operand::COS:
+		return std::unique_ptr<Operand>(new Cos(*(static_cast<Cos*>(operand))));
+		break;
+	case Operand::REPEAT:
+		return std::unique_ptr<Operand>(
+				new Repeat(*(static_cast<Repeat*>(operand))));
+		break;
+	default:
+		fprintf(stderr, "Unrecognized operand while allocating: %d\n",
+				operand->operand_type);
+		exit(1);
+	}
+}
+
 float Expression::eval() {
-	return 0.0;
+	std::stack<std::unique_ptr<Operand>> operand_stack;
+
+	for (auto& token : postfix_token_list) {
+		if (token->type == Token::OPERAND) {
+			operand_stack.push(
+					allocate_correct_operand(
+							static_cast<Operand*>(token.get())));
+		} else if (token->type == Token::OPERATOR) {
+			auto operator_el = static_cast<Operator*>(token.get());
+
+			auto operand2 = std::move(operand_stack.top());
+			operand_stack.pop();
+			auto operand1 = std::move(operand_stack.top());
+			operand_stack.pop();
+
+			operand_stack.push(
+					std::unique_ptr<Operand>(
+							new Number(
+									operator_el->operate(operand1->eval(),
+											operand2->eval()))));
+		} else {
+			fprintf(stderr, "Unrecognized token found while eval'ing: %d\n",
+					token->type);
+			exit(1);
+		}
+	}
+	return operand_stack.top()->eval();
 }

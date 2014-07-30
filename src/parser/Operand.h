@@ -24,6 +24,9 @@ public:
 	Operand(OperandType type) :
 			Token(Token::OPERAND), operand_type(type) {
 	}
+	virtual ~Operand() {}
+
+	virtual float eval() const = 0;
 };
 
 class Number: public Operand {
@@ -34,6 +37,8 @@ public:
 	Number(float number) :
 			Operand(OperandType::NUMBER), number(number) {
 	}
+
+	float eval() const;
 };
 
 class Rand: public Operand {
@@ -41,35 +46,46 @@ public:
 	Rand() :
 			Operand(OperandType::RAND) {
 	}
+
+	float eval() const;
 };
 
 class Sin: public Operand {
 private:
-	std::unique_ptr<Expression> expression;
+	std::shared_ptr<Expression> expression;
 
 public:
 	Sin(Expression* expression) :
 			Operand(OperandType::SIN), expression(
-					std::unique_ptr<Expression>(expression)) {
+					std::shared_ptr<Expression>(expression)) {
 	}
+
+	float eval() const;
 };
 
 class Cos: public Operand {
 private:
-	std::unique_ptr<Expression> expression;
+	std::shared_ptr<Expression> expression;
 
 public:
 	Cos(Expression* expression) :
 			Operand(OperandType::COS), expression(
-					std::unique_ptr<Expression>(expression)) {
+					std::shared_ptr<Expression>(expression)) {
 	}
+
+	float eval() const;
 };
 
 class Repeat: public Operand {
+private:
+	int& repeat_reference;
+
 public:
-	Repeat() :
-			Operand(OperandType::REPEAT) {
+	Repeat(int& repeat_reference) :
+			Operand(OperandType::REPEAT), repeat_reference(repeat_reference) {
 	}
+
+	float eval() const;
 };
 
 #endif /* OPERAND_H_ */

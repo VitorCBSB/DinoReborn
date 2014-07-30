@@ -8,7 +8,7 @@
 #include "Tokenizer.h"
 #include "Expression.h" // To avoid cyclic includes
 
-TokenPtr Tokenizer::get_token() {
+TokenPtr Tokenizer::get_token(int& repeat_reference) {
 	eat_whitespaces();
 
 	std::string special_name;
@@ -63,7 +63,7 @@ TokenPtr Tokenizer::get_token() {
 									expression.substr(begin_expr_pos,
 											(current - 1) - begin_expr_pos))));
 		} else if (special_name == "repeat") {
-			return TokenPtr(new Repeat());
+			return TokenPtr(new Repeat(repeat_reference));
 		} else {
 			fprintf(stderr, "Could not identify special name %s\n",
 					special_name.c_str());
