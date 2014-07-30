@@ -89,11 +89,10 @@ void Expression::convert_to_postfix(std::vector<TokenPtr>& infix_token_list) {
 		postfix_token_list.push_back(std::move(operator_stack.top()));
 		operator_stack.pop();
 	}
-
-	infix_token_list.clear();
 }
 
-std::unique_ptr<Operand> Expression::allocate_correct_operand(Operand* operand) {
+std::unique_ptr<Operand> Expression::allocate_correct_operand(
+		Operand* operand) {
 	switch (operand->operand_type) {
 	case Operand::NUMBER:
 		return std::unique_ptr<Operand>(

@@ -18,11 +18,11 @@ float Rand::eval() const {
 }
 
 float Sin::eval() const {
-	return sin(expression->eval());
+	return sin((M_PI / 180.0) * expression->eval());
 }
 
 float Cos::eval() const {
-	return cos(expression->eval());
+	return cos((M_PI / 180.0) * expression->eval());
 }
 
 float Repeat::eval() const {

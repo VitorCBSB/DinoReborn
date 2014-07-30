@@ -35,7 +35,8 @@ TokenPtr Tokenizer::get_token(int& repeat_reference) {
 		return TokenPtr(new Token(Token::CPAREN));
 	case '$': // Special variables
 		current++;
-		while (!is_whitespace() && expression[current] != '(') {
+		while (!is_whitespace() && !end_of_string()
+				&& expression[current] != '(') {
 			special_name.push_back(expression[current]);
 			current++;
 		}
@@ -69,12 +70,11 @@ TokenPtr Tokenizer::get_token(int& repeat_reference) {
 					special_name.c_str());
 			exit(1);
 		}
-		break;
 	case '\0':
 		return TokenPtr(new Token(Token::END));
 	default: // Number
 		begin_expr_pos = current;
-		current = expression.find_first_not_of("0123456789", begin_expr_pos);
+		current = expression.find_first_not_of("0123456789.", begin_expr_pos);
 		return TokenPtr(
 				new Number(
 						std::stod(
@@ -100,6 +100,10 @@ int Tokenizer::find_matching_parenthesis_pos() {
 		}
 	}
 	return position;
+}
+
+bool Tokenizer::end_of_string() {
+	return expression[current] == '\0';
 }
 
 void Tokenizer::eat_whitespaces() {

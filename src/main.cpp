@@ -15,6 +15,6 @@
 //}
 
 int main() {
-	Expression expression("1 + 2 / 3 + 0");
+	Expression expression("1 + 2 / 3 + $cos($rand * 360)");
 	printf("%f", expression.eval());
 }

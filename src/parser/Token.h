@@ -19,6 +19,9 @@ public:
 	Token(Type type) :
 			type(type) {
 	}
+
+	virtual ~Token() {
+	}
 };
 
 typedef std::unique_ptr<Token> TokenPtr;

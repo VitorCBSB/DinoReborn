@@ -22,7 +22,6 @@
 class Expression {
 private:
 	// List of tokens in postfix format
-	// That is: a b `f` c `g`
 	std::vector<TokenPtr> postfix_token_list;
 	int repeat = 0;
 

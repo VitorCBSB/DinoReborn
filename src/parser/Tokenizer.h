@@ -18,15 +18,16 @@
 class Tokenizer {
 private:
 	std::string expression;
-	int current = 0;
+	int current;
 
 	void eat_whitespaces();
 	bool is_whitespace();
 	int find_matching_parenthesis_pos();
+	bool end_of_string();
 
 public:
 	Tokenizer(std::string expression) :
-			expression(expression) {
+			expression(expression), current(0) {
 	}
 
 	TokenPtr get_token(int& repeat_reference);

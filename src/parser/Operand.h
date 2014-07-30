@@ -9,7 +9,6 @@
 #define OPERAND_H_
 
 #include "Token.h"
-#include <stdlib.h>
 #include <math.h>
 #include <random>
 
@@ -24,7 +23,8 @@ public:
 	Operand(OperandType type) :
 			Token(Token::OPERAND), operand_type(type) {
 	}
-	virtual ~Operand() {}
+	virtual ~Operand() {
+	}
 
 	virtual float eval() const = 0;
 };
