@@ -39,6 +39,9 @@ public:
 	}
 
 	float eval() const;
+	TokenPtr clone() {
+		return TokenPtr(new Number(*this));
+	}
 };
 
 class Rand: public Operand {
@@ -48,6 +51,9 @@ public:
 	}
 
 	float eval() const;
+	TokenPtr clone() {
+		return TokenPtr(new Rand(*this));
+	}
 };
 
 class Sin: public Operand {
@@ -61,6 +67,9 @@ public:
 	}
 
 	float eval() const;
+	TokenPtr clone() {
+		return TokenPtr(new Sin(*this));
+	}
 };
 
 class Cos: public Operand {
@@ -74,6 +83,9 @@ public:
 	}
 
 	float eval() const;
+	TokenPtr clone() {
+		return TokenPtr(new Cos(*this));
+	}
 };
 
 class Repeat: public Operand {
@@ -86,6 +98,9 @@ public:
 	}
 
 	float eval() const;
+	TokenPtr clone() {
+		return TokenPtr(new Repeat(*this));
+	}
 };
 
 #endif /* OPERAND_H_ */

@@ -14,6 +14,8 @@
 #include "Token.h"
 #include "Operator.h"
 #include "Operand.h"
+#include "Parenthesis.h"
+#include "End.h"
 
 class Tokenizer {
 private:

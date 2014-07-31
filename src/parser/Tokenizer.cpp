@@ -29,10 +29,10 @@ TokenPtr Tokenizer::get_token(int& repeat_reference) {
 		return TokenPtr(new Div());
 	case '(':
 		current++;
-		return TokenPtr(new Token(Token::OPAREN));
+		return TokenPtr(new Parenthesis(Parenthesis::OPAREN));
 	case ')':
 		current++;
-		return TokenPtr(new Token(Token::CPAREN));
+		return TokenPtr(new Parenthesis(Parenthesis::CPAREN));
 	case '$': // Special variables
 		current++;
 		while (!is_whitespace() && !end_of_string()
@@ -71,7 +71,7 @@ TokenPtr Tokenizer::get_token(int& repeat_reference) {
 			exit(1);
 		}
 	case '\0':
-		return TokenPtr(new Token(Token::END));
+		return TokenPtr(new End());
 	default: // Number
 		begin_expr_pos = current;
 		current = expression.find_first_not_of("0123456789.", begin_expr_pos);

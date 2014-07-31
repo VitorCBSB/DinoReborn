@@ -49,15 +49,26 @@ void Expression::convert_to_postfix(std::vector<TokenPtr>& infix_token_list) {
 	std::stack<TokenPtr> operator_stack;
 
 	for (auto& token : infix_token_list) {
-		if (token->type == Token::OPAREN) {
-			operator_stack.push(std::move(token));
+		if (token->type == Token::PARENTHESIS) {
+			auto parenthesis = static_cast<Parenthesis*>(token.get());
+			if (parenthesis->parenthesis_type == Parenthesis::OPAREN) {
+				operator_stack.push(std::move(token));
+			} else {
+				while (!operator_stack.empty()
+						&& operator_stack.top()->type != Token::PARENTHESIS) {
+					postfix_token_list.push_back(
+							std::move(operator_stack.top()));
+					operator_stack.pop();
+				}
+				operator_stack.pop();
+			}
 		} else if (token->type == Token::OPERAND) {
 			postfix_token_list.push_back(std::move(token));
 		} else if (token->type == Token::OPERATOR) {
 			auto current_token_operator = static_cast<Operator*>(token.get());
 
 			while (!operator_stack.empty()
-					&& operator_stack.top()->type != Token::OPAREN) {
+					&& operator_stack.top()->type != Token::PARENTHESIS) {
 				auto stack_top_operator =
 						static_cast<Operator*>(operator_stack.top().get());
 
@@ -71,13 +82,6 @@ void Expression::convert_to_postfix(std::vector<TokenPtr>& infix_token_list) {
 				}
 			}
 			operator_stack.push(std::move(token));
-		} else if (token->type == Token::CPAREN) {
-			while (!operator_stack.empty()
-					&& operator_stack.top()->type != Token::OPAREN) {
-				postfix_token_list.push_back(std::move(operator_stack.top()));
-				operator_stack.pop();
-			}
-			operator_stack.pop();
 		} else {
 			fprintf(stderr, "Could not identify token with type %d\n",
 					token->type);
@@ -91,32 +95,9 @@ void Expression::convert_to_postfix(std::vector<TokenPtr>& infix_token_list) {
 	}
 }
 
-std::unique_ptr<Operand> Expression::allocate_correct_operand(
-		Operand* operand) {
-	switch (operand->operand_type) {
-	case Operand::NUMBER:
-		return std::unique_ptr<Operand>(
-				new Number(*(static_cast<Number*>(operand))));
-		break;
-	case Operand::RAND:
-		return std::unique_ptr<Operand>(
-				new Rand(*(static_cast<Rand*>(operand))));
-		break;
-	case Operand::SIN:
-		return std::unique_ptr<Operand>(new Sin(*(static_cast<Sin*>(operand))));
-		break;
-	case Operand::COS:
-		return std::unique_ptr<Operand>(new Cos(*(static_cast<Cos*>(operand))));
-		break;
-	case Operand::REPEAT:
-		return std::unique_ptr<Operand>(
-				new Repeat(*(static_cast<Repeat*>(operand))));
-		break;
-	default:
-		fprintf(stderr, "Unrecognized operand while allocating: %d\n",
-				operand->operand_type);
-		exit(1);
-	}
+std::unique_ptr<Operand> Expression::cast_to_operand(TokenPtr& token) {
+	auto new_operand = static_cast<Operand*>(token.release());
+	return std::unique_ptr<Operand>(new_operand);
 }
 
 float Expression::eval() {
@@ -124,9 +105,8 @@ float Expression::eval() {
 
 	for (auto& token : postfix_token_list) {
 		if (token->type == Token::OPERAND) {
-			operand_stack.push(
-					allocate_correct_operand(
-							static_cast<Operand*>(token.get())));
+			auto new_operand = token->clone();
+			operand_stack.push(cast_to_operand(new_operand));
 		} else if (token->type == Token::OPERATOR) {
 			auto operator_el = static_cast<Operator*>(token.get());
 

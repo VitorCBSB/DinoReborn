@@ -18,6 +18,7 @@
 #include "Tokenizer.h"
 #include "Operator.h"
 #include "Operand.h"
+#include "Parenthesis.h"
 
 class Expression {
 private:
@@ -27,13 +28,18 @@ private:
 
 	std::vector<TokenPtr> parse(const std::string& expression);
 	void convert_to_postfix(std::vector<TokenPtr>& infix_token_list);
-	std::unique_ptr<Operand> allocate_correct_operand(Operand* operand);
 	float evaluate_postfix();
 
-	float eval_operand(const Operand& operand);
+	std::unique_ptr<Operand> cast_to_operand(TokenPtr& token);
 
 public:
 	Expression(std::string expression);
+	Expression(const Expression& other) :
+			repeat(other.repeat) {
+		for (auto& token : other.postfix_token_list) {
+			postfix_token_list.push_back(token->clone());
+		}
+	}
 
 	float eval();
 	void increment_repeat() {

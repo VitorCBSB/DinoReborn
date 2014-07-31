@@ -41,6 +41,9 @@ public:
 	float operate(float operand1, float operand2) {
 		return operand1 + operand2;
 	}
+	TokenPtr clone() {
+		return TokenPtr(new Add(*this));
+	}
 };
 
 class Sub: public Operator {
@@ -51,6 +54,9 @@ public:
 
 	float operate(float operand1, float operand2) {
 		return operand1 - operand2;
+	}
+	TokenPtr clone() {
+		return TokenPtr(new Sub(*this));
 	}
 };
 
@@ -63,6 +69,9 @@ public:
 	float operate(float operand1, float operand2) {
 		return operand1 * operand2;
 	}
+	TokenPtr clone() {
+		return TokenPtr(new Mult(*this));
+	}
 };
 
 class Div: public Operator {
@@ -73,6 +82,9 @@ public:
 
 	float operate(float operand1, float operand2) {
 		return operand1 / operand2;
+	}
+	TokenPtr clone() {
+		return TokenPtr(new Div(*this));
 	}
 };
 

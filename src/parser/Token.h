@@ -13,7 +13,7 @@
 class Token {
 public:
 	enum Type {
-		OPERAND, OPERATOR, OPAREN, CPAREN, END
+		OPERAND, OPERATOR, PARENTHESIS, END
 	} type;
 
 	Token(Type type) :
@@ -22,6 +22,8 @@ public:
 
 	virtual ~Token() {
 	}
+
+	virtual std::unique_ptr<Token> clone() = 0;
 };
 
 typedef std::unique_ptr<Token> TokenPtr;
