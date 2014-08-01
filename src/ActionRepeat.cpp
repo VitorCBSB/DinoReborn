@@ -7,7 +7,8 @@
 
 #include "ActionRepeat.h"
 
-ActionRepeat::ActionRepeat(std::vector<ActionPtr>& actions, int times) : times(times) {
+ActionRepeat::ActionRepeat(std::vector<ActionPtr>& actions, int times) :
+		times(times) {
 	for (auto it = actions.begin(); it != actions.end(); it++) {
 		this->actions.push_back(std::move(*it));
 	}
