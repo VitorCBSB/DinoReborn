@@ -1,20 +1,23 @@
+<?xml version="1.0" ?>
 <bullet>
-	<changeSpeed type="absolute">
-		<target>0</target>
-		<time>1000</time>
-	</changeSpeed>
-	<wait>1000</wait>
-	<repeat>
-		<times>30</times>
-		<actions>
-			<fire>
-				<direction type="absolute">$repeat * 13</direction>
-				<speed>200</speed>
-				<sprite>img/bullet.png</sprite>
-				<bulletRef>tiro_simples.bml</bulletRef>
-			</fire>
-		</actions>
-	</repeat>
-	<vanish />
+	<sprite>img/bullet.png</sprite>
+	<actions>
+		<changeSpeed type="absolute">
+			<target>0</target>
+			<time>1000</time>
+		</changeSpeed>
+		<wait>1000</wait>
+		<repeat>
+			<times>30</times>
+			<actions>
+				<fire>
+					<direction type="absolute">$repeat * 13</direction>
+					<speed>200</speed>
+					<bulletRef>tiro_simples.xml</bulletRef>
+				</fire>
+			</actions>
+		</repeat>
+		<vanish />
+	</actions>
 </bullet>
 
