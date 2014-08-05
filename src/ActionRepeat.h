@@ -14,9 +14,9 @@
 class ActionRepeat: public Action {
 private:
 	std::vector<ActionPtr> actions;
+	std::vector<ActionPtr>::iterator current_action;
 	int current_iteration = 0;
 	int times;
-	bool started = false;
 
 public:
 	ActionRepeat(std::vector<ActionPtr>& actions, int times);
@@ -28,7 +28,9 @@ public:
 			action->increment_repeat();
 		}
 	}
-	void on_start() {
+	void reset() {
+		started = false;
+		current_iteration = 0;
 	}
 };
 

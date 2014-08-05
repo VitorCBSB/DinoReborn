@@ -21,14 +21,11 @@ public:
 	ActionWait(Expression wait_time_ms) :
 			Action(), wait_time(wait_time_ms) {
 	}
-	virtual ~ActionWait() {
-	}
 
 	bool update(World& world, Entity& bullet, double dt);
 	void increment_repeat() {
 		wait_time.increment_repeat();
 	}
-	void on_start();
 };
 
 #endif /* ACTIONWAIT_H_ */

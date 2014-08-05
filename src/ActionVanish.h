@@ -13,8 +13,6 @@
 class ActionVanish: public Action {
 public:
 	bool update(World& world, Entity& bullet, double dt);
-	void on_start() {
-	}
 	void increment_repeat() {
 	}
 };

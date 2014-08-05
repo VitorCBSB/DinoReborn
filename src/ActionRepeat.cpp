@@ -16,25 +16,23 @@ ActionRepeat::ActionRepeat(std::vector<ActionPtr>& actions, int times) :
 }
 
 bool ActionRepeat::update(World& world, Entity& bullet, double dt) {
-	do {
+	while (current_iteration < times) {
 		if (!started) {
-			started = true;
+			current_action = actions.begin();
 			for (auto& action : actions) {
-				action->on_start();
+				action->reset();
 			}
 		}
 
-		for (auto it = actions.begin(); it != actions.end(); it++) {
-			if (!(*it)->update(world, bullet, dt)) {
+		for (; current_action != actions.end(); current_action++) {
+			if (!(*current_action)->update(world, bullet, dt)) {
 				return false;
 			}
 		}
 
-		if (current_iteration < times) {
-			increment_repeat();
-			started = false;
-		}
-	} while (current_iteration < times);
+		increment_repeat();
+		started = false;
+	}
 
 	return true;
 }

@@ -13,7 +13,7 @@
 
 class Action {
 protected:
-	bool complete = false;
+	bool started = false;
 
 public:
 	Action() {
@@ -22,8 +22,14 @@ public:
 	}
 
 	virtual bool update(World& world, Entity& bullet, double dt) = 0;
-	virtual void on_start() = 0;
 	virtual void increment_repeat() = 0;
+
+	bool has_started() const {
+		return started;
+	}
+	virtual void reset() {
+		started = false;
+	}
 };
 
 typedef std::unique_ptr<Action> ActionPtr;
