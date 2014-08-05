@@ -9,6 +9,7 @@
 #define VECTOR2_H_
 
 #include <math.h>
+#include <stdexcept>
 
 class Vector2 {
 public:
@@ -24,6 +25,7 @@ public:
 	void operator*=(float scalar);
 	float operator*(Vector2 other);
 	float length();
+	float angle();
 	float distance(Vector2 other);
 	Vector2 normalize();
 	Vector2 rotate(float angleInDegrees);

@@ -50,8 +50,18 @@ float Vector2::length() {
 	return sqrt(this->x * this->x + this->y * this->y);
 }
 
+/*
+ * Angle from -180 to 180, inclusive
+ */
+float Vector2::angle() {
+	return ((M_PI / 180) * atan2(y, x));
+}
+
 Vector2 Vector2::normalize() {
 	float vecLength = length();
+	if (vecLength == 0.0) {
+		throw std::logic_error("Attempted to normalize zero vector.\n");
+	}
 	return Vector2(this->x / vecLength, this->y / vecLength);
 }
 

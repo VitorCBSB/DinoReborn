@@ -11,6 +11,7 @@
 #include "Action.h"
 #include "ecs/VECS.h"
 #include "Timer.h"
+#include "parser/Expression.h"
 #include "components/VelocityComponent.h"
 #include "Vector2.h"
 #include <stdio.h>

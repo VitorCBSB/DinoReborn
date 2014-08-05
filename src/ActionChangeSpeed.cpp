@@ -26,14 +26,14 @@ bool ActionChangeSpeed::update(World& world, Entity& bullet, double dt) {
 		timer.start((int) time.eval());
 	}
 	timer.update();
-	auto elapsed_time = ((int) time.eval() - timer.remaining_time());
+	auto exec_time = time.eval();
+	auto elapsed_time = ((int) exec_time - timer.remaining_time());
 
-	float step;
-	if (time.eval() == 0.0) {
-		step = scaling_difference;
-	} else {
-		step = scaling_difference * ((float) elapsed_time / time.eval());
-	}
+	auto step =
+			exec_time == 0.0 ?
+					scaling_difference :
+					scaling_difference * ((float) elapsed_time / exec_time);
+
 	bullet.get_component<VelocityComponent>()->velocity = original_velocity
 			* (1.0 + step);
 
