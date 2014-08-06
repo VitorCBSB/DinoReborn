@@ -14,7 +14,8 @@
 #include "ecs/VECS.h"
 #include "GameStates.h"
 #include "EntityFactory.h"
-#include "GameAnimations.h"
+#include "GameData.h"
+#include "parser/BulletParser.h"
 #include "systems/VelocitySystem.h"
 #include "systems/BulletRemovalSystem.h"
 #include "systems/CollisionSystem.h"
@@ -35,6 +36,7 @@ public:
 
 	void run();
 	void initialize_sprites();
+	void initialize_scripts();
 };
 
 #endif /* GAME_H_ */

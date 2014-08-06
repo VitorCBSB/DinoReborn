@@ -37,6 +37,9 @@ public:
 		target.increment_repeat();
 	}
 	bool update(World& world, Entity& bullet, double dt);
+	ActionPtr clone() {
+		return ActionPtr(new ActionChangeSpeed(*this));
+	}
 
 private:
 	ChangeSpeedType type;

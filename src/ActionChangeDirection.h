@@ -35,6 +35,9 @@ public:
 		direction.increment_repeat();
 		time.increment_repeat();
 	}
+	ActionPtr clone() {
+		return ActionPtr(new ActionChangeDirection(*this));
+	}
 };
 
 #endif /* ACTIONCHANGEDIRECTION_H_ */

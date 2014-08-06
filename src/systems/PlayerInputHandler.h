@@ -15,6 +15,7 @@
 #include "../events/KeyboardDown.h"
 #include "../events/KeyboardUp.h"
 #include "../Vector2.h"
+#include "../GameData.h"
 
 #define SPEED 200.0
 

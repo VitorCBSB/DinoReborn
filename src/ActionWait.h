@@ -26,6 +26,9 @@ public:
 	void increment_repeat() {
 		wait_time.increment_repeat();
 	}
+	ActionPtr clone() {
+		return ActionPtr(new ActionWait(*this));
+	}
 };
 
 #endif /* ACTIONWAIT_H_ */

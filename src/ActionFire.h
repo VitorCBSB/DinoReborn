@@ -30,13 +30,17 @@ public:
 	};
 	ActionFire(Expression direction, DirectionType direction_type,
 			Expression speed, BulletDefinition bullet_definition) :
-			direction(direction), speed(speed), direction_type(direction_type), bullet_definition(bullet_definition) {
+			direction(direction), speed(speed), bullet_definition(
+					bullet_definition), direction_type(direction_type) {
 	}
 
 	bool update(World& world, Entity& bullet, double dt);
 	void increment_repeat() {
 		direction.increment_repeat();
 		speed.increment_repeat();
+	}
+	ActionPtr clone() {
+		return ActionPtr(new ActionFire(*this));
 	}
 
 private:

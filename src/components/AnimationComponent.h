@@ -11,7 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../Animation.h"
 #include "../Sprite.h"
-#include "../GameAnimations.h"
+#include "../GameData.h"
 
 class AnimationComponent: public Component<AnimationComponent> {
 public:
@@ -20,8 +20,8 @@ public:
 
 	AnimationComponent() :
 			animation(
-					Animation(GameAnimations::sprites["img/not_defined.png"],
-							48, 48, 1000, 0, true)), priority(100) {
+					Animation(GameData::sprites["img/not_defined.png"], 48, 48,
+							1000, 0, true)), priority(100) {
 	}
 	AnimationComponent(Animation animation, int priority) :
 			animation(animation), priority(priority) {

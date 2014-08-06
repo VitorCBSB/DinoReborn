@@ -32,7 +32,8 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 		break;
 	case SDL_SCANCODE_Z:
 		bullet = EntityFactory::create_bullet(*(world_ptr.lock()),
-				new PositionComponent(*p), new VelocityComponent(0, -300));
+				new PositionComponent(*p), new VelocityComponent(0, -300),
+				GameData::scripts["scripts/bullets/burst.xml"]);
 		world_ptr.lock()->get_group_manager().assign_entity_to_group(
 				"player_bullets", bullet);
 		break;

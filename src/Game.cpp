@@ -12,6 +12,7 @@ Game::Game() :
 	SDLBase::initialize_SDL();
 
 	initialize_sprites();
+	initialize_scripts();
 
 	world->add_system<InputSystem>(world);
 	world->add_system<PlayerInputHandler>(world);
@@ -28,14 +29,19 @@ Game::Game() :
 	EntityFactory::create_test_entity(*world);
 }
 
+void Game::initialize_scripts() {
+	GameData::scripts["scripts/bullets/burst.xml"] = BulletParser(
+			"scripts/bullets/burst.xml").parse();
+	GameData::scripts["scripts/bullets/tiro_simples.xml"] = BulletParser(
+			"scripts/bullets/tiro_simples.xml").parse();
+}
+
 void Game::initialize_sprites() {
-	GameAnimations::sprites["img/background.jpg"] = Sprite(
-			"img/background.jpg");
-	GameAnimations::sprites["img/bullet.png"] = Sprite("img/bullet.png");
-	GameAnimations::sprites["img/MissileExplosion.png"] = Sprite(
+	GameData::sprites["img/background.jpg"] = Sprite("img/background.jpg");
+	GameData::sprites["img/bullet.png"] = Sprite("img/bullet.png");
+	GameData::sprites["img/MissileExplosion.png"] = Sprite(
 			"img/MissileExplosion.png");
-	GameAnimations::sprites["img/not_defined.png"] = Sprite(
-			"img/not_defined.png");
+	GameData::sprites["img/not_defined.png"] = Sprite("img/not_defined.png");
 }
 
 Game::~Game() {

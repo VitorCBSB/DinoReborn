@@ -5,16 +5,18 @@
  *      Author: vitor
  */
 
-#ifndef GAMEANIMATIONS_H_
-#define GAMEANIMATIONS_H_
+#ifndef GAMEDATA_H_
+#define GAMEDATA_H_
 
 #include "Sprite.h"
+#include "parser/BulletDefinition.h"
 #include <map>
 #include <string>
 
-class GameAnimations {
+class GameData {
 public:
 	static std::map<std::string, Sprite> sprites;
+	static std::map<std::string, BulletDefinition> scripts;
 };
 
-#endif /* GAMEANIMATIONS_H_ */
+#endif /* GAMEDATA_H_ */

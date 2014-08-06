@@ -15,6 +15,9 @@ public:
 	bool update(World& world, Entity& bullet, double dt);
 	void increment_repeat() {
 	}
+	ActionPtr clone() {
+		return ActionPtr(new ActionVanish(*this));
+	}
 };
 
 #endif /* ACTIONVANISH_H_ */

@@ -15,7 +15,7 @@ bool ActionFire::update(World& world, Entity& bullet, double dt) {
 	EntityFactory::create_bullet(world,
 			new PositionComponent(*(bullet.get_component<PositionComponent>())),
 			new VelocityComponent(speed_val * cos(angle_radians),
-					speed_val * sin(angle_radians)));
+					speed_val * sin(angle_radians)), bullet_definition);
 	return true;
 }
 

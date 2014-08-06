@@ -20,6 +20,13 @@ private:
 
 public:
 	ActionRepeat(std::vector<ActionPtr>& actions, int times);
+	ActionRepeat(const ActionRepeat& other) {
+		for (auto& action : other.actions) {
+			actions.push_back(action->clone());
+		}
+		current_iteration = other.current_iteration;
+		times = other.times;
+	}
 
 	bool update(World& world, Entity& bullet, double dt);
 	void increment_repeat() {
@@ -31,6 +38,9 @@ public:
 	void reset() {
 		started = false;
 		current_iteration = 0;
+	}
+	ActionPtr clone() {
+		return ActionPtr(new ActionRepeat(*this));
 	}
 };
 

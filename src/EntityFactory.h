@@ -9,8 +9,9 @@
 #define ENTITYFACTORY_H_
 
 #include <math.h>
-#include "GameAnimations.h"
+#include "GameData.h"
 #include "ecs/VECS.h"
+#include "parser/BulletDefinition.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
 #include "components/AnimationComponent.h"
@@ -21,7 +22,7 @@ public:
 	static EntityPtr create_background(World& world);
 	static EntityPtr create_player(World& world);
 	static EntityPtr create_bullet(World& world, PositionComponent* position,
-			VelocityComponent* velocity);
+			VelocityComponent* velocity, BulletDefinition bullet_definition);
 	static EntityPtr create_test_entity(World& world);
 	static EntityPtr create_explosion(World& world,
 			PositionComponent* position);
