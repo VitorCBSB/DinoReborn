@@ -54,7 +54,7 @@ float Vector2::length() {
  * Angle from -180 to 180, inclusive
  */
 float Vector2::angle() {
-	return ((M_PI / 180) * atan2(y, x));
+	return ((180.0 / M_PI) * atan2(y, x));
 }
 
 Vector2 Vector2::normalize() {
