@@ -44,6 +44,7 @@ EntityPtr EntityFactory::create_bullet(World& world,
 					atan2(velocity->velocity.y, velocity->velocity.x)
 							* 180.0/ M_PI), 2);
 	bullet->assign_component<BoundingCircleComponent>(1.0f);
+	bullet->assign_component<ActionsComponent>(bullet_definition.actions);
 
 	world.get_group_manager().assign_entity_to_group("bullets", bullet);
 

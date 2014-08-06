@@ -19,6 +19,7 @@ bool ActionFire::update(World& world, Entity& bullet, double dt) {
 	return true;
 }
 
+// FIXME: check if player actually exists before getting its position.
 float ActionFire::get_angle_based_on_type(World& world, Entity& bullet) {
 	auto bullet_position = bullet.get_component<PositionComponent>()->position;
 	auto player_position =

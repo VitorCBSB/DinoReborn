@@ -12,6 +12,7 @@
 #include "GameData.h"
 #include "ecs/VECS.h"
 #include "parser/BulletDefinition.h"
+#include "components/ActionsComponent.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
 #include "components/AnimationComponent.h"

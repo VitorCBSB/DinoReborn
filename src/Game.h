@@ -25,6 +25,7 @@
 #include "systems/QuitSystem.h"
 #include "systems/InputSystem.h"
 #include "systems/PlayerInputHandler.h"
+#include "systems/ActionsSystem.h"
 
 class Game {
 private:
