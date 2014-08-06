@@ -8,7 +8,7 @@
 #include "Tokenizer.h"
 #include "Expression.h" // To avoid cyclic includes
 
-TokenPtr Tokenizer::get_token(int& repeat_reference) {
+TokenPtr Tokenizer::get_token(int* repeat_reference) {
 	eat_whitespaces();
 
 	std::string special_name;
@@ -20,7 +20,17 @@ TokenPtr Tokenizer::get_token(int& repeat_reference) {
 		return TokenPtr(new Add());
 	case '-':
 		current++;
-		return TokenPtr(new Sub());
+		if (is_whitespace()) {
+			return TokenPtr(new Sub());
+		} else {
+			begin_expr_pos = current;
+			current = expression.find_first_not_of("0123456789.", begin_expr_pos);
+			return TokenPtr(
+					new Number(
+							std::stod(
+									expression.substr(begin_expr_pos - 1,
+											current - begin_expr_pos))));
+		}
 	case '*':
 		current++;
 		return TokenPtr(new Mult());

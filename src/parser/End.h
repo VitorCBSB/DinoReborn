@@ -15,7 +15,7 @@ public:
 	End() :
 			Token(Token::END) {
 	}
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new End(*this));
 	}
 };

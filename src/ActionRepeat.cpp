@@ -18,6 +18,7 @@ ActionRepeat::ActionRepeat(std::vector<ActionPtr>& actions, int times) :
 bool ActionRepeat::update(World& world, Entity& bullet, double dt) {
 	while (current_iteration < times) {
 		if (!started) {
+			started = true;
 			current_action = actions.begin();
 			for (auto& action : actions) {
 				action->reset();

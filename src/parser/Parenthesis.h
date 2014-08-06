@@ -22,7 +22,7 @@ public:
 	virtual ~Parenthesis() {
 	}
 
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference) {
 		return TokenPtr(new Parenthesis(*this));
 	}
 };

@@ -32,7 +32,7 @@ public:
 			expression(expression), current(0) {
 	}
 
-	TokenPtr get_token(int& repeat_reference);
+	TokenPtr get_token(int* repeat_reference);
 };
 
 #endif /* TOKENIZER_H_ */

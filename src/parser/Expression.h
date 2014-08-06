@@ -37,7 +37,7 @@ public:
 	Expression(const Expression& other) :
 			repeat(other.repeat) {
 		for (auto& token : other.postfix_token_list) {
-			postfix_token_list.push_back(token->clone());
+			postfix_token_list.push_back(token->clone(&repeat));
 		}
 	}
 

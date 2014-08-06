@@ -39,7 +39,7 @@ public:
 	}
 
 	float eval() const;
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Number(*this));
 	}
 };
@@ -51,7 +51,7 @@ public:
 	}
 
 	float eval() const;
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Rand(*this));
 	}
 };
@@ -67,7 +67,7 @@ public:
 	}
 
 	float eval() const;
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Sin(*this));
 	}
 };
@@ -83,23 +83,28 @@ public:
 	}
 
 	float eval() const;
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Cos(*this));
 	}
 };
 
 class Repeat: public Operand {
 private:
-	int& repeat_reference;
+	int* repeat_reference;
 
 public:
-	Repeat(int& repeat_reference) :
+	Repeat(int* repeat_reference) :
 			Operand(OperandType::REPEAT), repeat_reference(repeat_reference) {
 	}
 
+	void set_repeat(int* repeat_reference) {
+		this->repeat_reference = repeat_reference;
+	}
 	float eval() const;
-	TokenPtr clone() {
-		return TokenPtr(new Repeat(*this));
+	TokenPtr clone(int* repeat_reference) {
+		auto return_value = new Repeat(*this);
+		return_value->set_repeat(repeat_reference);
+		return TokenPtr(return_value);
 	}
 };
 

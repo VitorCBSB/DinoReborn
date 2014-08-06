@@ -14,6 +14,7 @@ float ActionChangeDirection::convert_to_minus_range(float angle) {
 	return angle;
 }
 
+// FIXME: I'm not working!!
 bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 	if (!started) {
 		timer.start((int) time.eval());

@@ -23,7 +23,7 @@ public:
 	virtual ~Token() {
 	}
 
-	virtual std::unique_ptr<Token> clone() = 0;
+	virtual std::unique_ptr<Token> clone(int* repeat_reference = 0) = 0;
 };
 
 typedef std::unique_ptr<Token> TokenPtr;

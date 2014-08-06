@@ -41,7 +41,7 @@ public:
 	float operate(float operand1, float operand2) {
 		return operand1 + operand2;
 	}
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Add(*this));
 	}
 };
@@ -55,7 +55,7 @@ public:
 	float operate(float operand1, float operand2) {
 		return operand1 - operand2;
 	}
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Sub(*this));
 	}
 };
@@ -69,7 +69,7 @@ public:
 	float operate(float operand1, float operand2) {
 		return operand1 * operand2;
 	}
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Mult(*this));
 	}
 };
@@ -83,7 +83,7 @@ public:
 	float operate(float operand1, float operand2) {
 		return operand1 / operand2;
 	}
-	TokenPtr clone() {
+	TokenPtr clone(int* repeat_reference = 0) {
 		return TokenPtr(new Div(*this));
 	}
 };

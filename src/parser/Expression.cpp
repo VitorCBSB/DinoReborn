@@ -15,7 +15,7 @@ Expression::Expression(std::string expression) {
 std::vector<TokenPtr> Expression::parse(const std::string& expression) {
 	std::vector<TokenPtr> infix_token_list;
 	Tokenizer tokenizer(expression);
-	auto current_token = tokenizer.get_token(repeat);
+	auto current_token = tokenizer.get_token(&repeat);
 	int current_state = 1;
 
 	while (current_token->type != Token::END) {
@@ -40,7 +40,7 @@ std::vector<TokenPtr> Expression::parse(const std::string& expression) {
 			break;
 		}
 		infix_token_list.push_back(std::move(current_token));
-		current_token = tokenizer.get_token(repeat);
+		current_token = tokenizer.get_token(&repeat);
 	}
 	return infix_token_list;
 }
@@ -105,7 +105,7 @@ float Expression::eval() {
 
 	for (auto& token : postfix_token_list) {
 		if (token->type == Token::OPERAND) {
-			auto new_operand = token->clone();
+			auto new_operand = token->clone(&repeat);
 			operand_stack.push(cast_to_operand(new_operand));
 		} else if (token->type == Token::OPERATOR) {
 			auto operator_el = static_cast<Operator*>(token.get());

@@ -26,5 +26,5 @@ float Cos::eval() const {
 }
 
 float Repeat::eval() const {
-	return repeat_reference;
+	return *repeat_reference;
 }
