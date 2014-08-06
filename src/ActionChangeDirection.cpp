@@ -17,7 +17,8 @@ float ActionChangeDirection::convert_to_minus_range(float angle) {
 bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 	if (!started) {
 		timer.start((int) time.eval());
-		original_angle = bullet.get_component<VelocityComponent>()->velocity.angle();
+		original_angle =
+				bullet.get_component<VelocityComponent>()->velocity.angle();
 		direction_difference = original_angle - direction.eval();
 	}
 	timer.update();
@@ -31,7 +32,8 @@ bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 			exec_time == 0.0 ?
 					direction_difference :
 					(time_difference / exec_time) * direction_difference;
-	bullet.get_component<VelocityComponent>()->velocity.rotate(step);
+	auto bullet_velocity = bullet.get_component<VelocityComponent>();
+	bullet_velocity->velocity = bullet_velocity->velocity.rotate(step);
 
 	return timer.is_done();
 }
