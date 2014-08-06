@@ -40,7 +40,7 @@ EntityPtr EntityFactory::create_bullet(World& world,
 	bullet->assign_component<AnimationComponent>(
 			Animation(GameAnimations::sprites["img/bullet.png"], true,
 					atan2(velocity->velocity.y, velocity->velocity.x)
-							* 180/ M_PI), 2);
+							* 180.0/ M_PI), 2);
 	bullet->assign_component<BoundingCircleComponent>(1.0f);
 
 	world.get_group_manager().assign_entity_to_group("bullets", bullet);
