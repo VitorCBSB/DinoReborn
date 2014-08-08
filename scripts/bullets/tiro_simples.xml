@@ -2,5 +2,9 @@
 <bullet>
 	<sprite>img/bullet.png</sprite>
 	<actions>
+		<changeDirection type="relative">
+			<direction>-90</direction>
+			<time>1000</time>
+		</changeDirection>
 	</actions>
 </bullet>

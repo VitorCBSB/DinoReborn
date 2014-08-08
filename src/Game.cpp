@@ -21,6 +21,7 @@ Game::Game() :
 	world->add_system<BulletRemovalSystem>(world);
 	world->add_system<CollisionSystem>(world);
 	world->add_system<AnimationManagerSystem>(world);
+	world->add_system<BulletRotationSystem>(world);
 	world->add_system<RenderingSystem>(world);
 	world->add_system<QuitSystem>(world);
 	world->add_system<UpdateScreenSystem>(world);

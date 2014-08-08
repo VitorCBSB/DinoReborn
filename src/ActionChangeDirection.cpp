@@ -10,6 +10,7 @@
 // FIXME: I'm not working!!
 bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 	if (!started) {
+		started = true;
 		timer.start((int) time.eval());
 		original_angle =
 				bullet.get_component<VelocityComponent>()->velocity.angle();

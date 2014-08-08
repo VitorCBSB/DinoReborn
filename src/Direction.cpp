@@ -25,7 +25,7 @@ float Direction::get_angle(World& world, Entity& bullet) {
 		return bullet.get_component<VelocityComponent>()->velocity.angle()
 				+ direction.eval();
 	case AIM:
-		return atan2(position_difference.y, position_difference.x);
+		return (180.0 / M_PI) * atan2(position_difference.y, position_difference.x);
 	default:
 		return 0.0;
 	}
