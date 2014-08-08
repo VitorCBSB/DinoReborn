@@ -15,23 +15,21 @@
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
 #include "parser/BulletDefinition.h"
+#include "Direction.h"
 
 class ActionFire: public Action {
 private:
-	Expression direction;
+	Direction direction;
 	Expression speed;
 	BulletDefinition bullet_definition;
 
 	float get_angle_based_on_type(World& world, Entity& bullet);
 
 public:
-	enum DirectionType {
-		ABSOLUTE, RELATIVE, AIM
-	};
-	ActionFire(Expression direction, DirectionType direction_type,
+	ActionFire(Direction direction,
 			Expression speed, BulletDefinition bullet_definition) :
 			direction(direction), speed(speed), bullet_definition(
-					bullet_definition), direction_type(direction_type) {
+					bullet_definition) {
 	}
 
 	bool update(World& world, Entity& bullet, double dt);
@@ -42,9 +40,6 @@ public:
 	ActionPtr clone() {
 		return ActionPtr(new ActionFire(*this));
 	}
-
-private:
-	DirectionType direction_type;
 };
 
 #endif /* ACTIONFIRE_H_ */

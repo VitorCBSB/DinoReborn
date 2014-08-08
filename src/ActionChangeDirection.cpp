@@ -7,20 +7,13 @@
 
 #include "ActionChangeDirection.h"
 
-float ActionChangeDirection::convert_to_minus_range(float angle) {
-	if (angle > 180.0) {
-		angle -= 180.0;
-	}
-	return angle;
-}
-
 // FIXME: I'm not working!!
 bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 	if (!started) {
 		timer.start((int) time.eval());
 		original_angle =
 				bullet.get_component<VelocityComponent>()->velocity.angle();
-		direction_difference = original_angle - direction.eval();
+		direction_difference = original_angle - direction.get_angle(world, bullet);
 	}
 	timer.update();
 

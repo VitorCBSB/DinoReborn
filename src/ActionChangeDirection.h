@@ -13,10 +13,11 @@
 #include "parser/Expression.h"
 #include "Timer.h"
 #include "components/VelocityComponent.h"
+#include "Direction.h"
 
 class ActionChangeDirection: public Action {
 private:
-	Expression direction;
+	Direction direction;
 	Expression time;
 	Timer timer;
 	int last_time = 0;
@@ -24,10 +25,8 @@ private:
 	float original_angle = 0;
 	float direction_difference = 0;
 
-	float convert_to_minus_range(float angle);
-
 public:
-	ActionChangeDirection(Expression direction, Expression time) :
+	ActionChangeDirection(Direction direction, Expression time) :
 			direction(direction), time(time) {
 	}
 	bool update(World& world, Entity& bullet, double dt);

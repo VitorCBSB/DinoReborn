@@ -33,9 +33,24 @@ ActionPtr BulletParser::parse_change_direction(
 		tinyxml2::XMLElement* element_root) {
 	auto direction = std::string(
 			element_root->FirstChildElement("direction")->GetText());
+	auto direction_type = std::string(element_root->FirstAttribute()->Value());
+
+	Direction::DirectionType direction_type_enum;
+	if (direction_type == "absolute") {
+		direction_type_enum = Direction::ABSOLUTE;
+	} else if (direction_type == "relative") {
+		direction_type_enum = Direction::RELATIVE;
+	} else if (direction_type == "aim") {
+		direction_type_enum = Direction::AIM;
+	} else {
+		fprintf(stderr, "Unrecognized direction type %s\n",
+				direction_type.c_str());
+		exit(1);
+	}
+
 	auto time = std::string(element_root->FirstChildElement("time")->GetText());
 	return ActionPtr(
-			new ActionChangeDirection(Expression(direction), Expression(time)));
+			new ActionChangeDirection(Direction(Expression(direction), direction_type_enum), Expression(time)));
 }
 
 ActionPtr BulletParser::parse_change_speed(tinyxml2::XMLElement* element_root) {
@@ -69,13 +84,13 @@ ActionPtr BulletParser::parse_fire(tinyxml2::XMLElement* root) {
 	auto speed_expression = std::string(
 			root->FirstChildElement("speed")->GetText());
 
-	ActionFire::DirectionType direction_type_enum;
+	Direction::DirectionType direction_type_enum;
 	if (direction_type == "absolute") {
-		direction_type_enum = ActionFire::ABSOLUTE;
+		direction_type_enum = Direction::ABSOLUTE;
 	} else if (direction_type == "relative") {
-		direction_type_enum = ActionFire::RELATIVE;
+		direction_type_enum = Direction::RELATIVE;
 	} else if (direction_type == "aim") {
-		direction_type_enum = ActionFire::AIM;
+		direction_type_enum = Direction::AIM;
 	} else {
 		fprintf(stderr, "Unrecognized direction type %s\n",
 				direction_type.c_str());
@@ -97,8 +112,8 @@ ActionPtr BulletParser::parse_fire(tinyxml2::XMLElement* root) {
 	}
 
 	return ActionPtr(
-			new ActionFire(Expression(direction_expression),
-					direction_type_enum, Expression(speed_expression),
+			new ActionFire(Direction(Expression(direction_expression),
+					direction_type_enum), Expression(speed_expression),
 					bullet_description));
 }
 

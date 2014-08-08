@@ -15,6 +15,7 @@
 #include "../ActionVanish.h"
 #include "../ActionRepeat.h"
 #include "../ActionFire.h"
+#include "../Direction.h"
 #include "Expression.h"
 #include "tinyxml2.h"
 #include "BulletDefinition.h"
