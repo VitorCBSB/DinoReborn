@@ -14,7 +14,8 @@ bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 		timer.start((int) time.eval());
 		original_angle =
 				bullet.get_component<VelocityComponent>()->velocity.angle();
-		direction_difference = original_angle - direction.get_angle(world, bullet);
+		direction_difference = original_angle
+				- direction.get_angle(world, bullet);
 	}
 	timer.update();
 

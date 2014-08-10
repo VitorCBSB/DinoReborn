@@ -13,7 +13,8 @@
 
 class ActionsSystem: public System {
 public:
-	ActionsSystem(WorldPtr world_ptr) : System(world_ptr) {
+	ActionsSystem(WorldPtr world_ptr) :
+			System(world_ptr) {
 		add_aspect(new AllOfAspect<ActionsComponent>());
 	}
 	void process_entity(Entity& entity, double dt);

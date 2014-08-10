@@ -26,8 +26,8 @@ private:
 	float get_angle_based_on_type(World& world, Entity& bullet);
 
 public:
-	ActionFire(Direction direction,
-			Expression speed, BulletDefinition bullet_definition) :
+	ActionFire(Direction direction, Expression speed,
+			BulletDefinition bullet_definition) :
 			direction(direction), speed(speed), bullet_definition(
 					bullet_definition) {
 	}

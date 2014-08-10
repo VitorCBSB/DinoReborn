@@ -50,7 +50,9 @@ ActionPtr BulletParser::parse_change_direction(
 
 	auto time = std::string(element_root->FirstChildElement("time")->GetText());
 	return ActionPtr(
-			new ActionChangeDirection(Direction(Expression(direction), direction_type_enum), Expression(time)));
+			new ActionChangeDirection(
+					Direction(Expression(direction), direction_type_enum),
+					Expression(time)));
 }
 
 ActionPtr BulletParser::parse_change_speed(tinyxml2::XMLElement* element_root) {
@@ -112,8 +114,9 @@ ActionPtr BulletParser::parse_fire(tinyxml2::XMLElement* root) {
 	}
 
 	return ActionPtr(
-			new ActionFire(Direction(Expression(direction_expression),
-					direction_type_enum), Expression(speed_expression),
+			new ActionFire(
+					Direction(Expression(direction_expression),
+							direction_type_enum), Expression(speed_expression),
 					bullet_description));
 }
 

@@ -26,6 +26,7 @@ private:
 	bool is_whitespace();
 	int find_matching_parenthesis_pos();
 	bool end_of_string();
+	std::string get_number();
 
 public:
 	Tokenizer(std::string expression) :

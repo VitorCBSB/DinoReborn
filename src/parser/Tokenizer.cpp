@@ -23,13 +23,8 @@ TokenPtr Tokenizer::get_token(int* repeat_reference) {
 		if (is_whitespace()) {
 			return TokenPtr(new Sub());
 		} else {
-			begin_expr_pos = current;
-			current = expression.find_first_not_of("0123456789.", begin_expr_pos);
 			return TokenPtr(
-					new Number(
-							std::stod(
-									expression.substr(begin_expr_pos - 1,
-											current - begin_expr_pos))));
+					new Number(std::stod(std::string("-") + get_number())));
 		}
 	case '*':
 		current++;
@@ -83,13 +78,7 @@ TokenPtr Tokenizer::get_token(int* repeat_reference) {
 	case '\0':
 		return TokenPtr(new End());
 	default: // Number
-		begin_expr_pos = current;
-		current = expression.find_first_not_of("0123456789.", begin_expr_pos);
-		return TokenPtr(
-				new Number(
-						std::stod(
-								expression.substr(begin_expr_pos,
-										current - begin_expr_pos))));
+		return TokenPtr(new Number(std::stod(get_number())));
 	}
 }
 
@@ -110,6 +99,15 @@ int Tokenizer::find_matching_parenthesis_pos() {
 		}
 	}
 	return position;
+}
+
+std::string Tokenizer::get_number() {
+	auto begin_expr_pos = current;
+	current = expression.find_first_not_of("0123456789.", begin_expr_pos);
+	if ((unsigned int) current == std::string::npos) {
+		current = expression.length();
+	}
+	return expression.substr(begin_expr_pos, current - begin_expr_pos);
 }
 
 bool Tokenizer::end_of_string() {

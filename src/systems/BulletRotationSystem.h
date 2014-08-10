@@ -12,9 +12,11 @@
 #include "../components/VelocityComponent.h"
 #include "../components/AnimationComponent.h"
 
-class BulletRotationSystem : public System {
+class BulletRotationSystem: public System {
 public:
-	BulletRotationSystem(WorldPtr world_ptr) : System(world_ptr) {}
+	BulletRotationSystem(WorldPtr world_ptr) :
+			System(world_ptr) {
+	}
 
 	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt);
 	void process_entity(Entity& entity, double dt);

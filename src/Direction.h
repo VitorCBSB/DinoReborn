@@ -22,7 +22,9 @@ public:
 	enum DirectionType {
 		ABSOLUTE, RELATIVE, AIM
 	};
-	Direction(Expression direction, DirectionType type) : direction(direction), type(type) {}
+	Direction(Expression direction, DirectionType type) :
+			direction(direction), type(type) {
+	}
 	float get_angle(World& world, Entity& bullet);
 	void increment_repeat() {
 		direction.increment_repeat();

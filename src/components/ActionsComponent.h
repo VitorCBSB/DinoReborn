@@ -12,7 +12,7 @@
 #include "../Action.h"
 #include <vector>
 
-class ActionsComponent : public Component<ActionsComponent> {
+class ActionsComponent: public Component<ActionsComponent> {
 public:
 	std::vector<ActionPtr> actions;
 	std::vector<ActionPtr>::iterator current_action;

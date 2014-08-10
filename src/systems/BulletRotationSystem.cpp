@@ -7,8 +7,11 @@
 
 #include "BulletRotationSystem.h"
 
-void BulletRotationSystem::process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {
-	auto bullets = world_ptr.lock()->get_group_manager().get_entities_from_group("bullets");
+void BulletRotationSystem::process_entities(
+		std::map<uint64_t, EntityPtr>& entities, double dt) {
+	auto bullets =
+			world_ptr.lock()->get_group_manager().get_entities_from_group(
+					"bullets");
 
 	for (auto& bullet : bullets) {
 		process_entity(*bullet.second, dt);
