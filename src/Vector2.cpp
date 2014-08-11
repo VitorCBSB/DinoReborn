@@ -57,6 +57,13 @@ float Vector2::angle() {
 	return ((180.0 / M_PI) * atan2(y, x));
 }
 
+float Vector2::angle(Vector2 other) {
+	auto dot = *this * other;
+	dot /= (this->length() * other.length());
+	auto angle = (180.0 / M_PI) * acos(dot);
+	return angle;
+}
+
 Vector2 Vector2::normalize() {
 	float vecLength = length();
 	if (vecLength == 0.0) {

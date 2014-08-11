@@ -7,7 +7,6 @@
 
 #include "ActionChangeDirection.h"
 
-// FIXME: I'm not working!!
 bool ActionChangeDirection::update(World& world, Entity& bullet, double dt) {
 	if (!started) {
 		started = true;

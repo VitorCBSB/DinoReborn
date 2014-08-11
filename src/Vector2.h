@@ -26,6 +26,7 @@ public:
 	float operator*(Vector2 other);
 	float length();
 	float angle();
+	float angle(Vector2 other);
 	float distance(Vector2 other);
 	Vector2 normalize();
 	Vector2 rotate(float angleInDegrees);
