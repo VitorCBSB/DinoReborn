@@ -35,9 +35,14 @@ public:
 			action->increment_repeat();
 		}
 	}
+	void reset_repeat() {
+	}
 	void reset() {
 		started = false;
 		current_iteration = 0;
+		for (auto& action : actions) {
+			action->reset_repeat();
+		}
 	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionRepeat(*this));

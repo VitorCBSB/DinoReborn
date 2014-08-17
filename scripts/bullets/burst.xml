@@ -7,14 +7,20 @@
 			<time>1000</time>
 		</changeSpeed>
 		<repeat>
-			<times>30</times>
+			<times>4</times>
 			<actions>
-        		<fire>
-            		<direction type="absolute">$repeat * 12</direction>
-            		<speed>200</speed>
-	            	<bulletRef>scripts/bullets/tiro_simples.xml</bulletRef>
-    	    	</fire>
-    	    </actions>
+				<repeat>
+					<times>30</times>
+					<actions>
+	        			<fire>
+	            			<direction type="aim">($repeat * 3) - 45</direction>
+	            			<speed>200</speed>
+		            		<bulletRef>scripts/bullets/tiro_simples.xml</bulletRef>
+	    	    		</fire>
+	    	    	</actions>
+	        	</repeat>
+	        	<wait>1000</wait>
+        	</actions>
         </repeat>
 		<vanish />
 	</actions>

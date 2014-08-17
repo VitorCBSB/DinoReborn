@@ -37,6 +37,13 @@ public:
 		direction.increment_repeat();
 		speed.increment_repeat();
 	}
+	void reset_repeat() {
+		direction.reset_repeat();
+		speed.reset_repeat();
+	}
+	void reset() {
+		started = false;
+	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionFire(*this));
 	}

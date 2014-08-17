@@ -26,6 +26,9 @@ public:
 	void increment_repeat() {
 		wait_time.increment_repeat();
 	}
+	void reset_repeat() {
+		wait_time.reset_repeat();
+	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionWait(*this));
 	}

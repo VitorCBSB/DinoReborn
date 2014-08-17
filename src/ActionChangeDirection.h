@@ -34,6 +34,10 @@ public:
 		direction.increment_repeat();
 		time.increment_repeat();
 	}
+	void reset_repeat() {
+		time.reset_repeat();
+		direction.reset_repeat();
+	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionChangeDirection(*this));
 	}

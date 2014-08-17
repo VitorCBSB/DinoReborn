@@ -45,6 +45,9 @@ public:
 	void increment_repeat() {
 		repeat++;
 	}
+	void reset_repeat() {
+		repeat = 0;
+	}
 };
 
 #endif /* EXPRESSION_H_ */

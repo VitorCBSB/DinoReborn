@@ -26,8 +26,7 @@ float Direction::get_angle(World& world, Entity& bullet) {
 		return bullet.get_component<VelocityComponent>()->velocity.angle()
 				+ direction.eval();
 	case AIM:
-		return bullet_velocity.angle() + bullet_velocity.angle(vector_to_player)
-				+ direction.eval();
+		return direction.eval() + vector_to_player.angle();
 	default:
 		return 0.0;
 	}

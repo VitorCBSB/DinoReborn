@@ -2,9 +2,5 @@
 <bullet>
 	<sprite>img/bullet.png</sprite>
 	<actions>
-		<changeDirection type="aim">
-			<direction>0</direction>
-			<time>1000</time>
-		</changeDirection>
 	</actions>
 </bullet>

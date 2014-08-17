@@ -19,7 +19,7 @@
 
 class ActionChangeSpeed: public Action {
 private:
-	Expression target;
+	Expression speed;
 	Expression time;
 	Timer timer;
 	Vector2 original_velocity;
@@ -30,11 +30,15 @@ public:
 		ABSOLUTE, RELATIVE
 	};
 
-	ActionChangeSpeed(Expression target, Expression time, ChangeSpeedType type);
+	ActionChangeSpeed(Expression speed, Expression time, ChangeSpeedType type);
 
 	void increment_repeat() {
 		time.increment_repeat();
-		target.increment_repeat();
+		speed.increment_repeat();
+	}
+	void reset_repeat() {
+		time.reset_repeat();
+		speed.reset_repeat();
 	}
 	bool update(World& world, Entity& bullet, double dt);
 	ActionPtr clone() {

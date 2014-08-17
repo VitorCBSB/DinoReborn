@@ -23,6 +23,7 @@ public:
 
 	virtual bool update(World& world, Entity& bullet, double dt) = 0;
 	virtual void increment_repeat() = 0;
+	virtual void reset_repeat() = 0;
 	virtual std::unique_ptr<Action> clone() = 0;
 
 	bool has_started() const {

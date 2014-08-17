@@ -7,9 +7,9 @@
 
 #include "ActionChangeSpeed.h"
 
-ActionChangeSpeed::ActionChangeSpeed(Expression target, Expression time,
+ActionChangeSpeed::ActionChangeSpeed(Expression speed, Expression time,
 		ChangeSpeedType type) :
-		target(target), time(time), type(type) {
+		speed(speed), time(time), type(type) {
 }
 
 bool ActionChangeSpeed::update(World& world, Entity& bullet, double dt) {
@@ -19,8 +19,8 @@ bool ActionChangeSpeed::update(World& world, Entity& bullet, double dt) {
 
 		auto target_velocity =
 				type == ABSOLUTE ?
-						target.eval() :
-						original_velocity.length() + target.eval();
+						speed.eval() :
+						original_velocity.length() + speed.eval();
 		auto scaling = target_velocity / original_velocity.length();
 		scaling_difference = scaling - 1.0;
 		timer.start((int) time.eval());

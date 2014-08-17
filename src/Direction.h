@@ -29,6 +29,9 @@ public:
 	void increment_repeat() {
 		direction.increment_repeat();
 	}
+	void reset_repeat() {
+		direction.reset_repeat();
+	}
 
 private:
 	DirectionType type;
