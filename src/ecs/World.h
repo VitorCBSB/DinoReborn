@@ -11,6 +11,7 @@
 #include "Entity.h"
 #include "System.h"
 #include "Aspect.h"
+#include "Component.h"
 #include "EventManager.h"
 #include "GroupManager.h"
 #include "TagManager.h"
@@ -23,6 +24,10 @@ class World {
 private:
 	std::vector<SystemPtr> systems;
 	std::map<uint64_t, EntityPtr> entities;
+
+	std::map<uint64_t, EntityPtr> changed_entities;
+	std::map<uint64_t, EntityPtr> removed_entities;
+
 	EventManager event_manager;
 	GroupManager group_manager;
 	TagManager tag_manager;
@@ -42,6 +47,25 @@ public:
 	void remove_entity(uint64_t id);
 	void remove_entity(EntityPtr entity);
 	int process(double dt);
+	void flush_changes();
+
+	template<typename T, typename ... Args>
+	void assign_component(EntityPtr e, Args&& ... args) {
+		e->assign_component<T>(args...);
+		changed_entities[e->id] = e;
+	}
+
+	template<typename T>
+	void assign_component(EntityPtr e, T* component) {
+		e->assign_component(component);
+		changed_entities[e->id] = e;
+	}
+
+	template<typename T>
+	void remove_component(EntityPtr e) {
+		e->remove_component<T>();
+		changed_entities[e->id] = e;
+	}
 
 	template<typename T, typename ... Args>
 	void add_system(Args ... args) {

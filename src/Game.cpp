@@ -29,6 +29,7 @@ Game::Game() :
 	EntityFactory::create_player(*world);
 	EntityFactory::create_background(*world);
 	EntityFactory::create_test_entity(*world);
+	world->flush_changes();
 }
 
 void Game::initialize_scripts() {

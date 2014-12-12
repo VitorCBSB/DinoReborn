@@ -14,11 +14,31 @@
 #include <string>
 #include "Component.h"
 
+class World;
+
 class Entity {
+	friend class World;
 private:
 	uint64_t id;
 	std::string tag;
 	std::unordered_map<int, ComponentPtr> components;
+
+	template<typename T, typename ... Args>
+	void assign_component(Args&& ... args) {
+		auto component = std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+		components[T::id()] = std::move(component);
+	}
+
+	template<typename T>
+	void assign_component(T* component) {
+		auto component_id = T::id();
+		components[component_id] = std::unique_ptr<T>(component);
+	}
+
+	template<typename T>
+	void remove_component() {
+		components.erase(T::id());
+	}
 
 public:
 	Entity(uint64_t id) :
@@ -37,18 +57,6 @@ public:
 		return tag;
 	}
 
-	template<typename T, typename ... Args>
-	void assign_component(Args&& ... args) {
-		auto component = std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-		components[T::id()] = std::move(component);
-	}
-
-	template<typename T>
-	void assign_component(T* component) {
-		auto component_id = T::id();
-		components[component_id] = std::unique_ptr<T>(component);
-	}
-
 	template<typename T>
 	T* get_component() {
 		auto it = components.find(T::id());
@@ -56,11 +64,6 @@ public:
 			return nullptr;
 		}
 		return static_cast<T*>(it->second.get());
-	}
-
-	template<typename T>
-	void remove_component() {
-		components.erase(T::id());
 	}
 
 	template<typename T>

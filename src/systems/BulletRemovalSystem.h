@@ -20,7 +20,7 @@ public:
 		this->world_ptr.lock()->get_event_manager().subscribe<Collision>(*this);
 	}
 
-	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt);
+	void process_entities(double dt);
 	void process_entity(Entity& entity, double dt);
 
 	void handle(const Collision& event);

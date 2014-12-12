@@ -17,7 +17,7 @@ public:
 			System(world_ptr) {
 	}
 
-	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt) {
+	void process_entities(double dt) {
 		SDLBase::update_screen();
 		SDLBase::clear_screen();
 	}

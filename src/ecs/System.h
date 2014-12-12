@@ -24,6 +24,7 @@ class System {
 protected:
 	std::vector<AspectPtr> aspects;
 	std::weak_ptr<World> world_ptr;
+	std::map<uint64_t, EntityPtr> valid_entities;
 
 public:
 	System(WorldPtr world_ptr) :
@@ -36,22 +37,24 @@ public:
 		aspects.push_back(AspectPtr(aspect));
 	}
 
-	bool validate(const Entity& e) const {
-		for (auto& aspect : aspects) {
-			if (!aspect->validate(e)) {
-				return false;
-			}
-		}
-		return true;
+	void remove_entity(uint64_t entity_id) {
+		valid_entities.erase(entity_id);
 	}
 
-	virtual void process_entities(std::map<uint64_t, EntityPtr>& entities,
-			double dt) {
-		for (auto it = entities.begin(); it != entities.end();) {
-			auto actual = it++;
-			if (validate(*(actual->second))) {
-				process_entity(*(actual->second), dt);
+	void update_entity(EntityPtr e) {
+		for (auto& aspect : aspects) {
+			if (!aspect->validate(*e)) {
+				valid_entities.erase(e->get_id());
+				return;
 			}
+		}
+		valid_entities[e->get_id()] = e;
+	}
+
+	virtual void process_entities(double dt) {
+		for (auto it = valid_entities.begin(); it != valid_entities.end();
+				it++) {
+			process_entity(*(it->second), dt);
 		}
 	}
 

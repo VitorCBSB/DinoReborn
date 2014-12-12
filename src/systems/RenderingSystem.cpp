@@ -18,13 +18,10 @@ bool compare_priorities(Entity& e1, Entity& e2) {
 	return p1 < p2;
 }
 
-void RenderingSystem::process_entities(std::map<uint64_t, EntityPtr>& entities,
-		double dt) {
+void RenderingSystem::process_entities(double dt) {
 	std::vector<std::reference_wrapper<Entity>> ordered_entities;
-	for (auto& entity_entry : entities) {
-		if (validate(*(entity_entry.second))) {
-			ordered_entities.push_back(*(entity_entry.second));
-		}
+	for (auto& entity_entry : valid_entities) {
+		ordered_entities.push_back(*(entity_entry.second));
 	}
 
 	std::sort(ordered_entities.begin(), ordered_entities.end(),

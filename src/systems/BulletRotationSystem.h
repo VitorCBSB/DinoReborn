@@ -18,7 +18,7 @@ public:
 			System(world_ptr) {
 	}
 
-	void process_entities(std::map<uint64_t, EntityPtr>& entities, double dt);
+	void process_entities(double dt);
 	void process_entity(Entity& entity, double dt);
 };
 
