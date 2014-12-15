@@ -33,18 +33,23 @@ Game::Game() :
 }
 
 void Game::initialize_scripts() {
-	GameData::scripts["scripts/bullets/burst.xml"] = BulletParser(
-			"scripts/bullets/burst.xml").parse();
-	GameData::scripts["scripts/bullets/tiro_simples.xml"] = BulletParser(
-			"scripts/bullets/tiro_simples.xml").parse();
+	auto file_names = { "scripts/bullets/burst.xml",
+			"scripts/bullets/tiro_simples.xml" };
+
+	for (auto& file_name : file_names) {
+		GameData::scripts[file_name] = BulletParser(file_name).parse();
+	}
 }
 
 void Game::initialize_sprites() {
-	GameData::sprites["img/background.jpg"] = Sprite("img/background.jpg");
-	GameData::sprites["img/bullet.png"] = Sprite("img/bullet.png");
-	GameData::sprites["img/MissileExplosion.png"] = Sprite(
-			"img/MissileExplosion.png");
-	GameData::sprites["img/not_defined.png"] = Sprite("img/not_defined.png");
+	auto file_names = { "img/background.jpg",
+			"img/bullet.png",
+			"img/MissileExplosion.png",
+			"img/not_defined.png" };
+
+	for (auto& file_name : file_names) {
+		GameData::sprites[file_name] = Sprite(file_name);
+	}
 }
 
 Game::~Game() {
