@@ -15,10 +15,11 @@ void CollisionSystem::process_entities(double dt) {
 			world_ptr.lock()->get_group_manager().get_entities_from_group(
 					"enemies");
 
-	execute_collisions(bullets, enemies, [&](EntityPtr bullet, EntityPtr enemy){
-		world_ptr.lock()->get_event_manager().broadcast<Collision>(
-				enemy, bullet);
-	});
+	execute_collisions(bullets, enemies,
+			[&](EntityPtr bullet, EntityPtr enemy) {
+				world_ptr.lock()->get_event_manager().broadcast<Collision>(
+						enemy, bullet);
+			});
 }
 
 void CollisionSystem::execute_collisions(EntityMap& a_map, EntityMap& b_map,

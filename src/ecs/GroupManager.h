@@ -22,8 +22,7 @@ public:
 		groups[group_name][entity->get_id()] = entity;
 	}
 
-	EntityMap& get_entities_from_group(
-			std::string group_name) {
+	EntityMap& get_entities_from_group(std::string group_name) {
 		return groups[group_name];
 	}
 

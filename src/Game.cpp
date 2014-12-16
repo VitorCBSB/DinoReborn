@@ -42,10 +42,8 @@ void Game::initialize_scripts() {
 }
 
 void Game::initialize_sprites() {
-	auto file_names = { "img/background.jpg",
-			"img/bullet.png",
-			"img/MissileExplosion.png",
-			"img/not_defined.png" };
+	auto file_names = { "img/background.jpg", "img/bullet.png",
+			"img/MissileExplosion.png", "img/not_defined.png" };
 
 	for (auto& file_name : file_names) {
 		GameData::sprites[file_name] = Sprite(file_name);
