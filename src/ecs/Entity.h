@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <unordered_map>
 #include <string>
+#include <map>
 #include "Component.h"
 
 class World;
@@ -77,5 +78,6 @@ public:
 };
 
 typedef std::shared_ptr<Entity> EntityPtr;
+typedef std::map<uint64_t, EntityPtr> EntityMap;
 
 #endif /* ENTITY_H_ */

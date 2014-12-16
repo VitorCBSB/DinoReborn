@@ -15,14 +15,14 @@
 
 class GroupManager {
 private:
-	std::map<std::string, std::map<uint64_t, EntityPtr>> groups;
+	std::map<std::string, EntityMap> groups;
 
 public:
 	void assign_entity_to_group(std::string group_name, EntityPtr entity) {
 		groups[group_name][entity->get_id()] = entity;
 	}
 
-	std::map<uint64_t, EntityPtr>& get_entities_from_group(
+	EntityMap& get_entities_from_group(
 			std::string group_name) {
 		return groups[group_name];
 	}

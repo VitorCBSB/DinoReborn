@@ -24,7 +24,7 @@ class System {
 protected:
 	std::vector<AspectPtr> aspects;
 	std::weak_ptr<World> world_ptr;
-	std::map<uint64_t, EntityPtr> valid_entities;
+	EntityMap valid_entities;
 
 public:
 	System(WorldPtr world_ptr) :

@@ -23,10 +23,10 @@
 class World {
 private:
 	std::vector<SystemPtr> systems;
-	std::map<uint64_t, EntityPtr> entities;
+	EntityMap entities;
 
-	std::map<uint64_t, EntityPtr> changed_entities;
-	std::map<uint64_t, EntityPtr> removed_entities;
+	EntityMap changed_entities;
+	EntityMap removed_entities;
 
 	EventManager event_manager;
 	GroupManager group_manager;
