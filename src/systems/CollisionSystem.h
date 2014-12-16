@@ -14,13 +14,17 @@
 #include "../events/Collision.h"
 
 class CollisionSystem: public System {
+private:
+	bool check_collision(Entity& a, Entity& b);
+
 public:
 	CollisionSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
 	}
 
 	void process_entities(double dt);
-	void process_entity(Entity& entity, double dt);
+	void process_entity(Entity& entity, double dt) {
+	}
 };
 
 #endif /* COLLISIONSYSTEM_H_ */
