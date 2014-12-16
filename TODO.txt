@@ -1,4 +1,7 @@
 ECS:
 Game:
-	- Don't know yet. Everything else.
+	- Generate scripts for:
+		-- Enemy commands (can probably use the same as bullets)
+		-- Waves of enemies
+		-- Stages
 
