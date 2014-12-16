@@ -1,7 +1,4 @@
 ECS:
-	- Improve performance
-		-- Possibly by pre-storing viable entities in each system,
-			instead of computing everyone each frame.
-	
 Game:
 	- Don't know yet. Everything else.
+
