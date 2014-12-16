@@ -1,0 +1,27 @@
+<wave>
+	<enemies>
+		<enemy>
+			<script>enemy_script.xml</script>
+			<time>5000</time>
+			<startx>300</startx>
+			<starty>300</starty>
+			<sprite>img/enemy.png</sprite>
+		</enemy>
+
+		<enemy>
+			<script>enemy_script.xml</script>
+			<time>6000</time>
+			<startx>300</startx>
+			<starty>300</starty>
+			<sprite>img/enemy.png</sprite>
+		</enemy>
+
+		<enemy>
+			<script>enemy_script.xml</script>
+			<time>7000</time>
+			<startx>300</startx>
+			<starty>300</starty>
+			<sprite>img/enemy.png</sprite>
+		</enemy>
+	</enemies>
+</wave>
