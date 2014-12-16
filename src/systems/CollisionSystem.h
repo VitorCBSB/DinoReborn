@@ -20,7 +20,7 @@ class CollisionSystem: public System {
 private:
 	bool check_collision(Entity& a, Entity& b);
 	void execute_collisions(EntityMap& a_map, EntityMap& b_map,
-			CollisionHandler collision_handler);
+			const CollisionHandler& collision_handler);
 
 public:
 	CollisionSystem(WorldPtr world_ptr) :

@@ -23,7 +23,7 @@ void CollisionSystem::process_entities(double dt) {
 }
 
 void CollisionSystem::execute_collisions(EntityMap& a_map, EntityMap& b_map,
-		CollisionHandler collision_handler) {
+		const CollisionHandler& collision_handler) {
 	for (auto a_it = a_map.begin(); a_it != a_map.end(); a_it++) {
 		auto a = a_it->second;
 		for (auto b_it = b_map.begin(); b_it != b_map.end(); b_it++) {
