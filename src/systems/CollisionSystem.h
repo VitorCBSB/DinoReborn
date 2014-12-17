@@ -11,7 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../components/BoundingCircleComponent.h"
 #include "../components/PositionComponent.h"
-#include "../events/Collision.h"
+#include "../events/PlayerBulletEnemyCollision.h"
 #include <functional>
 
 typedef std::function<void(EntityPtr a, EntityPtr b)> CollisionHandler;

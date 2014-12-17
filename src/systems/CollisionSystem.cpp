@@ -8,17 +8,17 @@
 #include "CollisionSystem.h"
 
 void CollisionSystem::process_entities(double dt) {
-	auto bullets =
+	auto& bullets =
 			world_ptr.lock()->get_group_manager().get_entities_from_group(
 					"player_bullets");
-	auto enemies =
+	auto& enemies =
 			world_ptr.lock()->get_group_manager().get_entities_from_group(
 					"enemies");
 
 	execute_collisions(bullets, enemies,
 			[&](EntityPtr bullet, EntityPtr enemy) {
-				world_ptr.lock()->get_event_manager().broadcast<Collision>(
-						enemy, bullet);
+				world_ptr.lock()->get_event_manager().broadcast<PlayerBulletEnemyCollision>(
+						bullet, enemy);
 			});
 }
 
