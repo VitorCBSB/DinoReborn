@@ -27,6 +27,7 @@
 #include "systems/PlayerInputHandler.h"
 #include "systems/ActionsSystem.h"
 #include "systems/BulletRotationSystem.h"
+#include "systems/ShotSystem.h"
 
 class Game {
 private:

@@ -25,6 +25,7 @@ EntityPtr EntityFactory::create_player(World& world) {
 	world.assign_component<AnimationComponent>(player,
 			Animation(GameData::sprites["img/not_defined.png"], true), 3);
 	world.assign_component<BoundingCircleComponent>(player, 1.0f);
+	world.assign_component<ShotComponent>(player);
 
 	world.get_tag_manager().set_entity_tag("player", player);
 

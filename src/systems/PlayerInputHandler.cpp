@@ -14,7 +14,7 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 	}
 
 	auto v = player->get_component<VelocityComponent>();
-	auto p = player->get_component<PositionComponent>();
+	auto shot_component = player->get_component<ShotComponent>();
 	EntityPtr bullet;
 
 	switch (event.key) {
@@ -31,11 +31,7 @@ void PlayerInputHandler::handle(const KeyboardDown& event) {
 		v->velocity += Vector2(0, 1) * SPEED;
 		break;
 	case SDL_SCANCODE_Z:
-		bullet = EntityFactory::create_bullet(*(world_ptr.lock()),
-				new PositionComponent(*p), new VelocityComponent(0, -300),
-				GameData::scripts["scripts/bullets/spread.xml"]);
-		world_ptr.lock()->get_group_manager().assign_entity_to_group(
-				"player_bullets", bullet);
+		shot_component->shooting = true;
 		break;
 	default:
 		break;
@@ -49,6 +45,7 @@ void PlayerInputHandler::handle(const KeyboardUp& event) {
 	}
 
 	auto v = player->get_component<VelocityComponent>();
+	auto shot_component = player->get_component<ShotComponent>();
 
 	switch (event.key) {
 	case SDL_SCANCODE_LEFT:
@@ -62,6 +59,9 @@ void PlayerInputHandler::handle(const KeyboardUp& event) {
 		break;
 	case SDL_SCANCODE_DOWN:
 		v->velocity -= Vector2(0, 1) * SPEED;
+		break;
+	case SDL_SCANCODE_Z:
+		shot_component->shooting = false;
 		break;
 	default:
 		break;

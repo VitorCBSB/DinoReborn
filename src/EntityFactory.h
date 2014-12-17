@@ -17,6 +17,7 @@
 #include "components/VelocityComponent.h"
 #include "components/AnimationComponent.h"
 #include "components/BoundingCircleComponent.h"
+#include "components/ShotComponent.h"
 
 class EntityFactory {
 public:
