@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<bullet>
+	<sprite>img/bullet.png</sprite>
+	<actions>
+		<repeat>
+			<times>3</times>
+			<actions>
+				<fire>
+	            	<direction type="absolute">-105 + ($repeat * 15)</direction>
+	            	<speed>300</speed>
+		            <bulletRef>scripts/bullets/tiro_simples.xml</bulletRef>
+				</fire>
+			</actions>
+		</repeat>
+		<vanish />
+	</actions>
+</bullet>
