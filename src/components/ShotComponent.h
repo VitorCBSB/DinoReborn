@@ -8,6 +8,7 @@
 #ifndef SHOTCOMPONENT_H_
 #define SHOTCOMPONENT_H_
 
+#include <string>
 #include "../ecs/Component.h"
 #include "../Timer.h"
 
@@ -15,10 +16,11 @@
 
 class ShotComponent: public Component<ShotComponent> {
 public:
+	std::string shot_script;
 	Timer shot_cooldown;
 	bool shooting = false;
 
-	ShotComponent() {
+	ShotComponent() : shot_script("scripts/bullets/spread.xml") {
 		shot_cooldown.start(SHOT_COOLDOWN_TIMER);
 	}
 };

@@ -17,7 +17,7 @@ void ShotSystem::process_entity(Entity& entity, double dt) {
 
 		auto bullet = EntityFactory::create_bullet(*(world_ptr.lock()),
 				new PositionComponent(*position), new VelocityComponent(0, -300),
-				GameData::scripts["scripts/bullets/spread.xml"]);
+				GameData::scripts[shot_component->shot_script]);
 		world_ptr.lock()->get_group_manager().assign_entity_to_group(
 				"player_bullets", bullet);
 	}
