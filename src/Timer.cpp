@@ -7,17 +7,6 @@
 
 #include "Timer.h"
 
-Timer::Timer() {
-	done = false;
-	paused = false;
-	started = false;
-	goal_time_in_milliseconds = 0;
-	paused_time_in_milliseconds = 0;
-}
-
-Timer::~Timer() {
-}
-
 void Timer::update() {
 	if (!done && !paused && started
 			&& SDL_GetTicks() >= goal_time_in_milliseconds) {

@@ -18,8 +18,10 @@ private:
 	unsigned int goal_time_in_milliseconds;
 	unsigned int paused_time_in_milliseconds;
 public:
-	Timer();
-	virtual ~Timer();
+	Timer() :
+			done(false), paused(false), started(false), goal_time_in_milliseconds(
+					0), paused_time_in_milliseconds(0) {
+	}
 
 	void start(int new_goal_time_in_milliseconds);
 	void resume();
