@@ -37,8 +37,7 @@ Game::Game() :
 
 void Game::initialize_scripts() {
 	auto file_names = { "scripts/bullets/burst.xml",
-			"scripts/bullets/tiro_simples.xml",
-			"scripts/bullets/spread.xml" };
+			"scripts/bullets/tiro_simples.xml", "scripts/bullets/spread.xml" };
 
 	for (auto& file_name : file_names) {
 		GameData::scripts[file_name] = BulletParser(file_name).parse();
@@ -59,8 +58,13 @@ Game::~Game() {
 }
 
 void Game::run() {
-	while (world->process(0.016) == GameStates::STATE_NO_CHANGE) {
-		SDL_Delay(16);
+	int state = GameStates::STATE_NO_CHANGE;
+	unsigned int elapsed_time;
+	while (state == GameStates::STATE_NO_CHANGE) {
+		auto base_time = SDL_GetTicks();
+		state = world->process(0.016);
+		elapsed_time = SDL_GetTicks() - base_time;
+		SDL_Delay((unsigned int) std::max(0, 16 - (int) elapsed_time));
 	}
 }
 

@@ -9,6 +9,7 @@
 #define GAME_H_
 
 #include <stdio.h>
+#include <algorithm>
 #include <memory>
 #include "SDLBase.h"
 #include "ecs/VECS.h"
