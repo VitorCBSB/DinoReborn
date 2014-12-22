@@ -20,19 +20,18 @@ class CollisionSystem: public System {
 private:
 	bool check_collision(Entity& a, Entity& b);
 
-	template <typename CollisionType>
+	template<typename CollisionType>
 	void execute_collisions(EntityMap& a_map, EntityMap& b_map) {
 		for (auto a_it = a_map.begin(); a_it != a_map.end(); a_it++) {
 			auto a = a_it->second;
 			for (auto b_it = b_map.begin(); b_it != b_map.end(); b_it++) {
 				auto b = b_it->second;
 				if (check_collision(*a, *b)) {
-					world_ptr.lock()->get_event_manager().broadcast<CollisionType>(
-							a, b);
+					world_ptr.lock()->get_event_manager().broadcast<
+							CollisionType>(a, b);
 				}
 			}
 		}
-
 	}
 
 public:

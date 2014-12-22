@@ -20,7 +20,8 @@ public:
 	Timer shot_cooldown;
 	bool shooting = false;
 
-	ShotComponent() : shot_script("scripts/bullets/spread.xml") {
+	ShotComponent() :
+			shot_script("scripts/bullets/spread.xml") {
 		shot_cooldown.start(SHOT_COOLDOWN_TIMER);
 	}
 };

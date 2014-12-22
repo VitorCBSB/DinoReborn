@@ -16,7 +16,8 @@
 
 class ShotSystem: public System {
 public:
-	ShotSystem(WorldPtr world_ptr) : System(world_ptr) {
+	ShotSystem(WorldPtr world_ptr) :
+			System(world_ptr) {
 		add_aspect(new AllOfAspect<ShotComponent, PositionComponent>());
 	}
 
