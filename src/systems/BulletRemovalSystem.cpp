@@ -29,7 +29,7 @@ void BulletRemovalSystem::process_entity(Entity& entity, double dt) {
 	auto position = entity.get_component<PositionComponent>();
 	auto& vec_position = position->position;
 
-	// TODO: tirar números mágicos
+	// TODO - Remove magic numbers
 	if (vec_position.x < 0 || vec_position.x > 800 || vec_position.y < 0
 			|| vec_position.y > 600) {
 		world_ptr.lock()->remove_entity(entity.get_id());
