@@ -29,6 +29,7 @@
 #include "systems/ActionsSystem.h"
 #include "systems/BulletRotationSystem.h"
 #include "systems/ShotSystem.h"
+#include "systems/OutOfBoundsSystem.h"
 
 class Game {
 private:
