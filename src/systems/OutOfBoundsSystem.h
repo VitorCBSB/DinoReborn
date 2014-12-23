@@ -8,15 +8,14 @@
 #ifndef OUTOFBOUNDSSYSTEM_H_
 #define OUTOFBOUNDSSYSTEM_H_
 
-#include "../ecs/System.h"
-#include "../ecs/World.h"
+#include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
-#include "../GameData.h"
 #include <algorithm>
 
-class OutOfBoundsSystem : public System {
+class OutOfBoundsSystem: public System {
 public:
-	OutOfBoundsSystem(WorldPtr world_ptr) : System(world_ptr) {
+	OutOfBoundsSystem(WorldPtr world_ptr) :
+			System(world_ptr) {
 	}
 
 	void process_entities(double dt);

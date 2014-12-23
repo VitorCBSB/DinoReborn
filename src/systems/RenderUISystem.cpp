@@ -1,19 +1,13 @@
 /*
- * RenderingSystem.cpp
+ * RenderUISystem.cpp
  *
- *  Created on: 14/07/2014
+ *  Created on: 23/12/2014
  *      Author: vitor
  */
 
-#include "RenderingSystem.h"
+#include "RenderUISystem.h"
 
-RenderingSystem::RenderingSystem(WorldPtr world_ptr) :
-		System(world_ptr) {
-	add_aspect(new AllOfAspect<PositionComponent, AnimationComponent>());
-	add_aspect(new ExcludeAspect<UIComponent>());
-}
-
-void RenderingSystem::process_entities(double dt) {
+void RenderUISystem::process_entities(double dt) {
 	std::vector<std::reference_wrapper<Entity>> ordered_entities;
 	for (auto& entity_entry : valid_entities) {
 		ordered_entities.push_back(*(entity_entry.second));
@@ -31,9 +25,9 @@ void RenderingSystem::process_entities(double dt) {
 	}
 }
 
-void RenderingSystem::process_entity(Entity& entity, double dt) {
+void RenderUISystem::process_entity(Entity& entity, double dt) {
 	auto s = entity.get_component<AnimationComponent>();
 	auto p = entity.get_component<PositionComponent>();
 	s->animation.clip_sprite();
-	s->animation.render(p->position.x + GAME_AREA_OFFSET, p->position.y);
+	s->animation.render(p->position.x, p->position.y);
 }

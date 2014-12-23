@@ -27,12 +27,14 @@ Game::Game() :
 	world->add_system<BulletRotationSystem>(world);
 
 	world->add_system<RenderingSystem>(world);
+	world->add_system<RenderUISystem>(world);
 	world->add_system<QuitSystem>(world);
 	world->add_system<UpdateScreenSystem>(world);
 
 	EntityFactory::create_player(*world);
 	EntityFactory::create_background(*world);
 	EntityFactory::create_test_entity(*world);
+	EntityFactory::create_game_hud(*world);
 	world->flush_changes();
 }
 
@@ -46,8 +48,8 @@ void Game::initialize_scripts() {
 }
 
 void Game::initialize_sprites() {
-	auto file_names = { "img/background.jpg", "img/bullet.png",
-			"img/MissileExplosion.png", "img/not_defined.png" };
+	auto file_names = { "img/background.jpg", "img/PlayerSprite.png", "img/bullet.png",
+			"img/MissileExplosion.png", "img/not_defined.png", "img/HUD.png" };
 
 	for (auto& file_name : file_names) {
 		GameData::sprites[file_name] = Sprite(file_name);

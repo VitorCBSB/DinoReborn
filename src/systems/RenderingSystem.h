@@ -15,8 +15,12 @@
 #include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
 #include "../components/AnimationComponent.h"
+#include "../components/UIComponent.h"
 
 class RenderingSystem: public System {
+private:
+	const int GAME_AREA_OFFSET = 200;
+
 public:
 	RenderingSystem(WorldPtr world_ptr);
 

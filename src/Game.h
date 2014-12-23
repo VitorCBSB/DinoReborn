@@ -22,6 +22,7 @@
 #include "systems/CollisionSystem.h"
 #include "systems/AnimationManagerSystem.h"
 #include "systems/RenderingSystem.h"
+#include "systems/RenderUISystem.h"
 #include "systems/UpdateScreenSystem.h"
 #include "systems/QuitSystem.h"
 #include "systems/InputSystem.h"

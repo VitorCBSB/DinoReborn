@@ -18,6 +18,7 @@
 #include "components/AnimationComponent.h"
 #include "components/BoundingCircleComponent.h"
 #include "components/ShotComponent.h"
+#include "components/UIComponent.h"
 
 class EntityFactory {
 public:
@@ -28,6 +29,7 @@ public:
 	static EntityPtr create_test_entity(World& world);
 	static EntityPtr create_explosion(World& world,
 			PositionComponent* position);
+	static EntityPtr create_game_hud(World& world);
 };
 
 #endif /* ENTITYFACTORY_H_ */
