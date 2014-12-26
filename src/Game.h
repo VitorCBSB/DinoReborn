@@ -31,6 +31,7 @@
 #include "systems/BulletRotationSystem.h"
 #include "systems/ShotSystem.h"
 #include "systems/OutOfBoundsSystem.h"
+#include "systems/MovingBackgroundSystem.h"
 
 class Game {
 private:

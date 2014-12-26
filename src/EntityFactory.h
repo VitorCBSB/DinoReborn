@@ -22,7 +22,6 @@
 
 class EntityFactory {
 public:
-	static EntityPtr create_background(World& world);
 	static EntityPtr create_player(World& world);
 	static EntityPtr create_bullet(World& world, PositionComponent* position,
 			VelocityComponent* velocity, BulletDefinition bullet_definition);
@@ -30,6 +29,7 @@ public:
 	static EntityPtr create_explosion(World& world,
 			PositionComponent* position);
 	static EntityPtr create_game_hud(World& world);
+	static void create_moving_backgrounds(World& world);
 };
 
 #endif /* ENTITYFACTORY_H_ */

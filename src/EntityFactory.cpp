@@ -7,16 +7,6 @@
 
 #include "EntityFactory.h"
 
-EntityPtr EntityFactory::create_background(World& world) {
-	auto background = world.create_entity();
-
-	world.assign_component<PositionComponent>(background, 400, 300);
-	world.assign_component<AnimationComponent>(background,
-			Animation(GameData::sprites["img/background.jpg"]), 0);
-
-	return background;
-}
-
 EntityPtr EntityFactory::create_player(World& world) {
 	auto player = world.create_entity();
 
@@ -85,4 +75,21 @@ EntityPtr EntityFactory::create_game_hud(World& world) {
 	world.assign_component<UIComponent>(hud);
 
 	return hud;
+}
+
+// TODO - Remove magic numbers
+void EntityFactory::create_moving_backgrounds(World& world) {
+	auto bg1 = world.create_entity();
+	world.assign_component<PositionComponent>(bg1, 300, 150);
+	world.assign_component<VelocityComponent>(bg1, 0, 50);
+	world.assign_component<AnimationComponent>(bg1,
+			Animation(GameData::sprites["img/Dino BG1.png"]), 0);
+	world.get_group_manager().assign_entity_to_group("background", bg1);
+
+	auto bg2 = world.create_entity();
+	world.assign_component<PositionComponent>(bg2, 300, -750);
+	world.assign_component<VelocityComponent>(bg2, 0, 50);
+	world.assign_component<AnimationComponent>(bg2,
+			Animation(GameData::sprites["img/Dino BG1.png"]), 0);
+	world.get_group_manager().assign_entity_to_group("background", bg2);
 }
