@@ -1,19 +1,19 @@
 /*
- * MovingBackgroundSystem.h
+ * LoopingBackgroundSystem.h
  *
  *  Created on: 26/12/2014
  *      Author: vitor
  */
 
-#ifndef MOVINGBACKGROUNDSYSTEM_H_
-#define MOVINGBACKGROUNDSYSTEM_H_
+#ifndef LOOPINGBACKGROUNDSYSTEM_H_
+#define LOOPINGBACKGROUNDSYSTEM_H_
 
 #include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
 
-class MovingBackgroundSystem: public System {
+class LoopingBackgroundSystem: public System {
 public:
-	MovingBackgroundSystem(WorldPtr world_ptr) :
+	LoopingBackgroundSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
 	}
 
@@ -21,4 +21,4 @@ public:
 	void process_entity(Entity& entity, double dt);
 };
 
-#endif /* MOVINGBACKGROUNDSYSTEM_H_ */
+#endif /* LOOPINGBACKGROUNDSYSTEM_H_ */
