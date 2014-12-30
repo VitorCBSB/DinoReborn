@@ -26,12 +26,11 @@ void BulletRemovalSystem::process_entities(double dt) {
 }
 
 void BulletRemovalSystem::process_entity(Entity& entity, double dt) {
-	auto position = entity.get_component<PositionComponent>();
-	auto& vec_position = position->position;
+	auto bullet_position = entity.get_component<PositionComponent>()->position;
 
 	// TODO - Remove magic numbers
-	if (vec_position.x < 0 || vec_position.x > 800 || vec_position.y < 0
-			|| vec_position.y > 600) {
+	if (bullet_position.x < 0 || bullet_position.x > 800 || bullet_position.y < 0
+			|| bullet_position.y > 600) {
 		world_ptr.lock()->remove_entity(entity.get_id());
 	}
 }
