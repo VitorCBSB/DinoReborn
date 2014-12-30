@@ -10,11 +10,11 @@
 SDL_Window* SDLBase::window;
 SDL_Renderer* SDLBase::screen_renderer;
 
-void SDLBase::initialize_SDL() {
+void SDLBase::initialize_SDL(int window_width, int window_height) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	window = SDL_CreateWindow("Dino em' Up", 500, 500, WINDOW_WIDTH,
-	WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Dino em' Up", 500, 500, window_width,
+	window_height, SDL_WINDOW_SHOWN);
 	screen_renderer = SDL_CreateRenderer(window, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }

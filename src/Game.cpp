@@ -44,7 +44,7 @@ void Game::initialize_scripts() {
 			"scripts/bullets/tiro_simples.xml", "scripts/bullets/spread.xml" };
 
 	for (auto& file_name : file_names) {
-		GameData::scripts[file_name] = BulletParser(file_name).parse();
+		GameAssets::scripts[file_name] = BulletParser(file_name).parse();
 	}
 }
 
@@ -54,7 +54,7 @@ void Game::initialize_sprites() {
 			"img/HUD.png", "img/Dino BG1.png" };
 
 	for (auto& file_name : file_names) {
-		GameData::sprites[file_name] = Sprite(file_name);
+		GameAssets::sprites[file_name] = Sprite(file_name);
 	}
 }
 

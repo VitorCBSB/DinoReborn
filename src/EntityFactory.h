@@ -9,7 +9,7 @@
 #define ENTITYFACTORY_H_
 
 #include <math.h>
-#include "GameData.h"
+#include "GameAssets.h"
 #include "ecs/VECS.h"
 #include "parser/BulletDefinition.h"
 #include "components/ActionsComponent.h"

@@ -1,22 +1,22 @@
 /*
- * GameAnimations.h
+ * GameAssets.h
  *
  *  Created on: 26/07/2014
  *      Author: vitor
  */
 
-#ifndef GAMEDATA_H_
-#define GAMEDATA_H_
+#ifndef GAMEASSETS_H_
+#define GAMEASSETS_H_
 
 #include "Sprite.h"
 #include "parser/BulletDefinition.h"
 #include <map>
 #include <string>
 
-class GameData {
+class GameAssets {
 public:
 	static std::map<std::string, Sprite> sprites;
 	static std::map<std::string, BulletDefinition> scripts;
 };
 
-#endif /* GAMEDATA_H_ */
+#endif /* GAMEASSETS_H_ */

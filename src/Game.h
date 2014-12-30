@@ -15,7 +15,7 @@
 #include "ecs/VECS.h"
 #include "GameStates.h"
 #include "EntityFactory.h"
-#include "GameData.h"
+#include "GameAssets.h"
 #include "parser/BulletParser.h"
 #include "systems/VelocitySystem.h"
 #include "systems/BulletRemovalSystem.h"

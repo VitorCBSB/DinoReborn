@@ -8,9 +8,6 @@
 #ifndef SDLBASE_H_
 #define SDLBASE_H_
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <memory>
@@ -40,7 +37,7 @@ private:
 	static SDL_Renderer* screen_renderer;
 
 public:
-	static void initialize_SDL();
+	static void initialize_SDL(int window_width = 800, int window_height = 600);
 	static void finalize_SDL();
 
 	static TexturePtr load_image(std::string file_name);
