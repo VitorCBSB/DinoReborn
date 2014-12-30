@@ -10,6 +10,7 @@
 
 #include "Sprite.h"
 #include "Timer.h"
+#include <vector>
 
 class Animation {
 private:
@@ -21,13 +22,17 @@ private:
 	int frame_time_ms;
 	int current_frame;
 	bool done;
+	int animation_state;
+	std::vector<int> num_frames_per_state;
 	SDL_Rect current_clip;
 	Timer timer;
 
 public:
-	Animation(Sprite& animation_sheet, bool loops = true, double angle = 0.0);
+	Animation(Sprite& animation_sheet, bool loops = true,
+			std::vector<int> num_frames_per_state = { 1 }, double angle = 0.0);
 	Animation(Sprite& animation_sheet, int frame_width, int frame_height,
-			int frame_time, bool loops = true, double angle = 0.0);
+			int frame_time, bool loops = true,
+			std::vector<int> num_frames_per_state = { 1 }, double angle = 0.0);
 
 	void update();
 	void clip_sprite();

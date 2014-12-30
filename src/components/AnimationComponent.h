@@ -21,7 +21,7 @@ public:
 	AnimationComponent() :
 			animation(
 					Animation(GameData::sprites["img/not_defined.png"], 48, 48,
-							1000, 0, true)), priority(100) {
+							1000, true)), priority(100) {
 	}
 	AnimationComponent(Animation animation, int priority) :
 			animation(animation), priority(priority) {

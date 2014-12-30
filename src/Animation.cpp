@@ -8,15 +8,19 @@
 #include "Animation.h"
 
 Animation::Animation(Sprite& animation_sheet, int frame_width, int frame_height,
-		int frame_time, bool loops, double angle) :
+		int frame_time, bool loops, std::vector<int> num_frames_per_state,
+		double angle) :
 		animation_sheet(animation_sheet), loops(loops), angle(angle), frame_width(
 				frame_width), frame_height(frame_height), frame_time_ms(
-				frame_time), current_frame(0), done(false) {
+				frame_time), current_frame(0), done(false), animation_state(0), num_frames_per_state(
+				num_frames_per_state) {
 	timer.start(frame_time);
 }
 
-Animation::Animation(Sprite& animation_sheet, bool loops, double angle) :
-		animation_sheet(animation_sheet), loops(loops), angle(angle) {
+Animation::Animation(Sprite& animation_sheet, bool loops,
+		std::vector<int> num_frames_per_state, double angle) :
+		animation_sheet(animation_sheet), loops(loops), angle(angle), animation_state(
+				0), num_frames_per_state(num_frames_per_state) {
 	frame_width = animation_sheet.get_width();
 	frame_height = animation_sheet.get_height();
 	frame_time_ms = 1000;
@@ -30,13 +34,13 @@ void Animation::update() {
 		timer.start(frame_time_ms);
 
 		int next_frame = current_frame + 1;
-		next_frame %= (animation_sheet.get_width() / frame_width);
+		next_frame %= num_frames_per_state[animation_state];
 		done = !loops && next_frame < current_frame;
 		current_frame = next_frame;
 	}
 
 	current_clip.x = current_frame * frame_width;
-	current_clip.y = 0;
+	current_clip.y = animation_state * frame_height;
 	current_clip.w = frame_width;
 	current_clip.h = frame_height;
 }

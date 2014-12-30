@@ -10,7 +10,7 @@
 EntityPtr EntityFactory::create_player(World& world) {
 	auto player = world.create_entity();
 
-	world.assign_component<PositionComponent>(player, 100.0f, 100.0f);
+	world.assign_component<PositionComponent>(player, 300.0f, 500.0f);
 	world.assign_component<VelocityComponent>(player, 0.0f, 0.0f);
 	world.assign_component<AnimationComponent>(player,
 			Animation(GameData::sprites["img/PlayerSprite.png"]), 3);
@@ -61,7 +61,7 @@ EntityPtr EntityFactory::create_explosion(World& world,
 	world.assign_component(explosion, position);
 	world.assign_component<AnimationComponent>(explosion,
 			Animation(GameData::sprites["img/MissileExplosion.png"], 26, 27,
-					100, false), 1);
+					100, false, { 4 }), 1);
 
 	return explosion;
 }
