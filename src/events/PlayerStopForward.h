@@ -10,7 +10,7 @@
 
 #include "../ecs/VECS.h"
 
-class PlayerStopForward : public Event<PlayerStopForward> {
+class PlayerStopForward: public Event<PlayerStopForward> {
 };
 
 #endif /* PLAYERSTOPFORWARD_H_ */

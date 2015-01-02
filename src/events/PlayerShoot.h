@@ -10,7 +10,7 @@
 
 #include "../ecs/VECS.h"
 
-class PlayerShoot : public Event<PlayerShoot> {
+class PlayerShoot: public Event<PlayerShoot> {
 };
 
 #endif /* PLAYERSHOOT_H_ */

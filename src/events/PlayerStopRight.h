@@ -10,7 +10,7 @@
 
 #include "../ecs/VECS.h"
 
-class PlayerStopRight : public Event<PlayerStopRight> {
+class PlayerStopRight: public Event<PlayerStopRight> {
 };
 
 #endif /* PLAYERSTOPRIGHT_H_ */

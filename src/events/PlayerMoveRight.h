@@ -10,7 +10,7 @@
 
 #include "../ecs/VECS.h"
 
-class PlayerMoveRight : public Event<PlayerMoveRight> {
+class PlayerMoveRight: public Event<PlayerMoveRight> {
 };
 
 #endif /* PLAYERMOVERIGHT_H_ */

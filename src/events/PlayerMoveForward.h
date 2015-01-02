@@ -10,7 +10,7 @@
 
 #include "../ecs/VECS.h"
 
-class PlayerMoveForward : public Event<PlayerMoveForward> {
+class PlayerMoveForward: public Event<PlayerMoveForward> {
 };
 
 #endif /* PLAYERMOVEFORWARD_H_ */
