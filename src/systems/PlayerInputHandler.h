@@ -12,6 +12,7 @@
 #include "../EntityFactory.h"
 #include "../ecs/VECS.h"
 #include "../components/VelocityComponent.h"
+#include "../components/AnimationComponent.h"
 #include "../events/PlayerMoveLeft.h"
 #include "../events/PlayerMoveRight.h"
 #include "../events/PlayerMoveForward.h"

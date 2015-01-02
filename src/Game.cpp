@@ -50,7 +50,7 @@ void Game::initialize_scripts() {
 }
 
 void Game::initialize_sprites() {
-	auto file_names = { "img/background.jpg", "img/PlayerSprite.png",
+	auto file_names = { "img/background.jpg", "img/Player_sprites.png",
 			"img/bullet.png", "img/MissileExplosion.png", "img/not_defined.png",
 			"img/HUD.png", "img/Dino BG1.png" };
 

@@ -30,7 +30,7 @@ void InputHandler::handle(const KeyboardDown& event) {
 }
 
 void InputHandler::handle(const KeyboardUp& event) {
-	switch(event.key) {
+	switch (event.key) {
 	case SDL_SCANCODE_LEFT:
 		world_ptr.lock()->get_event_manager().broadcast<PlayerStopLeft>();
 		break;

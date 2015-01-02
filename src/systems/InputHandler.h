@@ -22,9 +22,10 @@
 #include "../events/PlayerShoot.h"
 #include "../events/PlayerStopShooting.h"
 
-class InputHandler : public System {
+class InputHandler: public System {
 public:
-	InputHandler(WorldPtr world_ptr) : System(world_ptr) {
+	InputHandler(WorldPtr world_ptr) :
+			System(world_ptr) {
 		world_ptr->get_event_manager().subscribe<KeyboardDown>(*this);
 		world_ptr->get_event_manager().subscribe<KeyboardUp>(*this);
 	}
