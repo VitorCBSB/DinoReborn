@@ -15,6 +15,7 @@ Game::Game() :
 	initialize_scripts();
 
 	world->add_system<InputSystem>(world);
+	world->add_system<InputHandler>(world);
 	world->add_system<PlayerInputHandler>(world);
 
 	world->add_system<VelocitySystem>(world);

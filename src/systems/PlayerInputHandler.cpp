@@ -7,63 +7,102 @@
 
 #include "PlayerInputHandler.h"
 
-void PlayerInputHandler::handle(const KeyboardDown& event) {
+void PlayerInputHandler::handle(const PlayerMoveLeft& event) {
 	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
 	if (!player) {
 		return;
 	}
 
 	auto v = player->get_component<VelocityComponent>();
-	auto shot_component = player->get_component<ShotComponent>();
-	EntityPtr bullet;
-
-	switch (event.key) {
-	case SDL_SCANCODE_LEFT:
-		v->velocity += Vector2(-1, 0) * SPEED;
-		break;
-	case SDL_SCANCODE_RIGHT:
-		v->velocity += Vector2(1, 0) * SPEED;
-		break;
-	case SDL_SCANCODE_UP:
-		v->velocity += Vector2(0, -1) * SPEED;
-		break;
-	case SDL_SCANCODE_DOWN:
-		v->velocity += Vector2(0, 1) * SPEED;
-		break;
-	case SDL_SCANCODE_Z:
-		shot_component->shooting = true;
-		break;
-	default:
-		break;
-	}
+	v->velocity += Vector2(-1, 0) * SPEED;
 }
 
-void PlayerInputHandler::handle(const KeyboardUp& event) {
+void PlayerInputHandler::handle(const PlayerStopLeft& event) {
 	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
 	if (!player) {
 		return;
 	}
 
 	auto v = player->get_component<VelocityComponent>();
-	auto shot_component = player->get_component<ShotComponent>();
+	v->velocity -= Vector2(-1, 0) * SPEED;
+}
 
-	switch (event.key) {
-	case SDL_SCANCODE_LEFT:
-		v->velocity -= Vector2(-1, 0) * SPEED;
-		break;
-	case SDL_SCANCODE_RIGHT:
-		v->velocity -= Vector2(1, 0) * SPEED;
-		break;
-	case SDL_SCANCODE_UP:
-		v->velocity -= Vector2(0, -1) * SPEED;
-		break;
-	case SDL_SCANCODE_DOWN:
-		v->velocity -= Vector2(0, 1) * SPEED;
-		break;
-	case SDL_SCANCODE_Z:
-		shot_component->shooting = false;
-		break;
-	default:
-		break;
+void PlayerInputHandler::handle(const PlayerMoveRight& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
 	}
+
+	auto v = player->get_component<VelocityComponent>();
+	v->velocity += Vector2(1, 0) * SPEED;
+}
+
+void PlayerInputHandler::handle(const PlayerStopRight& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto v = player->get_component<VelocityComponent>();
+	v->velocity -= Vector2(1, 0) * SPEED;
+}
+
+void PlayerInputHandler::handle(const PlayerMoveForward& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto v = player->get_component<VelocityComponent>();
+	v->velocity += Vector2(0, -1) * SPEED;
+}
+
+void PlayerInputHandler::handle(const PlayerStopForward& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto v = player->get_component<VelocityComponent>();
+	v->velocity -= Vector2(0, -1) * SPEED;
+}
+
+void PlayerInputHandler::handle(const PlayerMoveBackward& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto v = player->get_component<VelocityComponent>();
+	v->velocity += Vector2(0, 1) * SPEED;
+}
+
+void PlayerInputHandler::handle(const PlayerStopBackward& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto v = player->get_component<VelocityComponent>();
+	v->velocity -= Vector2(0, 1) * SPEED;
+}
+
+void PlayerInputHandler::handle(const PlayerShoot& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto shot_component = player->get_component<ShotComponent>();
+	shot_component->shooting = true;
+}
+
+void PlayerInputHandler::handle(const PlayerStopShooting& event) {
+	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
+	if (!player) {
+		return;
+	}
+
+	auto shot_component = player->get_component<ShotComponent>();
+	shot_component->shooting = false;
 }
