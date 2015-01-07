@@ -27,6 +27,7 @@
 #include "systems/QuitSystem.h"
 #include "systems/InputSystem.h"
 #include "systems/PlayerInputHandler.h"
+#include "systems/PlayerAnimationManager.h"
 #include "systems/InputHandler.h"
 #include "systems/ActionsSystem.h"
 #include "systems/BulletRotationSystem.h"

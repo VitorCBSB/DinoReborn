@@ -19,6 +19,7 @@ Game::Game() :
 	world->add_system<PlayerInputHandler>(world);
 
 	world->add_system<VelocitySystem>(world);
+	world->add_system<PlayerAnimationManager>(world);
 	world->add_system<LoopingBackgroundSystem>(world);
 	world->add_system<OutOfBoundsSystem>(world);
 	world->add_system<ShotSystem>(world);

@@ -1,17 +1,14 @@
 /*
- * PlayerInputHandler.h
+ * PlayerAnimationManager.h
  *
- *  Created on: 17/07/2014
+ *  Created on: 07/01/2015
  *      Author: vitor
  */
 
-#ifndef PLAYERINPUTHANDLER_H_
-#define PLAYERINPUTHANDLER_H_
+#ifndef PLAYERANIMATIONMANAGER_H_
+#define PLAYERANIMATIONMANAGER_H_
 
-#include "../SDLBase.h"
-#include "../EntityFactory.h"
 #include "../ecs/VECS.h"
-#include "../components/VelocityComponent.h"
 #include "../events/PlayerMoveLeft.h"
 #include "../events/PlayerMoveRight.h"
 #include "../events/PlayerMoveForward.h"
@@ -20,17 +17,20 @@
 #include "../events/PlayerStopRight.h"
 #include "../events/PlayerStopForward.h"
 #include "../events/PlayerStopBackward.h"
-#include "../events/PlayerShoot.h"
-#include "../events/PlayerStopShooting.h"
-#include "../Vector2.h"
-#include "../GameAssets.h"
+#include "../components/AnimationComponent.h"
+#include <array>
 
-#define SPEED 200.0
+class PlayerAnimationManager: public System {
+private:
+	std::array<bool, 5> active_animations;
 
-class PlayerInputHandler: public System {
 public:
-	PlayerInputHandler(WorldPtr world_ptr) :
+	PlayerAnimationManager(WorldPtr world_ptr) :
 			System(world_ptr) {
+		active_animations[0] = true;
+		for (unsigned int i = 1; i < active_animations.size(); i++) {
+			active_animations[i] = false;
+		}
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerMoveLeft>(
 				*this);
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerMoveRight>(
@@ -47,15 +47,9 @@ public:
 				*this);
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerStopBackward>(
 				*this);
-		this->world_ptr.lock()->get_event_manager().subscribe<PlayerShoot>(
-				*this);
-		this->world_ptr.lock()->get_event_manager().subscribe<PlayerStopShooting>(
-				*this);
 	}
 
-	void process_entities(double dt) {
-	}
-
+	void process_entities(double dt);
 	void process_entity(Entity& entity, double dt) {
 	}
 
@@ -67,8 +61,6 @@ public:
 	void handle(const PlayerStopRight& event);
 	void handle(const PlayerStopForward& event);
 	void handle(const PlayerStopBackward& event);
-	void handle(const PlayerShoot& event);
-	void handle(const PlayerStopShooting& event);
 };
 
-#endif /* PLAYERINPUTHANDLER_H_ */
+#endif /* PLAYERANIMATIONMANAGER_H_ */
