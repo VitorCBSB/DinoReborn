@@ -11,9 +11,10 @@
 #include "System.h"
 #include "Entity.h"
 #include "Aspect.h"
+#include <functional>
 
 class SingleEntitySystem : public System {
-private:
+protected:
 	std::vector<AspectPtr> aspects;
 	EntityMap valid_entities;
 
@@ -41,7 +42,7 @@ public:
 		valid_entities[e->get_id()] = e;
 	}
 
-	void process_entities(double dt) {
+	void process(double dt) {
 		for (auto& entity : valid_entities) {
 			process_entity(*entity.second, dt);
 		}

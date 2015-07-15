@@ -15,7 +15,6 @@ EntityPtr World::create_entity() {
 }
 
 void World::remove_entity_from_everything(uint64_t id) {
-	group_manager.remove_entity(id);
 	tag_manager.remove_entity(entities[id]->get_tag());
 	entities.erase(id);
 
@@ -34,7 +33,7 @@ void World::remove_entity(EntityPtr entity) {
 
 int World::process(double dt) {
 	for (auto& system : systems) {
-		system->process_entities(dt);
+		system->process(dt);
 		flush_changes();
 	}
 	return next_state;

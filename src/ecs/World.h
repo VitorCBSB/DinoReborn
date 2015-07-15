@@ -29,7 +29,6 @@ private:
 	EntityMap removed_entities;
 
 	EventManager event_manager;
-	GroupManager group_manager;
 	TagManager tag_manager;
 
 	uint64_t new_entity_id = 0;
@@ -85,10 +84,6 @@ public:
 
 	EventManager& get_event_manager() {
 		return event_manager;
-	}
-
-	GroupManager& get_group_manager() {
-		return group_manager;
 	}
 
 	TagManager& get_tag_manager() {
