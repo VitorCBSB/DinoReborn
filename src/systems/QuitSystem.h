@@ -14,17 +14,14 @@
 #include "../GameStates.h"
 #include <stdlib.h>
 
-class QuitSystem: public System {
+class QuitSystem: public IndependentSystem {
 public:
 	QuitSystem(WorldPtr world_ptr) :
 			System(world_ptr) {
 		this->world_ptr.lock()->get_event_manager().subscribe<Quit>(*this);
 	}
 
-	void process_entities(double dt) {
-	}
-
-	void process_entity(Entity& entity, double dt) {
+	void process(double dt) {
 	}
 
 	void handle(const Quit& event) {

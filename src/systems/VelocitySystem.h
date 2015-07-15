@@ -12,7 +12,7 @@
 #include "../components/PositionComponent.h"
 #include "../components/VelocityComponent.h"
 
-class VelocitySystem: public System {
+class VelocitySystem: public SingleEntitySystem {
 public:
 	VelocitySystem(WorldPtr world_ptr);
 

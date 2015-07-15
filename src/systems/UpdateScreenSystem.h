@@ -11,18 +11,15 @@
 #include "../ecs/VECS.h"
 #include "../SDLBase.h"
 
-class UpdateScreenSystem: public System {
+class UpdateScreenSystem: public IndependentSystem {
 public:
 	UpdateScreenSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			IndependentSystem(world_ptr) {
 	}
 
-	void process_entities(double dt) {
+	void process(double dt) {
 		SDLBase::update_screen();
 		SDLBase::clear_screen();
-	}
-
-	void process_entity(Entity& entity, double dt) {
 	}
 };
 

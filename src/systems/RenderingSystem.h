@@ -17,14 +17,14 @@
 #include "../components/AnimationComponent.h"
 #include "../components/UIComponent.h"
 
-class RenderingSystem: public System {
+class RenderingSystem: public SingleEntitySystem {
 private:
 	const int GAME_AREA_OFFSET = 200;
 
 public:
 	RenderingSystem(WorldPtr world_ptr);
 
-	void process_entities(double dt);
+	void sort_entities();
 	void process_entity(Entity& entity, double dt);
 };
 

@@ -30,7 +30,7 @@ public:
 		world_ptr->get_event_manager().subscribe<KeyboardUp>(*this);
 	}
 
-	void process_entities(double dt) {
+	void process(double dt) {
 	}
 
 	void process_entity(Entity& entity, double dt) {

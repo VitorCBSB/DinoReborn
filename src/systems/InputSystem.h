@@ -16,13 +16,12 @@
 #include <map>
 #include <stdint.h>
 
-class InputSystem: public System {
+class InputSystem: public IndependentSystem {
 public:
 	InputSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			IndependentSystem(world_ptr) {
 	}
-	void process_entities(double dt);
-	void process_entity(Entity& entity, double dt);
+	void process(double dt);
 };
 
 #endif /* INPUTSYSTEM_H_ */

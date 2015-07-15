@@ -11,14 +11,15 @@
 #include "../ecs/VECS.h"
 #include "../components/VelocityComponent.h"
 #include "../components/AnimationComponent.h"
+#include "../components/marker/BulletMarker.h"
 
-class BulletRotationSystem: public System {
+class BulletRotationSystem: public SingleEntitySystem {
 public:
 	BulletRotationSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			SingleEntitySystem(world_ptr) {
+		add_aspect(new AllOfAspect<BulletMarker>());
 	}
 
-	void process_entities(double dt);
 	void process_entity(Entity& entity, double dt);
 };
 

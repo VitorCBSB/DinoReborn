@@ -10,14 +10,15 @@
 
 #include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
+#include "../components/marker/BackgroundMarker.h"
 
-class LoopingBackgroundSystem: public System {
+class LoopingBackgroundSystem: public SingleEntitySystem {
 public:
 	LoopingBackgroundSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			SingleEntitySystem(world_ptr) {
+		add_aspect(new AllOfAspect<BackgroundMarker>());
 	}
 
-	void process_entities(double dt);
 	void process_entity(Entity& entity, double dt);
 };
 

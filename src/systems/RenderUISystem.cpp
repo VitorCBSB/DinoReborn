@@ -7,7 +7,7 @@
 
 #include "RenderUISystem.h"
 
-void RenderUISystem::process_entities(double dt) {
+void RenderUISystem::process(double dt) {
 	std::vector<std::reference_wrapper<Entity>> ordered_entities;
 	for (auto& entity_entry : valid_entities) {
 		ordered_entities.push_back(*(entity_entry.second));

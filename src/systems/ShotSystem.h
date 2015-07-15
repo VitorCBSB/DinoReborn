@@ -14,10 +14,10 @@
 #include "../components/PositionComponent.h"
 #include "../components/VelocityComponent.h"
 
-class ShotSystem: public System {
+class ShotSystem: public SingleEntitySystem {
 public:
 	ShotSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			SingleEntitySystem(world_ptr) {
 		add_aspect(new AllOfAspect<ShotComponent, PositionComponent>());
 	}
 

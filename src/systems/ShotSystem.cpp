@@ -19,8 +19,7 @@ void ShotSystem::process_entity(Entity& entity, double dt) {
 				new PositionComponent(*position),
 				new VelocityComponent(0, -300),
 				GameAssets::scripts[shot_component->shot_script]);
-		world_ptr.lock()->get_group_manager().assign_entity_to_group(
-				"player_bullets", bullet);
+		world_ptr.lock()->assign_component<PlayerBulletMarker>(bullet);
 	}
 }
 

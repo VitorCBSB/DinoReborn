@@ -30,7 +30,7 @@
 class PlayerInputHandler: public System {
 public:
 	PlayerInputHandler(WorldPtr world_ptr) :
-			System(world_ptr) {
+			SingleEntitySystem(world_ptr) {
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerMoveLeft>(
 				*this);
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerMoveRight>(
@@ -53,7 +53,7 @@ public:
 				*this);
 	}
 
-	void process_entities(double dt) {
+	void process(double dt) {
 	}
 
 	void process_entity(Entity& entity, double dt) {

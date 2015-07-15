@@ -7,7 +7,7 @@
 
 #include "InputSystem.h"
 
-void InputSystem::process_entities(double dt) {
+void InputSystem::process(double dt) {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
@@ -28,7 +28,4 @@ void InputSystem::process_entities(double dt) {
 			break;
 		}
 	}
-}
-
-void InputSystem::process_entity(Entity& entity, double dt) {
 }

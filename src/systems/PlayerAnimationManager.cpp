@@ -39,9 +39,7 @@ void PlayerAnimationManager::handle(const PlayerStopBackward& event) {
 	active_animations[4] = false;
 }
 
-void PlayerAnimationManager::process_entities(double dt) {
-	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
-
+void PlayerAnimationManager::process_entity(Entity& entity, double dt) {
 	int i;
 	for (i = active_animations.size() - 1; i >= 0; i--) {
 		if (active_animations[i]) {
@@ -49,5 +47,5 @@ void PlayerAnimationManager::process_entities(double dt) {
 		}
 	}
 
-	player->get_component<AnimationComponent>()->animation.animation_state = i;
+	entity.get_component<AnimationComponent>()->animation.animation_state = i;
 }

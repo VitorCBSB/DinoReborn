@@ -11,7 +11,7 @@
 #include "../ecs/VECS.h"
 #include "../components/ActionsComponent.h"
 
-class ActionsSystem: public System {
+class ActionsSystem: public SingleEntitySystem {
 public:
 	ActionsSystem(WorldPtr world_ptr) :
 			System(world_ptr) {

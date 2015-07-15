@@ -18,15 +18,16 @@
 #include "../events/PlayerStopForward.h"
 #include "../events/PlayerStopBackward.h"
 #include "../components/AnimationComponent.h"
+#include "../components/marker/PlayerMarker.h"
 #include <array>
 
-class PlayerAnimationManager: public System {
+class PlayerAnimationManager: public SingleEntitySystem {
 private:
 	std::array<bool, 5> active_animations;
 
 public:
 	PlayerAnimationManager(WorldPtr world_ptr) :
-			System(world_ptr) {
+			SingleEntitySystem(world_ptr) {
 		active_animations[0] = true;
 		for (unsigned int i = 1; i < active_animations.size(); i++) {
 			active_animations[i] = false;
@@ -47,11 +48,10 @@ public:
 				*this);
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerStopBackward>(
 				*this);
+		add_aspect(new AllOfAspect<PlayerMarker>());
 	}
 
-	void process_entities(double dt);
-	void process_entity(Entity& entity, double dt) {
-	}
+	void process_entity(Entity& entity, double dt);
 
 	void handle(const PlayerMoveLeft& event);
 	void handle(const PlayerMoveRight& event);

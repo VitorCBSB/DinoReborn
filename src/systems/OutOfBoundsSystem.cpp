@@ -7,13 +7,8 @@
 
 #include "OutOfBoundsSystem.h"
 
-void OutOfBoundsSystem::process_entities(double dt) {
-	auto player = world_ptr.lock()->get_tag_manager().get_entity("player");
-	if (!player) {
-		return;
-	}
-
-	auto p = player->get_component<PositionComponent>();
+void OutOfBoundsSystem::process_entity(Entity& entity, double dt) {
+	auto p = entity.get_component<PositionComponent>();
 
 	// TODO - Remove magic numbers
 	if (p->position.x < 0.0f) {

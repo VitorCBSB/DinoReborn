@@ -15,7 +15,7 @@
 #include "Aspect.h"
 
 class InteractSystem : public System {
-private:
+protected:
 	EntityMap valid_entities_A;
 	EntityMap valid_entities_B;
 
@@ -60,7 +60,7 @@ public:
 		}
 	}
 
-	void process_entities(double dt) {
+	void process(double dt) {
 		for (auto entity_A : valid_entities_A) {
 			for (auto entity_B : valid_entities_B) {
 				process_pair(*entity_A.second, *entity_B.second, dt);

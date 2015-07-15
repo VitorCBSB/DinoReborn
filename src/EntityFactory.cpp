@@ -36,8 +36,7 @@ EntityPtr EntityFactory::create_bullet(World& world,
 							* 180.0/ M_PI), 2);
 	world.assign_component<BoundingCircleComponent>(bullet, 1.0f);
 	world.assign_component<ActionsComponent>(bullet, bullet_definition.actions);
-
-	world.get_group_manager().assign_entity_to_group("bullets", bullet);
+	world.assign_component<BulletMarker>(bullet);
 
 	return bullet;
 }
@@ -49,8 +48,7 @@ EntityPtr EntityFactory::create_test_entity(World& world) {
 	world.assign_component<AnimationComponent>(test,
 			Animation(GameAssets::sprites["img/not_defined.png"]), 2);
 	world.assign_component<BoundingCircleComponent>(test, 100.0f);
-
-	world.get_group_manager().assign_entity_to_group("enemies", test);
+	world.assign_component<EnemyMarker>(test);
 
 	return test;
 }
@@ -85,12 +83,12 @@ void EntityFactory::create_moving_backgrounds(World& world) {
 	world.assign_component<VelocityComponent>(bg1, 0, 50);
 	world.assign_component<AnimationComponent>(bg1,
 			Animation(GameAssets::sprites["img/Dino BG1.png"]), 0);
-	world.get_group_manager().assign_entity_to_group("background", bg1);
+	world.assign_component<BackgroundMarker>(bg1);
 
 	auto bg2 = world.create_entity();
 	world.assign_component<PositionComponent>(bg2, 300, -750);
 	world.assign_component<VelocityComponent>(bg2, 0, 50);
 	world.assign_component<AnimationComponent>(bg2,
 			Animation(GameAssets::sprites["img/Dino BG1.png"]), 0);
-	world.get_group_manager().assign_entity_to_group("background", bg2);
+	world.assign_component<BackgroundMarker>(bg2);
 }

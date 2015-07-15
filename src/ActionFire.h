@@ -14,6 +14,7 @@
 #include "EntityFactory.h"
 #include "components/PositionComponent.h"
 #include "components/VelocityComponent.h"
+#include "components/marker/PlayerBulletMarker.h"
 #include "parser/BulletDefinition.h"
 #include "Direction.h"
 

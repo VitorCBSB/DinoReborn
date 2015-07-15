@@ -11,10 +11,10 @@
 #include "../ecs/VECS.h"
 #include "../components/AnimationComponent.h"
 
-class AnimationManagerSystem: public System {
+class AnimationManagerSystem: public SingleEntitySystem {
 public:
 	AnimationManagerSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			SingleEntitySystem(world_ptr) {
 		add_aspect(new AllOfAspect<AnimationComponent>());
 	}
 

@@ -24,7 +24,7 @@ public:
 						AnimationComponent>());
 	}
 
-	void process_entities(double dt);
+	void process(double dt);
 	void process_entity(Entity& entity, double dt);
 };
 
