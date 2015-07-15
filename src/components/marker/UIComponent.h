@@ -8,7 +8,7 @@
 #ifndef UICOMPONENT_H_
 #define UICOMPONENT_H_
 
-#include "../ecs/Component.h"
+#include "../../ecs/VECS.h"
 
 // Marker component for UI stuff
 // Mostly to differentiate between things

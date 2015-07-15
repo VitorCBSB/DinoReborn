@@ -13,7 +13,6 @@
 #include "Aspect.h"
 #include "Component.h"
 #include "EventManager.h"
-#include "GroupManager.h"
 #include "TagManager.h"
 #include <memory>
 #include <stdint.h>

@@ -8,10 +8,10 @@
 #include "BulletRemovalSystem.h"
 
 void BulletRemovalSystem::handle(const PlayerBulletEnemyCollision& event) {
-	auto bullet_position = event.bullet->get_component<PositionComponent>();
+	auto bullet_position = event.bullet.get().get_component<PositionComponent>();
 	EntityFactory::create_explosion(*(world_ptr.lock()),
 			new PositionComponent(*bullet_position));
-	world_ptr.lock()->remove_entity(event.bullet);
+	world_ptr.lock()->remove_entity(event.bullet.get().get_id());
 }
 
 void BulletRemovalSystem::process_entity(Entity& entity, double dt) {

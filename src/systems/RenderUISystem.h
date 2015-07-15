@@ -12,19 +12,13 @@
 #include <algorithm>
 #include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
-#include "../components/UIComponent.h"
+#include "../components/marker/UIComponent.h"
 #include "../components/AnimationComponent.h"
 
-class RenderUISystem: public System {
+class RenderUISystem: public SingleEntitySystem {
 public:
-	RenderUISystem(WorldPtr world_ptr) :
-			System(world_ptr) {
-		add_aspect(
-				new AllOfAspect<PositionComponent, UIComponent,
-						AnimationComponent>());
-	}
+	RenderUISystem(WorldPtr world_ptr);
 
-	void process(double dt);
 	void process_entity(Entity& entity, double dt);
 };
 

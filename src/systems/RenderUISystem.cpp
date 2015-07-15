@@ -7,22 +7,24 @@
 
 #include "RenderUISystem.h"
 
-void RenderUISystem::process(double dt) {
-	std::vector<std::reference_wrapper<Entity>> ordered_entities;
-	for (auto& entity_entry : valid_entities) {
-		ordered_entities.push_back(*(entity_entry.second));
-	}
+RenderUISystem::RenderUISystem(WorldPtr world_ptr) : SingleEntitySystem(world_ptr) {
+		add_aspect(
+				new AllOfAspect<PositionComponent, UIComponent,
+						AnimationComponent>());
+		set_preprocess([&](){
+			std::vector<std::reference_wrapper<Entity>> ordered_entities;
+			for (auto& entity_entry : valid_entities) {
+				ordered_entities.push_back(*(entity_entry.second));
+			}
 
-	std::sort(ordered_entities.begin(), ordered_entities.end(),
-			[&](Entity& e1, Entity& e2) {
+			std::sort(ordered_entities.begin(), ordered_entities.end(),
+					[&](Entity& e1, Entity& e2) {
 				auto p1 = e1.get_component<AnimationComponent>()->priority;
 				auto p2 = e2.get_component<AnimationComponent>()->priority;
 				return p1 < p2;
 			});
 
-	for (auto& entity : ordered_entities) {
-		process_entity(entity, dt);
-	}
+		});
 }
 
 void RenderUISystem::process_entity(Entity& entity, double dt) {

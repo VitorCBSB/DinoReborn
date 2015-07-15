@@ -18,10 +18,11 @@
 #include "components/AnimationComponent.h"
 #include "components/BoundingCircleComponent.h"
 #include "components/ShotComponent.h"
-#include "components/UIComponent.h"
+#include "components/marker/UIComponent.h"
 #include "components/marker/EnemyMarker.h"
 #include "components/marker/BackgroundMarker.h"
 #include "components/marker/BulletMarker.h"
+#include "components/marker/PlayerMarker.h"
 
 class EntityFactory {
 public:

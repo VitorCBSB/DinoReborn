@@ -59,7 +59,7 @@ public:
 	}
 
 	template<typename T>
-	T* get_component() {
+	T* get_component() const {
 		auto it = components.find(T::id());
 		if (it == components.end()) {
 			return nullptr;

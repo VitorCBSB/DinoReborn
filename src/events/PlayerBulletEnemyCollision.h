@@ -9,12 +9,13 @@
 #define COLLISION_H_
 
 #include "../ecs/VECS.h"
+#include <functional>
 
 class PlayerBulletEnemyCollision: public Event<PlayerBulletEnemyCollision> {
 public:
-	EntityPtr enemy, bullet;
+	std::reference_wrapper<Entity> enemy, bullet;
 
-	PlayerBulletEnemyCollision(EntityPtr bullet, EntityPtr enemy) :
+	PlayerBulletEnemyCollision(Entity& bullet, Entity& enemy) :
 			enemy(enemy), bullet(bullet) {
 	}
 };

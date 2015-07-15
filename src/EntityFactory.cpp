@@ -17,6 +17,7 @@ EntityPtr EntityFactory::create_player(World& world) {
 					100, true, { 1, 1, 1, 1, 1 }), 3);
 	world.assign_component<BoundingCircleComponent>(player, 1.0f);
 	world.assign_component<ShotComponent>(player);
+	world.assign_component<PlayerMarker>(player);
 
 	world.get_tag_manager().set_entity_tag("player", player);
 

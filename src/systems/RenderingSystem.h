@@ -15,7 +15,7 @@
 #include "../ecs/VECS.h"
 #include "../components/PositionComponent.h"
 #include "../components/AnimationComponent.h"
-#include "../components/UIComponent.h"
+#include "../components/marker/UIComponent.h"
 
 class RenderingSystem: public SingleEntitySystem {
 private:
@@ -24,7 +24,6 @@ private:
 public:
 	RenderingSystem(WorldPtr world_ptr);
 
-	void sort_entities();
 	void process_entity(Entity& entity, double dt);
 };
 

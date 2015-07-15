@@ -17,7 +17,7 @@
 class QuitSystem: public IndependentSystem {
 public:
 	QuitSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			IndependentSystem(world_ptr) {
 		this->world_ptr.lock()->get_event_manager().subscribe<Quit>(*this);
 	}
 

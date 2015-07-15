@@ -11,6 +11,8 @@
 #include "../ecs/VECS.h"
 #include "../components/BoundingCircleComponent.h"
 #include "../components/PositionComponent.h"
+#include "../components/marker/PlayerBulletMarker.h"
+#include "../components/marker/EnemyMarker.h"
 #include "../events/PlayerBulletEnemyCollision.h"
 #include <functional>
 
@@ -20,7 +22,7 @@ private:
 
 public:
 	CollisionSystem(WorldPtr world_ptr) :
-			System(world_ptr) {
+			InteractSystem(world_ptr) {
 		add_aspect_A(new AllOfAspect<PositionComponent, PlayerBulletMarker>());
 		add_aspect_B(new AllOfAspect<PositionComponent, EnemyMarker>());
 	}

@@ -13,6 +13,7 @@
 #include "../components/ShotComponent.h"
 #include "../components/PositionComponent.h"
 #include "../components/VelocityComponent.h"
+#include "../components/marker/PlayerBulletMarker.h"
 
 class ShotSystem: public SingleEntitySystem {
 public:

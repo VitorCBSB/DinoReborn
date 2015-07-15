@@ -27,10 +27,10 @@
 
 #define SPEED 200.0
 
-class PlayerInputHandler: public System {
+class PlayerInputHandler: public IndependentSystem {
 public:
 	PlayerInputHandler(WorldPtr world_ptr) :
-			SingleEntitySystem(world_ptr) {
+			IndependentSystem(world_ptr) {
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerMoveLeft>(
 				*this);
 		this->world_ptr.lock()->get_event_manager().subscribe<PlayerMoveRight>(
@@ -54,9 +54,6 @@ public:
 	}
 
 	void process(double dt) {
-	}
-
-	void process_entity(Entity& entity, double dt) {
 	}
 
 	void handle(const PlayerMoveLeft& event);
