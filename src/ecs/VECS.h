@@ -15,6 +15,8 @@
 #include "GroupManager.h"
 #include "TagManager.h"
 #include "System.h"
+#include "InteractSystem.h"
+#include "SingleEntitySystem.h"
 #include "Aspect.h"
 #include "AllOfAspect.h"
 #include "ExcludeAspect.h"

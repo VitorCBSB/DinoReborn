@@ -22,9 +22,7 @@ typedef std::shared_ptr<World> WorldPtr;
 
 class System {
 protected:
-	std::vector<AspectPtr> aspects;
 	std::weak_ptr<World> world_ptr;
-	EntityMap valid_entities;
 
 public:
 	System(WorldPtr world_ptr) :
@@ -33,32 +31,11 @@ public:
 	virtual ~System() {
 	}
 
-	void add_aspect(Aspect* aspect) {
-		aspects.push_back(AspectPtr(aspect));
-	}
+	virtual void remove_entity(uint64_t entity_id) = 0;
 
-	void remove_entity(uint64_t entity_id) {
-		valid_entities.erase(entity_id);
-	}
+	virtual void update_entity(EntityPtr e) = 0;
 
-	void update_entity(EntityPtr e) {
-		for (auto& aspect : aspects) {
-			if (!aspect->validate(*e)) {
-				valid_entities.erase(e->get_id());
-				return;
-			}
-		}
-		valid_entities[e->get_id()] = e;
-	}
-
-	virtual void process_entities(double dt) {
-		for (auto it = valid_entities.begin(); it != valid_entities.end();
-				it++) {
-			process_entity(*(it->second), dt);
-		}
-	}
-
-	virtual void process_entity(Entity& entity, double dt) = 0;
+	virtual void process_entities(double dt) = 0;
 };
 
 typedef std::unique_ptr<System> SystemPtr;
