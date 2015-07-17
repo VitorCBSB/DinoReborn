@@ -43,6 +43,7 @@ public:
 	}
 
 	void process(double dt) {
+		preprocess();
 		for (auto& entity : valid_entities) {
 			process_entity(*entity.second, dt);
 		}
