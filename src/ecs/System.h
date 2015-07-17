@@ -23,17 +23,12 @@ typedef std::shared_ptr<World> WorldPtr;
 class System {
 protected:
 	std::weak_ptr<World> world_ptr;
-	std::function<void()> preprocess = [](){};
 
 public:
 	System(WorldPtr world_ptr) :
 			world_ptr(world_ptr) {
 	}
 	virtual ~System() {
-	}
-
-	void set_preprocess(std::function<void()> preprocess_function) {
-		preprocess = preprocess_function;
 	}
 
 	virtual void remove_entity(uint64_t entity_id) = 0;

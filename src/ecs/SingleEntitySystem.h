@@ -17,11 +17,18 @@ class SingleEntitySystem : public System {
 protected:
 	std::vector<AspectPtr> aspects;
 	EntityMap valid_entities;
+	std::function<void(std::vector<std::reference_wrapper<Entity>>&)> preprocess
+			= [](std::vector<std::reference_wrapper<Entity>>&){};
 
 public:
 	SingleEntitySystem(WorldPtr world_ptr) : System(world_ptr) {
 	}
 	virtual ~SingleEntitySystem() {
+	}
+
+	void set_preprocess(std::function<void(std::vector<std::reference_wrapper<Entity>>&)>
+                preprocess_function) {
+		preprocess = preprocess_function;
 	}
 
 	void add_aspect(Aspect* aspect) {
@@ -43,9 +50,13 @@ public:
 	}
 
 	void process(double dt) {
-		preprocess();
+		std::vector<std::reference_wrapper<Entity>> entities;
 		for (auto& entity : valid_entities) {
-			process_entity(*entity.second, dt);
+			entities.emplace_back(*entity.second);
+		}
+		preprocess(entities);
+		for (auto& entity : entities) {
+			process_entity(entity.get(), dt);
 		}
 	}
 
