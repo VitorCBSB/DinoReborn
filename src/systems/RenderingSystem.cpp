@@ -18,7 +18,7 @@ RenderingSystem::RenderingSystem(WorldPtr world_ptr) :
 		}
 
 		std::sort(ordered_entities.begin(), ordered_entities.end(),
-				[&](Entity& e1, Entity& e2) {
+				[](Entity& e1, Entity& e2) {
 			auto p1 = e1.get_component<AnimationComponent>()->priority;
 			auto p2 = e2.get_component<AnimationComponent>()->priority;
 			return p1 < p2;
