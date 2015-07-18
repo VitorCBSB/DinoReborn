@@ -12,10 +12,10 @@
 
 class ActionVanish: public Action {
 public:
-	bool update(World& world, Entity& bullet, double dt);
-	void increment_repeat() {
+	ActionVanish() : Action(Action::VANISH) {
 	}
-	void reset_repeat() {
+	bool update(World& world, Entity& bullet, double dt);
+	void set_repeat_to(int new_value) {
 	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionVanish(*this));

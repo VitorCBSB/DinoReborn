@@ -16,7 +16,6 @@
 #include "../ActionRepeat.h"
 #include "../ActionFire.h"
 #include "../Direction.h"
-#include "Expression.h"
 #include "tinyxml2.h"
 #include "BulletDefinition.h"
 #include <stdio.h>
@@ -41,6 +40,7 @@ private:
 	ActionPtr parse_repeat(tinyxml2::XMLElement* element_root);
 	ActionPtr parse_fire(tinyxml2::XMLElement* element_root);
 	BulletDefinition parse_bullet(tinyxml2::XMLElement* root);
+	std::vector<ActionPtr> semantic_analysis(std::vector<ActionPtr>& actions);
 
 public:
 	BulletParser(std::string file_name);

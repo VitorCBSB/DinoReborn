@@ -19,15 +19,12 @@ private:
 
 public:
 	ActionWait(Expression wait_time_ms) :
-			Action(), wait_time(wait_time_ms) {
+			Action(Action::WAIT), wait_time(wait_time_ms) {
 	}
 
 	bool update(World& world, Entity& bullet, double dt);
-	void increment_repeat() {
-		wait_time.increment_repeat();
-	}
-	void reset_repeat() {
-		wait_time.reset_repeat();
+	void set_repeat_to(int new_value) {
+		wait_time.set_repeat_to(new_value);
 	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionWait(*this));

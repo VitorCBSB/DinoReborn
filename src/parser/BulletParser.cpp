@@ -145,13 +145,33 @@ std::vector<ActionPtr> BulletParser::parse_actions(tinyxml2::XMLElement* root) {
 	return actions;
 }
 
+std::vector<ActionPtr> BulletParser::semantic_analysis(std::vector<ActionPtr>& actions) {
+	std::vector<ActionPtr> new_actions;
+	for (auto& action : actions) {
+		if (action->tag == Action::REPEAT) {
+			auto times = ((ActionRepeat*) action.get())->times;
+			for (int i = 0; i < times; i++) {
+				for (auto& inner_action : ((ActionRepeat*) action.get())->actions) {
+					inner_action->set_repeat_to(i);
+					new_actions.emplace_back(inner_action->clone());
+				}
+			}
+		} else {
+			new_actions.emplace_back(action->clone());
+		}
+	}
+	return new_actions;
+}
+
 BulletDefinition BulletParser::parse_bullet(tinyxml2::XMLElement* root) {
 	BulletDefinition return_value;
 
 	auto sprite = root->FirstChildElement("sprite");
 	return_value.sprite_file_name = std::string(sprite->GetText());
-	return_value.actions = parse_actions(root->FirstChildElement("actions"));
 
+	auto actions = parse_actions(root->FirstChildElement("actions"));
+
+	return_value.actions = semantic_analysis(actions);
 	return return_value;
 }
 

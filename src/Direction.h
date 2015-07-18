@@ -26,11 +26,8 @@ public:
 			direction(direction), type(type) {
 	}
 	float get_angle(World& world, Entity& bullet);
-	void increment_repeat() {
-		direction.increment_repeat();
-	}
-	void reset_repeat() {
-		direction.reset_repeat();
+	void set_repeat_to(int new_value) {
+		direction.set_repeat_to(new_value);
 	}
 
 private:

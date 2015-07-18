@@ -17,6 +17,8 @@ bool ActionFire::update(World& world, Entity& bullet, double dt) {
 			new PositionComponent(*(bullet.get_component<PositionComponent>())),
 			new VelocityComponent(speed_val * cos(angle_radians),
 					speed_val * sin(angle_radians)), bullet_definition);
-	world.assign_component<PlayerBulletMarker>(new_bullet);
+	if (bullet.has_component<PlayerBulletMarker>()) {
+		world.assign_component<PlayerBulletMarker>(new_bullet);
+	}
 	return true;
 }

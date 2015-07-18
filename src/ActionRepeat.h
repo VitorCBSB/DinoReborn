@@ -11,38 +11,41 @@
 #include "Action.h"
 #include <vector>
 
+// This class should not implement any of its inherited methods
+// It is replaced at script compile time (in the semantic analysis phase)
+// by its vector of actions times the number of times
+// they're supposed to be executed.
+
 class ActionRepeat: public Action {
-private:
+public:
 	std::vector<ActionPtr> actions;
-	std::vector<ActionPtr>::iterator current_action;
-	int current_iteration = 0;
 	int times;
 
-public:
-	ActionRepeat(std::vector<ActionPtr>& actions, int times);
-	ActionRepeat(const ActionRepeat& other) {
-		for (auto& action : other.actions) {
-			actions.push_back(action->clone());
-		}
-		current_iteration = other.current_iteration;
+	ActionRepeat(const ActionRepeat& other) : Action(Action::REPEAT) {
 		times = other.times;
+		for (auto& action : actions) {
+			this->actions.emplace_back(action->clone());
+		}
+	}
+	ActionRepeat& operator=(const ActionRepeat& other) {
+		tag = other.tag;
+		times = other.times;
+		for (auto& action : actions) {
+			this->actions.emplace_back(action->clone());
+		}
+		return *this;
+	}
+	ActionRepeat(const std::vector<ActionPtr>& actions, int times)
+		: Action(Action::REPEAT), times(times) {
+		for (auto& action : actions) {
+			this->actions.emplace_back(action->clone());
+		}
 	}
 
-	bool update(World& world, Entity& bullet, double dt);
-	void increment_repeat() {
-		current_iteration++;
-		for (auto& action : actions) {
-			action->increment_repeat();
-		}
+	bool update(World& world, Entity& bullet, double dt) {
+		return false;
 	}
-	void reset_repeat() {
-	}
-	void reset() {
-		started = false;
-		current_iteration = 0;
-		for (auto& action : actions) {
-			action->reset_repeat();
-		}
+	void set_repeat_to(int new_value) {
 	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionRepeat(*this));

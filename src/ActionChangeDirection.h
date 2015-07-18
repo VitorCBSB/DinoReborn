@@ -27,16 +27,12 @@ private:
 
 public:
 	ActionChangeDirection(Direction direction, Expression time) :
-			direction(direction), time(time) {
+			Action(Action::CHANGE_DIRECTION), direction(direction), time(time) {
 	}
 	bool update(World& world, Entity& bullet, double dt);
-	void increment_repeat() {
-		direction.increment_repeat();
-		time.increment_repeat();
-	}
-	void reset_repeat() {
-		time.reset_repeat();
-		direction.reset_repeat();
+	void set_repeat_to(int new_value) {
+		direction.set_repeat_to(new_value);
+		time.set_repeat_to(new_value);
 	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionChangeDirection(*this));

@@ -1,53 +1,31 @@
 /*
  * Expression.h
  *
- *  Created on: 29/07/2014
+ *  Created on: 18/07/2015
  *      Author: vitor
  */
 
-#ifndef EXPRESSION_H_
-#define EXPRESSION_H_
+#ifndef PARSER_EXPRESSION_H_
+#define PARSER_EXPRESSION_H_
 
-#include <vector>
-#include <stack>
-#include <stdio.h>
-#include <stdlib.h>
+#include "ExprNodes.h"
+#include "ExprParser.tab.h"
 #include <memory>
-#include <functional>
-#include "Token.h"
-#include "Tokenizer.h"
-#include "Operator.h"
-#include "Operand.h"
-#include "Parenthesis.h"
 
 class Expression {
 private:
-	// List of tokens in postfix format
-	std::vector<TokenPtr> postfix_token_list;
-	int repeat = 0;
-
-	std::vector<TokenPtr> parse(const std::string& expression);
-	void convert_to_postfix(std::vector<TokenPtr>& infix_token_list);
-	float evaluate_postfix();
-
-	std::unique_ptr<Operand> cast_to_operand(TokenPtr& token);
-
+	std::unique_ptr<Expr> root;
 public:
-	Expression(std::string expression);
-	Expression(const Expression& other) :
-			repeat(other.repeat) {
-		for (auto& token : other.postfix_token_list) {
-			postfix_token_list.push_back(token->clone(&repeat));
-		}
+	Expression(const std::string& expression);
+	Expression(const Expression& other) {
+		root = other.root->clone();
 	}
-
-	float eval();
-	void increment_repeat() {
-		repeat++;
+	Expression& operator=(const Expression& other) {
+		root = other.root->clone();
+		return *this;
 	}
-	void reset_repeat() {
-		repeat = 0;
-	}
+	double eval() const;
+	void set_repeat_to(int new_value);
 };
 
-#endif /* EXPRESSION_H_ */
+#endif /* PARSER_EXPRESSION_H_ */

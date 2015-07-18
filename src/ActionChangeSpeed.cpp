@@ -9,7 +9,7 @@
 
 ActionChangeSpeed::ActionChangeSpeed(Expression speed, Expression time,
 		ChangeSpeedType type) :
-		speed(speed), time(time), type(type) {
+		Action(Action::CHANGE_SPEED), speed(speed), time(time), type(type) {
 }
 
 bool ActionChangeSpeed::update(World& world, Entity& bullet, double dt) {

@@ -16,22 +16,29 @@ protected:
 	bool started = false;
 
 public:
-	Action() {
+	enum ActionType {
+		CHANGE_DIRECTION,
+		CHANGE_SPEED,
+		FIRE,
+		REPEAT,
+		VANISH,
+		WAIT
+	};
+
+	Action(ActionType tag) : tag(tag) {
 	}
 	virtual ~Action() {
 	}
 
 	virtual bool update(World& world, Entity& bullet, double dt) = 0;
-	virtual void increment_repeat() = 0;
-	virtual void reset_repeat() = 0;
+	virtual void set_repeat_to(int new_value) = 0;
 	virtual std::unique_ptr<Action> clone() = 0;
 
 	bool has_started() const {
 		return started;
 	}
-	virtual void reset() {
-		started = false;
-	}
+
+	ActionType tag;
 };
 
 typedef std::unique_ptr<Action> ActionPtr;

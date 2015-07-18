@@ -32,13 +32,9 @@ public:
 
 	ActionChangeSpeed(Expression speed, Expression time, ChangeSpeedType type);
 
-	void increment_repeat() {
-		time.increment_repeat();
-		speed.increment_repeat();
-	}
-	void reset_repeat() {
-		time.reset_repeat();
-		speed.reset_repeat();
+	void set_repeat_to(int new_value) {
+		time.set_repeat_to(new_value);
+		speed.set_repeat_to(new_value);
 	}
 	bool update(World& world, Entity& bullet, double dt);
 	ActionPtr clone() {

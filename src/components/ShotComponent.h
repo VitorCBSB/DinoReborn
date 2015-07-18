@@ -21,7 +21,7 @@ public:
 	bool shooting = false;
 
 	ShotComponent() :
-			shot_script("scripts/bullets/spread.xml") {
+			shot_script("scripts/bullets/burst.xml") {
 		shot_cooldown.start(SHOT_COOLDOWN_TIMER);
 	}
 };

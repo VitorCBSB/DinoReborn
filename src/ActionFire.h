@@ -29,21 +29,14 @@ private:
 public:
 	ActionFire(Direction direction, Expression speed,
 			BulletDefinition bullet_definition) :
-			direction(direction), speed(speed), bullet_definition(
+			Action(Action::FIRE), direction(direction), speed(speed), bullet_definition(
 					bullet_definition) {
 	}
 
 	bool update(World& world, Entity& bullet, double dt);
-	void increment_repeat() {
-		direction.increment_repeat();
-		speed.increment_repeat();
-	}
-	void reset_repeat() {
-		direction.reset_repeat();
-		speed.reset_repeat();
-	}
-	void reset() {
-		started = false;
+	void set_repeat_to(int new_value) {
+		direction.set_repeat_to(new_value);
+		speed.set_repeat_to(new_value);
 	}
 	ActionPtr clone() {
 		return ActionPtr(new ActionFire(*this));
