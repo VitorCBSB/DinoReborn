@@ -12,7 +12,7 @@
 #include "../ecs/Component.h"
 #include "../Timer.h"
 
-#define SHOT_COOLDOWN_TIMER 100
+#define SHOT_COOLDOWN_TIMER 6
 
 class ShotComponent: public Component<ShotComponent> {
 public:

@@ -19,7 +19,7 @@ private:
 	double angle;
 	int frame_width;
 	int frame_height;
-	int frame_time_ms;
+	int frame_time_in_frames;
 	int current_frame;
 	bool done;
 	std::vector<int> num_frames_per_state;
@@ -47,11 +47,11 @@ public:
 	}
 
 	int get_frame_time() const {
-		return frame_time_ms;
+		return frame_time_in_frames;
 	}
 
 	void set_frame_time(int frame_time) {
-		this->frame_time_ms = frame_time;
+		this->frame_time_in_frames = frame_time;
 	}
 
 	int get_frame_width() const {

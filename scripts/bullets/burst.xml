@@ -4,7 +4,7 @@
 	<actions>
 		<changeSpeed type="absolute">
 			<speed>0</speed>
-			<time>1000</time>
+			<time>60</time>
 		</changeSpeed>
 		<repeat>
 			<times>4</times>
@@ -19,7 +19,7 @@
 	    	    		</fire>
 	    	    	</actions>
 	        	</repeat>
-	        	<wait>1000</wait>
+	        	<wait>30</wait>
         	</actions>
         </repeat>
 		<vanish />

@@ -8,22 +8,21 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
-#include <SDL2/SDL.h>
-
 class Timer {
 private:
 	bool done;
 	bool paused;
 	bool started;
-	unsigned int goal_time_in_milliseconds;
-	unsigned int paused_time_in_milliseconds;
+	unsigned int goal_time_in_frames;
+	unsigned int paused_time_in_frames;
+	unsigned int current;
 public:
 	Timer() :
-			done(false), paused(false), started(false), goal_time_in_milliseconds(
-					0), paused_time_in_milliseconds(0) {
+			done(false), paused(false), started(false), goal_time_in_frames(
+					0), paused_time_in_frames(0), current(0) {
 	}
 
-	void start(int new_goal_time_in_milliseconds);
+	void start(int new_goal_time_in_frames);
 	void resume();
 	void pause();
 	void update();
