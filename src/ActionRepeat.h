@@ -23,14 +23,14 @@ public:
 
 	ActionRepeat(const ActionRepeat& other) : Action(Action::REPEAT) {
 		times = other.times;
-		for (auto& action : actions) {
+		for (auto& action : other.actions) {
 			this->actions.emplace_back(action->clone());
 		}
 	}
 	ActionRepeat& operator=(const ActionRepeat& other) {
 		tag = other.tag;
 		times = other.times;
-		for (auto& action : actions) {
+		for (auto& action : other.actions) {
 			this->actions.emplace_back(action->clone());
 		}
 		return *this;
