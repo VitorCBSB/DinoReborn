@@ -145,7 +145,8 @@ std::vector<ActionPtr> BulletParser::parse_actions(tinyxml2::XMLElement* root) {
 	return actions;
 }
 
-std::vector<ActionPtr> BulletParser::semantic_analysis(std::vector<ActionPtr>& actions) {
+std::vector<ActionPtr> BulletParser::semantic_analysis(
+		std::vector<ActionPtr>& actions) {
 	std::vector<ActionPtr> new_actions;
 	for (auto& action : actions) {
 		if (action->tag == Action::REPEAT) {
@@ -153,7 +154,14 @@ std::vector<ActionPtr> BulletParser::semantic_analysis(std::vector<ActionPtr>& a
 			for (int i = 0; i < times; i++) {
 				for (auto& inner_action : ((ActionRepeat*) action.get())->actions) {
 					inner_action->set_repeat_to(i);
-					new_actions.emplace_back(inner_action->clone());
+
+					std::vector<ActionPtr> inner_action_vec;
+					inner_action_vec.emplace_back(inner_action->clone());
+					auto recursive_analyzed_actions = semantic_analysis(inner_action_vec);
+
+					new_actions.insert(new_actions.end(),
+							std::make_move_iterator(recursive_analyzed_actions.begin()),
+							std::make_move_iterator(recursive_analyzed_actions.end()));
 				}
 			}
 		} else {
@@ -163,6 +171,8 @@ std::vector<ActionPtr> BulletParser::semantic_analysis(std::vector<ActionPtr>& a
 	return new_actions;
 }
 
+
+
 BulletDefinition BulletParser::parse_bullet(tinyxml2::XMLElement* root) {
 	BulletDefinition return_value;
 
@@ -170,8 +180,8 @@ BulletDefinition BulletParser::parse_bullet(tinyxml2::XMLElement* root) {
 	return_value.sprite_file_name = std::string(sprite->GetText());
 
 	auto actions = parse_actions(root->FirstChildElement("actions"));
-
 	return_value.actions = semantic_analysis(actions);
+
 	return return_value;
 }
 
