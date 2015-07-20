@@ -4,4 +4,11 @@ Game:
 		-- Enemy commands (can probably use the same as bullets)
 		-- Waves of enemies
 		-- Stages
+	- Generate states for: menu, main game, pause and other things.
+		-- In this case, Game States would probably be different Worlds.
+	- Add sounds for... everything.
+	- Add options for: sound/music level, controls.
+	- Possibly also add a how-to-play screen with controls somewhere (probably in the main menu).
+	- Add bombs too.
+	- Add focus (slow down on Shift).
 
